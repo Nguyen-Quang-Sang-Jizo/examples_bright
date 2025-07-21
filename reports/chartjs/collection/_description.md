@@ -1,1 +1,0 @@
-ChartJS package contains wrapped widget class for great chart library ChartJS. ChartJS library is very beautiful and rich in features. It is capable of replacing the Google Chart library. Not like Google Charts, ChartJS package can be used without internet so that is the greatest advantage of this package.

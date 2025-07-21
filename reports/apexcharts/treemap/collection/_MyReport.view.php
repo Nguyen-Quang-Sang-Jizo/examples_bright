@@ -1,3 +1,0 @@
-<?php
-include "../basic/MyReport.view.php";
-...

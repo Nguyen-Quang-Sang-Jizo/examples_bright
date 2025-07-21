@@ -1,1 +1,0 @@
-This example shows DataTables' footers works with server-side processing by default.

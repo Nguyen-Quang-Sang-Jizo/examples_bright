@@ -1,1 +1,0 @@
-This example shows how to calculate various client-side footer for the current page, all searched pages, and all pages.
