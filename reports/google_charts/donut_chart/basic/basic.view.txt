@@ -1,0 +1,31 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\DonutChart;
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>Basic</h1>
+    </div>
+
+    <div style="margin-bottom:50px;">
+        <?php
+        DonutChart::create(array(
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                'Task',
+                'Hours per Day'
+            ),
+            "options" => array(
+                "title" => 'My Daily Activities',
+                "pieHole" => 0.4,
+            )
+        ));
+        ?>
+    </div>
+</div>
+//widget_end 

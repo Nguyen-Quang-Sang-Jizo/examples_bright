@@ -1,0 +1,60 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"2","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\koolphp\Table;
+    use \koolreport\widgets\google\ColumnChart;
+?>
+
+<div class="report-content">
+    <div class="text-center">
+        <h1>MySQL PDO</h1>
+        <p class="lead">This report show how to build report from MySQL data</p>
+    </div>
+
+    <?php
+  	$data = $this->dataStore('result_2');
+    ColumnChart::create(array(
+        "dataStore"=>$data,  
+        "columns"=>array(
+            "payment_date"=>array(
+                "label"=>"Month",
+                "type"=>"datetime",
+                "format"=>"Y-n",
+                "displayFormat"=>"F, Y",
+            ),
+            "amount"=>array(
+                "label"=>"Amount",
+                "type"=>"number",
+                "prefix"=>"$",
+            )
+        ),
+        "width"=>"100%",
+    ));
+    ?>
+
+    <?php
+    Table::create(array(
+        "dataStore"=>$data,
+        "columns"=>array(
+            "payment_date"=>array(
+                "label"=>"Month",
+                "type"=>"datetime",
+                "format"=>"Y-n",
+                "displayFormat"=>"F, Y",
+            ),
+            "amount"=>array(
+                "label"=>"Amount",
+                "type"=>"number",
+                "prefix"=>"$",
+                        )
+        ),
+        "cssClass"=>array(
+            "table"=>"table table-hover table-bordered"
+        )
+    ));
+    ?>
+</div>
+//widget_end 

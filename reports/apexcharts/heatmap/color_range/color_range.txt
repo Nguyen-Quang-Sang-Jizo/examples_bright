@@ -1,0 +1,303 @@
+<?php
+class color_range extends \koolreport\KoolReport
+{
+    function settings()
+    {
+
+
+//datasource_start 
+/* datasourceMeta_start
+{"isSavedTemplate":null,"template":["Variables_based","Array"]}
+datasourceMeta_end */
+$datasource = array(
+    "class"=>'\koolreport\datasources\ArrayDataSource',
+    "dataFormat"=>"table",
+    "data"=>[
+            [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep"
+            ],
+            [
+                -30,
+                15,
+                2,
+                55,
+                36,
+                18,
+                40,
+                37,
+                5
+            ],
+            [
+                15,
+                42,
+                -8,
+                -14,
+                -8,
+                26,
+                15,
+                -20,
+                -30
+            ],
+            [
+                33,
+                33,
+                0,
+                28,
+                27,
+                -25,
+                -20,
+                0,
+                0
+            ],
+            [
+                -8,
+                -24,
+                25,
+                4,
+                48,
+                12,
+                4,
+                -11,
+                16
+            ],
+            [
+                2,
+                16,
+                1,
+                7,
+                10,
+                9,
+                -19,
+                -5,
+                -14
+            ],
+            [
+                -14,
+                -19,
+                -26,
+                34,
+                7,
+                -30,
+                39,
+                -16,
+                44
+            ],
+            [
+                53,
+                44,
+                15,
+                -15,
+                49,
+                30,
+                3,
+                52,
+                48
+            ],
+            [
+                14,
+                9,
+                -17,
+                39,
+                10,
+                3,
+                -24,
+                32,
+                52
+            ],
+            [
+                15,
+                10,
+                9,
+                39,
+                54,
+                8,
+                21,
+                20,
+                38
+            ],
+            [
+                -8,
+                8,
+                -2,
+                -22,
+                -3,
+                50,
+                -2,
+                14,
+                -10
+            ],
+            [
+                -21,
+                -10,
+                -14,
+                -28,
+                38,
+                -20,
+                -9,
+                12,
+                13
+            ],
+            [
+                40,
+                -29,
+                -25,
+                -19,
+                44,
+                6,
+                3,
+                1,
+                -14
+            ],
+            [
+                47,
+                -29,
+                54,
+                24,
+                33,
+                -5,
+                -3,
+                -5,
+                44
+            ],
+            [
+                8,
+                55,
+                16,
+                2,
+                17,
+                5,
+                23,
+                3,
+                39
+            ],
+            [
+                -9,
+                48,
+                -23,
+                -9,
+                41,
+                -10,
+                -13,
+                5,
+                54
+            ],
+            [
+                -9,
+                37,
+                55,
+                13,
+                15,
+                1,
+                -6,
+                6,
+                -1
+            ],
+            [
+                -14,
+                19,
+                7,
+                14,
+                -4,
+                31,
+                55,
+                -3,
+                24
+            ],
+            [
+                -3,
+                36,
+                30,
+                -22,
+                -1,
+                50,
+                -14,
+                0,
+                28
+            ],
+            [
+                -22,
+                23,
+                -14,
+                54,
+                -4,
+                -29,
+                26,
+                -21,
+                46
+            ],
+            [
+                39,
+                -1,
+                16,
+                -1,
+                8,
+                11,
+                14,
+                32,
+                -20
+            ]
+        ]
+);
+//datasource_end 
+    if (!isset($datasource)) {
+        if (isset($emptyCode)) {
+            $datasource = array(
+                "class"=>'\koolreport\datasources\ArrayDataSource',
+                "dataFormat"=>"associate", // or "table"
+                "data"=>array()
+            );
+        } else {
+            echo ('<i>Error:</i> variable $datasource doesn\'t exist in Data source'); exit;
+        }
+    }        
+
+        return array(
+            "dataSources" => array(
+                "source" => $datasource ?? array(
+                    "class"=>'\koolreport\datasources\ArrayDataSource',
+                    "dataFormat"=>"associate", // or "table"
+                    "data"=>array()
+                )
+            ),
+            "assets"=>array(
+                "path"=>"../../public/koolreport_assets", //relative from tmp directory
+                "url"=>"http://codegen.local/public/koolreport_assets"
+            )
+        );
+    }
+
+    function setup()
+    {
+        $node = $this->src('source');
+        $sql = 
+//sql_start 
+''
+//sql_end 
+;
+        $datastore = 
+//datastore_start 
+''
+//datastore_end 
+;
+        if (!empty($sql) && method_exists($node, 'query')) {
+            $node = $node
+            ->query($sql);
+        } else if (!empty($datastore) && method_exists($node, 'dataStore')) {
+            $node = $node
+            ->dataStore($datastore);
+        } 
+
+
+$node->pipe($this->dataStore('result_0'));
+
+
+    }
+}

@@ -1,0 +1,52 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\morris_chart\Bar;
+
+    $category_amount =$this->dataStore('result_0');
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>BarChart</h1>
+        <p class="lead">
+            This example shows how to use BarChart
+        </p>
+    </div>
+    <div style="margin-bottom:50px;">
+    <h6 class="text-center">Sale Report</h6>
+    <?php
+    Bar::create(array(
+        "dataSource"=>$category_amount,
+        "columns"=>array(
+            "category",
+            "sale"=>array("label"=>"Sale","type"=>"number","prefix"=>"$"),
+            "cost"=>array("label"=>"Cost","type"=>"number","prefix"=>"$"),
+            "profit"=>array("label"=>"Profit","type"=>"number","prefix"=>"$"),
+        )
+    ));
+    ?>
+    </div>
+    <div style="margin-bottom:50px;">
+    <h6 class="text-center">Stacked Bar Chart</h6>
+    <?php
+    Bar::create(array(
+        "dataSource"=>$category_amount,
+        "columns"=>array(
+            "category",
+            "sale"=>array("label"=>"Sale","type"=>"number","prefix"=>"$"),
+            "cost"=>array("label"=>"Cost","type"=>"number","prefix"=>"$"),
+            "profit"=>array("label"=>"Profit","type"=>"number","prefix"=>"$"),
+        ),
+        "options"=>array(
+            "stacked"=>true
+        )
+    ));
+    ?>
+    </div>
+    
+</div>
+//widget_end 

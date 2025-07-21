@@ -1,0 +1,51 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","line_chart_point_styles"]}
+widgetMeta_end */
+$shape = ['circle', 'triangle', 'rect', 'rectRounded', 'rectRot', 'cross', 'crossRot', 'star', 'line', 'dash'];
+?>
+<div id="report_render" style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: center;">
+<?php
+    for ($i = 0; $i < count($shape); $i++) {
+    ?>
+        <div style="width: 500px;margin-left: 40px;margin-right: 40px;margin-bottom: 40px;">
+            <?php
+            \koolreport\chartjs\LineChart::create(
+                array(
+                    'dataSource' => $this->dataStore('result_0'),
+                    'columns' => array(
+                        'month',
+                        'value' => array(
+                            "showLine" => false,
+                            "pointRadius" => 10,
+                            "pointHoverRadius" => 15,
+                            "backgroundColor" => 'rgb(255, 99, 132)',
+                            "borderColor" => 'rgb(255, 99, 132)',
+                            "fill" => false,
+                            "label" => "My First dataset"
+                        )
+                    ),
+                    "options" => array(
+                        "responsive" => true,
+                        "title" => array(
+                            "display" => true,
+                            "text" => "Point Style: " . $shape[$i]
+                        ),
+                        "legend" => array(
+                            "display" => false,
+                        ),
+                        "elements" => array(
+                            "point" => array(
+                                "pointStyle" => $shape[$i]
+                            )
+                        )
+                    )
+                )
+            );
+            ?>
+        </div>
+    <?php
+    }
+//widget_end 

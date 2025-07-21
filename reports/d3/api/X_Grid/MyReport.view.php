@@ -16,7 +16,7 @@ if (!isset($_POST['command'])) {
 if (isset($_POST['command']) && $_POST['command'] === 'second') {
     $_SESSION['lines'] = array(
         array(
-            "value" => 1,
+            "value" => 1, 
             "text" => 'Label 1'
         ),
         array(

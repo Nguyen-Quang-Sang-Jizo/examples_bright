@@ -1,0 +1,52 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\ColumnChart;
+
+    $data = $this->dataStore('result_0');
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>ColumnChart</h1>
+        <p class="lead">
+            This example shows how to use ColumnChart
+        </p>
+    </div>
+    <div style="margin-bottom:50px;">
+    <?php
+    ColumnChart::create(array(
+        "title"=>"Sale Report",
+        "dataSource"=>$data,
+        "columns"=>array(
+            "category",
+            "sale"=>array("label"=>"Sale","type"=>"number","prefix"=>"$"),
+            "cost"=>array("label"=>"Cost","type"=>"number","prefix"=>"$"),
+            "profit"=>array("label"=>"Profit","type"=>"number","prefix"=>"$"),
+        )
+    ));
+    ?>
+    </div>
+    <div style="margin-bottom:50px;">
+    <?php
+    ColumnChart::create(array(
+        "title"=>"Sale Report on Stack",
+        "dataSource"=>$data,
+        "columns"=>array(
+            "category",
+            "sale"=>array("label"=>"Sale","type"=>"number","prefix"=>"$"),
+            "cost"=>array("label"=>"Cost","type"=>"number","prefix"=>"$"),
+            "profit"=>array("label"=>"Profit","type"=>"number","prefix"=>"$"),
+        ),
+        "options"=>array(
+            "isStacked"=>true
+        )
+    ));
+    ?>
+    </div>
+    
+</div>
+//widget_end 

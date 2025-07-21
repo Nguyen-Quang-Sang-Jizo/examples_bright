@@ -1,0 +1,45 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div class="report-content">
+    <div class="text-center">
+        <h1>AreaChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful AreaChart
+        </p>
+    </div>
+
+    <style>
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+    </style>
+
+    <div style="margin-bottom:50px;">
+        <?php
+        \koolreport\apexcharts\AreaChart::create(array(
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                "date" => [
+                    "label" => "Date",
+                    "categoryType" => "datetime",
+                ],
+                "series-1" => [], 
+                "series-2" => []
+            ),
+            "options" => [
+                "tooltip | x | format" => 'dd/MM/yy HH:mm',
+            ],
+            // "showLegend" => false,
+            // "showLabel" => true,
+            "maxWidth" => 800,
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

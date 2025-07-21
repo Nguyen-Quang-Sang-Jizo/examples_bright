@@ -1,0 +1,51 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <h1 class='title'>Optional Y Grid Lines</h1>
+<?php
+
+\koolreport\d3\LineChart::create(array(
+    "dataSource" => $this->dataStore('result_0'),
+    "columns" => array(
+        'sample',
+        'sample2'
+    ),
+    "options" => array(
+        "data" => array(
+            "axes" => array(
+                "sample2" => 'y2'
+            )
+        ),
+        "axis" => array(
+            "y2" => array(
+                "show" => true
+            )
+        ),
+        "grid" => array(
+            "y" => array(
+                "lines" => array(
+                    array(
+                        "value" => 50,
+                        "text" => 'Label 50  for  y'
+                    ),
+                    array(
+                        "value" => 1300,
+                        "text" => 'Label 1300 for y2',
+                        "axis" => 'y2',
+                        "position" => 'start'
+                    ),
+                    array(
+                        "value" => 350,
+                        "text" => 'Label 350 for y',
+                        "position" => 'middle'
+                    )
+                )
+            )
+        )
+    )
+));
+//widget_end 

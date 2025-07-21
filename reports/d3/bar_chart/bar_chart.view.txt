@@ -1,0 +1,68 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\d3\BarChart;
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>BarChart</h1>
+        <p class="lead">
+            This example shows how to use D3 BarChart
+        </p>
+    </div>
+    <div style="margin-bottom:50px;">
+    <div class="text-center"><strong>Basic chart</strong></div>
+    <?php
+    BarChart::create(array(
+        "dataSource"=>$this->dataStore('result_0'),
+        "columns"=>array(
+            "category",
+            "sale"=>array("label"=>"Sale","type"=>"number","prefix"=>"$"),
+            "cost"=>array("label"=>"Cost","type"=>"number","prefix"=>"$"),
+            "profit"=>array("label"=>"Profit","type"=>"number","prefix"=>"$"),
+        )
+    ));
+    ?>
+    </div>
+    
+    
+    <div style="margin-bottom:50px;">
+    <div class="text-center"><strong>Dual Axis - Sale and Sale Number</strong></div>
+    <?php
+    BarChart::create(array(
+        "dataSource"=>array(
+            array("category"=>"Books","sale"=>32000,"number"=>1700,),
+            array("category"=>"Accessories","sale"=>43000,"number"=>2100),
+            array("category"=>"Phones","sale"=>54000,"number"=>3200),
+            array("category"=>"Movies","sale"=>23000,"number"=>9000),
+            array("category"=>"Others","sale"=>12000,"number"=>5300),
+        ),
+        "columns"=>array(
+            "category",
+            "sale"=>array(
+                "label"=>"Sale",
+                "type"=>"number",
+                "prefix"=>"$"
+            ),
+            "number"=>array(
+                "label"=>"Cost",
+                "type"=>"number",
+                "prefix"=>"$",
+                "axis"=>"y2"
+            ),
+        ),
+        "yAxis"=>array(
+            "prefix"=>"$"
+        ),
+        "dualAxis"=>true
+    ));
+    ?>
+    </div>
+
+
+
+</div>
+//widget_end 

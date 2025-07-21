@@ -1,0 +1,198 @@
+<?php
+class stacked extends \koolreport\KoolReport
+{
+    function settings()
+    {
+
+
+//datasource_start 
+/* datasourceMeta_start
+{"isSavedTemplate":null,"template":["Variables_based","Array"]}
+datasourceMeta_end */
+$datasource = array(
+    "class"=>'\koolreport\datasources\ArrayDataSource',
+    "dataFormat"=>"table", 
+    "data"=>[
+            [
+                "date",
+                "South",
+                "North",
+                "Central"
+            ],
+            [
+                "2/11/2017",
+                10,
+                15,
+                12
+            ],
+            [
+                "2/12/2017",
+                36,
+                19,
+                11
+            ],
+            [
+                "2/13/2017",
+                47,
+                18,
+                12
+            ],
+            [
+                "2/14/2017",
+                23,
+                10,
+                13
+            ],
+            [
+                "2/15/2017",
+                29,
+                15,
+                12
+            ],
+            [
+                "2/16/2017",
+                20,
+                11,
+                10
+            ],
+            [
+                "2/17/2017",
+                59,
+                19,
+                13
+            ],
+            [
+                "2/18/2017",
+                36,
+                15,
+                10
+            ],
+            [
+                "2/19/2017",
+                37,
+                15,
+                12
+            ],
+            [
+                "2/20/2017",
+                23,
+                14,
+                11
+            ],
+            [
+                "2/21/2017",
+                15,
+                12,
+                11
+            ],
+            [
+                "2/22/2017",
+                51,
+                10,
+                10
+            ],
+            [
+                "2/23/2017",
+                55,
+                10,
+                15
+            ],
+            [
+                "2/24/2017",
+                33,
+                20,
+                13
+            ],
+            [
+                "2/25/2017",
+                22,
+                20,
+                10
+            ],
+            [
+                "2/26/2017",
+                22,
+                18,
+                15
+            ],
+            [
+                "2/27/2017",
+                19,
+                16,
+                12
+            ],
+            [
+                "2/28/2017",
+                26,
+                18,
+                14
+            ],
+            [
+                "3/1/2017",
+                15,
+                16,
+                11
+            ],
+            [
+                "3/2/2017",
+                51,
+                13,
+                13
+            ]
+        ]
+);
+//datasource_end 
+    if (!isset($datasource)) {
+        if (isset($emptyCode)) {
+            $datasource = array(
+                "class"=>'\koolreport\datasources\ArrayDataSource',
+                "dataFormat"=>"associate", // or "table"
+                "data"=>array()
+            );
+        } else {
+            echo ('<i>Error:</i> variable $datasource doesn\'t exist in Data source'); exit;
+        }
+    }        
+
+        return array(
+            "dataSources" => array(
+                "source" => $datasource ?? array(
+                    "class"=>'\koolreport\datasources\ArrayDataSource',
+                    "dataFormat"=>"associate", // or "table"
+                    "data"=>array()
+                )
+            ),
+            "assets"=>array(
+                "path"=>"../../public/koolreport_assets", //relative from tmp directory
+                "url"=>"http://codegen.local/public/koolreport_assets"
+            )
+        );
+    }
+
+    function setup()
+    {
+        $node = $this->src('source');
+        $sql = 
+//sql_start 
+''
+//sql_end 
+;
+        $datastore = 
+//datastore_start 
+''
+//datastore_end 
+;
+        if (!empty($sql) && method_exists($node, 'query')) {
+            $node = $node
+            ->query($sql);
+        } else if (!empty($datastore) && method_exists($node, 'dataStore')) {
+            $node = $node
+            ->dataStore($datastore);
+        } 
+
+
+$node->pipe($this->dataStore('result_0'));
+
+
+    }
+}

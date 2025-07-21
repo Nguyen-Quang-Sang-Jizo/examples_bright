@@ -1,0 +1,31 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <h1 class='title'>Data Color</h1>
+<?php
+ 
+\koolreport\d3\ColumnChart::create(array(
+    "dataSource" => $this->dataStore('result_0'),
+    "columns" => array(
+        'data1',
+        'data2',
+        'data3'
+    ),
+    "options" => array(
+        "data" => array(
+            "colors" => array(
+                "data1" => '#ff0000',
+                "data2" => '#00ff00',
+                "data3" => '#0000ff'
+            ),
+            "color" => "function (color, d) {
+                    return d.id && d.id === 'data3' ? d3.rgb(color).darker(d.value / 150) : color;
+                }"
+        )
+    )
+));
+//widget_end 

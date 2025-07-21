@@ -1,0 +1,67 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","tooltip_interactions"]}
+widgetMeta_end */
+?>
+  <div id="report_render" style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: center;">
+    <?php
+
+    $options = [
+        ["mode" => 'index', "intersect" => true,],
+        ["mode" => 'index', "intersect" => false,],
+        ["mode" => 'dataset', "intersect" => true,],
+        ["mode" => 'dataset', "intersect" => false,],
+        ["mode" => 'point', "intersect" => true,],
+        ["mode" => 'point', "intersect" => false,],
+        ["mode" => 'nearest', "intersect" => true,],
+        ["mode" => 'nearest', "intersect" => false,],
+        ["mode" => 'x', "intersect" => true],
+        ["mode" => 'x', "intersect" => false],
+        ["mode" => 'y', "intersect" => true],
+        ["mode" => 'y', "intersect" => false]
+    ];
+
+    for ($i = 0; $i < count($options); $i++) {
+    ?>
+        <div style="width:500px;margin-left: 40px;margin-right: 40px;margin-bottom: 40px">
+            <?php
+            \koolreport\chartjs\LineChart::create(array(
+                'dataSource' => $this->dataStore('result_0'),
+                'columns' => array(
+                    "month",
+                    "My First dataset" => array(
+                        "backgroundColor" => 'rgb(255, 99, 132)',
+                        "borderColor" => 'rgb(255, 99, 132)',
+                        'fill' => false
+                    ),
+                    "My Second dataset" => array(
+                        "backgroundColor" => 'rgb(54, 162, 235)',
+                        "borderColor" => 'rgb(54, 162, 235)',
+                        'fill' => false
+                    )
+                ),
+                "options" => array(
+                    "responsive" => true,
+                    "title" => array(
+                        "display" => true,
+                        "text" => 'Mode: ' . $options[$i]['mode'] . ', intersect = ' . json_encode($options[$i]['intersect'])
+                    ),
+                    "tooltips" => array(
+                        "mode" => $options[$i]['mode'],
+                        "intersect" => $options[$i]['intersect']
+                    ),
+                    "hover" => array(
+                        "mode" => $options[$i]['mode'],
+                        "intersect" => $options[$i]['intersect']
+                    )
+                )
+            ));
+            ?>
+        </div>
+    <?php
+    }
+    ?>
+</div>
+//widget_end 

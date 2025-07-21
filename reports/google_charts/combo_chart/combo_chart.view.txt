@@ -1,0 +1,46 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\ComboChart;
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>ComboChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful ComboChart
+        </p>
+    </div>
+
+    <div style="margin-bottom:50px;">
+    <?php
+    ComboChart::create(array(
+        "title"=>"Sale Report",
+        "dataSource"=>$this->dataStore('result_0'),
+        "columns"=>array(
+            "category",
+            "sale"=>array(
+                "label"=>"Sale",
+                "type"=>"number",
+                "prefix"=>"$"
+            ),
+            "cost"=>array(
+                "label"=>"Cost",
+                "type"=>"number",
+                "prefix"=>"$"
+            ),
+            "profit"=>array(
+                "label"=>"Profit",
+                "type"=>"number",
+                "prefix"=>"$",
+                "chartType"=>"line",
+            ),
+        ),
+    ));
+    ?>
+    </div>
+</div>
+//widget_end 

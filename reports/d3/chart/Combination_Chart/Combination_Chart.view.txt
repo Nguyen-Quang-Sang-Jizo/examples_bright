@@ -1,0 +1,37 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <h1 class='title'>Combination Chart</h1>
+<?php
+
+\koolreport\d3\ColumnChart::create(array(
+    "dataSource" => $this->dataStore('result_0'),
+    "columns" => array(
+        'data1',
+        'data2',
+        'data3',
+        'data4',
+        'data5',
+        'data6'
+    ),
+    "options" => array(
+        "data" => array(
+            "types" => array(
+                "data3" => 'spline',
+                "data4" => 'line',
+                "data6" => 'area'
+            ),
+            "groups" => array(
+                array(
+                    'data1',
+                    'data2'
+                )
+            )
+        )
+    )
+));
+//widget_end 

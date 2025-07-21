@@ -1,0 +1,41 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div id="report_render">
+    <?php
+    \koolreport\chartjs\BarChart::create(array(
+        'dataSource' => $this->dataStore('result_0'),
+        'columns' => [
+			'month',
+		  	'Dataset 1' => [
+				'backgroundColor' => 'rgba(255, 99, 132, 0.5)',
+			  	'borderColor' => 'rgb(255, 99, 132)'
+			],
+		  	'Dataset 2' => [
+				'backgroundColor' => 'rgba(54, 162, 235, 0.5)',
+			  	'borderColor' => 'rgb(54, 162, 235)'
+			]
+		],
+        "options" => array(
+            "responsive" => true,
+            "title" => array(
+                "display" => true,
+                "text" => 'Chart.js Horizontal Bar Chart'
+            ),
+            "legend" => array(
+                "position" => 'right'
+            ),
+            "elements" => array(
+                "rectangle" => array(
+                    "borderWidth" => 2
+                )
+            )
+        )
+    ));
+    ?>
+</div>
+//widget_end 

@@ -1,0 +1,76 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div class="report-content">
+    <div class="text-center">
+        <h1>ColumnChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful ColumnChart
+        </p>
+    </div>
+    <style>
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+    </style>
+    <div style="margin-bottom:50px;">
+        <?php
+        \koolreport\apexcharts\ColumnChart::create(array(
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                "Date" => [
+                    'categoryType' => 'category',
+                ],
+                "Cash Flow"
+            ),
+            "options" => [
+                'plotOptions | bar' => [
+                    'colors | ranges' => [
+                        [
+                            'from' => -100,
+                            'to' => -46,
+                            'color' => '#F15B46'
+                        ],
+                        [
+                            'from' => -45,
+                            'to' => 0,
+                            'color' => '#FEB019'
+                        ]
+                    ],
+                    'columnWidth' => '80%',
+                    'dataLabels' => [
+                        'orientation' => 'vertical',
+                        'position' => 'top'
+                    ]
+                ],
+                'dataLabels | style' => [
+                    'fontSize' => '12px',
+                    'colors' => [
+                        '#000000'
+                    ]
+                ],
+                'yaxis | labels | formatter' => 'function (y) {
+                    return y.toFixed(0) + "%";
+                }',
+                'xaxis' => [
+                    'labels' => [
+                        'rotate' => -90
+                    ]
+                ]
+            ],
+            "yTitle" => "Growth",
+            "showLegend" => false,
+            "showLabel" => true,
+            // "height" => "600px",
+            // "width" => "85%",
+            "maxWidth" => "800px",
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

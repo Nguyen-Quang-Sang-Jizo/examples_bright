@@ -1,0 +1,30 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <h1 class='title'>Pie Label Format </h1>
+<div style="display: flex;justify-content: center;">
+    <?php
+
+    \koolreport\d3\PieChart::create(array(
+        "dataSource" => $this->dataStore('result_0'),
+        "columns" => array(
+            'label',
+            'data'
+        ),
+        "options" => array(
+            "pie" => array(
+                "label" => array(
+                    "format" => "function(value, ratio, id){
+                        return '$' + value;
+                    }"
+                )
+            )
+        )
+    ));
+    ?>
+</div>
+//widget_end 

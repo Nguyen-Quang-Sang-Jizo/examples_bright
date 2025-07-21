@@ -1,0 +1,69 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div class="report-content">
+    <div class="text-center">
+        <h1>BarChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful BarChart
+        </p>
+    </div>
+    <style>
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+    </style>
+    <div style="margin-bottom:50px;">
+        <?php
+        \koolreport\apexcharts\BarChart::create(array(
+            "title" => "Fiction Books Sales",
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                'year',
+                'Marine Sprite',
+                'Striking Calf',
+                'Tank Picture',
+                'Bucket Slope',
+                'Reborn Kid',
+            ),
+            "options" => [
+                'plotOptions | bar | dataLabels | total' => [
+                    'enabled' => true,
+                    'offsetX' => 0,
+                    'style | fontSize' => '13px',
+                    'style | fontWeight' => 900,
+                ],
+                'stroke | colors' => [
+                    '#fff'
+                ],
+                'xaxis | labels | formatter' => 'function (val) {
+                    return val + "K"
+                }',
+                'tooltip | y | formatter' => 'function (val) {
+                    return val + "K"
+                }',
+                'legend' => [
+                    'position' => 'top',
+                    'horizontalAlign' => 'left',
+                    'offsetX' => 40
+                ]
+            ],
+            "stacked" => true,
+            "yTitle" => null,
+            "strokeWidth" => 1,
+            "fillOpacity" => 1,
+            // "showLegend" => false,
+            "showLabel" => true,
+            // "height" => "600px",
+            // "width" => "85%",
+            "maxWidth" => "800px",
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

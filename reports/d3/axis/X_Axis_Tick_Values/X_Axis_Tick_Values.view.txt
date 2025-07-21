@@ -1,0 +1,34 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <h1 class='title'>X Axis Tick Values</h1>
+<?php
+
+\koolreport\d3\LineChart::create(array(
+    "dataSource" => $this->dataStore('result_0'),
+    "columns" => array(
+        'x',
+        'sample'
+    ),
+    "options" => array(
+        "data" => array(
+            "x" => 'x'
+        ),
+        "axis" => array(
+            "x" => array(
+                "type" => 'timeseries',
+                "tick" => array(
+                    "values" => array(
+                        '2013-01-05',
+                        '2013-01-10'
+                    )
+                )
+            )
+        )
+    )
+));
+//widget_end 

@@ -1,0 +1,83 @@
+<?php
+class scatter_chart extends \koolreport\KoolReport
+{
+    function settings()
+    {
+
+
+//datasource_start 
+/* datasourceMeta_start
+{"isSavedTemplate":null,"template":["Variables_based","Array"]}
+datasourceMeta_end */
+$datasource = array(
+    "class"=>'\koolreport\datasources\ArrayDataSource',
+    "dataFormat"=>"table", 
+    "data"=>array(
+    array("height", "weight", "smokers"),
+    array(170, 82, 123),
+    array(180, 91, 45),
+    array(150, 60, 14),
+    array(152, 55, 55),
+    array(168, 65, 223),
+    array(178, 67, 55),
+    array(185, 46, 223),
+    array(166, 77, 55),
+    array(153, 50, 77),
+    array(166, 44, 155),
+)
+);
+//datasource_end 
+    if (!isset($datasource)) {
+        if (isset($emptyCode)) {
+            $datasource = array(
+                "class"=>'\koolreport\datasources\ArrayDataSource',
+                "dataFormat"=>"associate", // or "table"
+                "data"=>array()
+            );
+        } else {
+            echo ('<i>Error:</i> variable $datasource doesn\'t exist in Data source'); exit;
+        }
+    }        
+
+        return array(
+            "dataSources" => array(
+                "source" => $datasource ?? array(
+                    "class"=>'\koolreport\datasources\ArrayDataSource',
+                    "dataFormat"=>"associate", // or "table"
+                    "data"=>array()
+                )
+            ),
+            "assets"=>array(
+                "path"=>"../../public/koolreport_assets", //relative from tmp directory
+                "url"=>"http://codegen.local/public/koolreport_assets"
+            )
+        );
+    }
+
+    function setup()
+    {
+        $node = $this->src('source');
+        $sql = 
+//sql_start 
+''
+//sql_end 
+;
+        $datastore = 
+//datastore_start 
+''
+//datastore_end 
+;
+        if (!empty($sql) && method_exists($node, 'query')) {
+            $node = $node
+            ->query($sql);
+        } else if (!empty($datastore) && method_exists($node, 'dataStore')) {
+            $node = $node
+            ->dataStore($datastore);
+        } 
+
+
+$node->pipe($this->dataStore('result_0'));
+
+
+    }
+}

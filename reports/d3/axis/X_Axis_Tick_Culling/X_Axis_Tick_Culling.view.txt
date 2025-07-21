@@ -1,0 +1,29 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <h1 class='title'>X Axis Tick Culling</h1>
+<?php
+
+\koolreport\d3\LineChart::create(array(
+    "dataSource" => $this->dataStore('result_0'),
+    "columns" => array(
+        'sample'
+    ),
+    "options" => array(
+        "axis" => array(
+            "x" => array(
+                "type" => 'category',
+                "tick" => array(
+                    "culling" => array(
+                        "max" => 4
+                    )
+                )
+            )
+        )
+    )
+));
+//widget_end 

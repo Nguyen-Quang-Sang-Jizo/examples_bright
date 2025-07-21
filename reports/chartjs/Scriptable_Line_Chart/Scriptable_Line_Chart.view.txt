@@ -1,0 +1,109 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","scriptable_line_chart"]}
+widgetMeta_end */
+use \koolreport\chartjs\Chart;
+
+    \koolreport\chartjs\LineChart::create(array(
+        'dataSource' => $this->dataStore('result_0'),
+        'columns' => array(
+            'month',
+            'series1',
+            'series2',
+            'series3'
+        ),
+        'borderColor' => Chart::MANUAL_COLOR, // Chart::AUTO_COLOR,
+        'backgroundColor' => Chart::MANUAL_COLOR, // Chart::AUTO_COLOR,
+        "options" => array(
+            "legend" => false,
+            "elements" => array(
+                "line" => array(
+                    "backgroundColor" => "function(ctx){
+                        console.log('line backgroundColor func');
+                        var COLORS = [
+                            '#4dc9f6',
+                            '#f67019',
+                            '#f53794',
+                            '#537bc4',
+                            '#acc236',
+                            '#166a8f',
+                            '#00a950',
+                            '#58595b',
+                            '#8549ba'
+                        ];
+                        return COLORS[ctx.datasetIndex % COLORS.length];
+                    }",
+                    "borderColor" => "function(ctx){
+                        console.log('line borderColor func');
+                        var COLORS = [
+                            '#4dc9f6',
+                            '#f67019',
+                            '#f53794',
+                            '#537bc4',
+                            '#acc236',
+                            '#166a8f',
+                            '#00a950',
+                            '#58595b',
+                            '#8549ba'
+                        ];
+                        return COLORS[ctx.datasetIndex % COLORS.length];
+                    }",
+                    "fill" => false
+                ),
+                "point" => array(
+                    "backgroundColor" => "function(ctx){
+                        // console.log('point backgroundColor func');
+                        var COLORS = [
+                            '#4dc9f6',
+                            '#f67019',
+                            '#f53794',
+                            '#537bc4',
+                            '#acc236',
+                            '#166a8f',
+                            '#00a950',
+                            '#58595b',
+                            '#8549ba'
+                        ];
+                        return COLORS[ctx.datasetIndex % COLORS.length];
+                    }",
+                    "hoverBackgroundColor" => "function(ctx){
+                        // console.log('point hoverBackgroundColor func');
+                        var COLORS = [
+                            '#4dc9f6',
+                            '#f67019',
+                            '#f53794',
+                            '#537bc4',
+                            '#acc236',
+                            '#166a8f',
+                            '#00a950',
+                            '#58595b',
+                            '#8549ba'
+                        ];
+                        var color =  COLORS[ctx.datasetIndex % COLORS.length];
+                        return Color(color).alpha(0.5).rgbString();
+                    }",
+                    "hoverBorderColor" => '',
+                    "radius" => "function(ctx) {
+                        // console.log('radius func');
+                        var v = ctx.dataset.data[ctx.dataIndex];
+                        return v < 10 ? 5
+                            : v < 25 ? 7
+                            : v < 50 ? 9
+                            : v < 75 ? 11
+                            : 15;
+                    }",
+                    "pointStyle" => "function(ctx) {
+                        // console.log('pointStyle func');
+                        var index = ctx.dataIndex;
+                        return index % 2 === 0 ? 'circle' : 'rect';
+                    }",
+                    "hoverRadius" => 15
+                )
+            )
+        )
+    ));
+    ?>
+</div>
+//widget_end 

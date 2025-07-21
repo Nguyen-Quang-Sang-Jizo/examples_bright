@@ -1,0 +1,139 @@
+<?php
+class dimensional_computations extends \koolreport\KoolReport
+{
+    function settings()
+    {
+
+
+//datasource_start 
+/* datasourceMeta_start
+{"isSavedTemplate":null,"template":["Files","Big_CSV"]}
+datasourceMeta_end */
+$datasource = [
+    'filePath' => '../../databases/customer_product_dollarsales2.csv',
+    'class' => '\koolreport\excel\BigSpreadsheetDataSource',      
+    'fieldSeparator' => ';',
+];
+//datasource_end 
+    if (!isset($datasource)) {
+        if (isset($emptyCode)) {
+            $datasource = array(
+                "class"=>'\koolreport\datasources\ArrayDataSource',
+                "dataFormat"=>"associate", // or "table"
+                "data"=>array()
+            );
+        } else {
+            echo ('<i>Error:</i> variable $datasource doesn\'t exist in Data source'); exit;
+        }
+    }        
+
+        return array(
+            "dataSources" => array(
+                "source" => $datasource ?? array(
+                    "class"=>'\koolreport\datasources\ArrayDataSource',
+                    "dataFormat"=>"associate", // or "table"
+                    "data"=>array()
+                )
+            ),
+            "assets"=>array(
+                "path"=>"../../public/koolreport_assets", //relative from tmp directory
+                "url"=>"http://codegen.local/public/koolreport_assets"
+            )
+        );
+    }
+
+    function setup()
+    {
+        $node = $this->src('source');
+        $sql = 
+//sql_start 
+''
+//sql_end 
+;
+        $datastore = 
+//datastore_start 
+''
+//datastore_end 
+;
+        if (!empty($sql) && method_exists($node, 'query')) {
+            $node = $node
+            ->query($sql);
+        } else if (!empty($datastore) && method_exists($node, 'dataStore')) {
+            $node = $node
+            ->dataStore($datastore);
+        } 
+
+
+$process = null;
+//process_start 
+/* processMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Filter","Basic"]}
+processMeta_end */
+$process = new \koolreport\processes\Filter(array(
+    array('customerName', '<', 'B'),
+            array('orderYear', '<', 2005)
+));
+//process_end 
+if (isset($process)) $node = $node->pipe($process);
+else {echo '<i>Error:</i> variable $process does not exist in Process 1'; exit;}
+
+$process = null;
+//process_start 
+/* processMeta_start
+{"index":"1","isSavedTemplate":null,"template":["ColumnMeta","Number"]}
+processMeta_end */
+$process = new \koolreport\processes\ColumnMeta(array(
+    "dollar_sales"=>array(
+                'type' => 'number',
+                "prefix" => "$",
+            ),
+));
+//process_end 
+if (isset($process)) $node = $node->pipe($process);
+else {echo '<i>Error:</i> variable $process does not exist in Process 2'; exit;}
+
+$process = null;
+//process_start 
+/* processMeta_start
+{"index":"2","isSavedTemplate":null,"template":["Pivot","dimensional_computation"]}
+processMeta_end */
+$process = new \koolreport\pivot\processes\Pivot(array(
+     "dimensions"=>array(
+                "column"=>[
+                    "orderYear" => [
+                        "computations" => [
+                            "yearlyDifference" => "{2004} - {2003}",
+                            "yearlyDifference" => function($aggRow, $measure) {
+                                return ($aggRow['2004'] ?? 0) - ($aggRow['2003'] ?? 0);
+                            },
+                        ],
+                    ],
+                    "orderMonth" => [
+                        "computations" => [
+                            "halfYearDifference" => "{12} + {11} + {10} + {9} + {8} + {7} - {1} - {2} - {3} - {4} - {5} - {6}",
+                            "halfYearDifference" => function($aggRow, $measure) {
+                                $result = 0;
+                                $firstHalf = [1, 2, 3, 4, 5, 6];
+                                $secondHalf = [7, 8, 9, 10, 11, 12];
+                                foreach ($firstHalf as $month) $result -= $aggRow[$month] ?? 0;
+                                foreach ($secondHalf as $month) $result += $aggRow[$month] ?? 0;
+                                return $result;
+                            }
+                        ]
+                    ],
+                ],
+                "row"=>"customerName, productLine",
+            ),
+            "aggregates"=>array(
+                "sum"=>"dollar_sales",
+                // "count"=>"dollar_sales",
+            ),
+));
+//process_end 
+if (isset($process)) $node = $node->pipe($process);
+else {echo '<i>Error:</i> variable $process does not exist in Process 3'; exit;}
+$node->pipe($this->dataStore('result_3'));
+
+
+    }
+}

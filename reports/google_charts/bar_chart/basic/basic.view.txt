@@ -1,0 +1,38 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\BarChart;
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>Basic</h1>
+    </div>
+    <div style="margin-bottom:50px;">
+        <?php
+        BarChart::create(array(
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                'City',
+                '2010 Population',
+                '2000 Population'
+            ),
+            "options" => array(
+                "title" => "Population of Largest U.S. Cities",
+                "hAxis" => [
+                    "title" => 'Total Population',
+                    "minValue" => 0
+                ],
+                "vAxis" => [
+                    "title" => 'City'
+                ]
+            )
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

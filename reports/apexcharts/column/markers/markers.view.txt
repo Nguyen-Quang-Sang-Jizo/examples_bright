@@ -1,0 +1,60 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div class="report-content">
+    <div class="text-center">
+        <h1>ColumnChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful ColumnChart
+        </p>
+    </div>
+    <style>
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+    </style>
+    <div style="margin-bottom:50px;">
+        <?php
+        \koolreport\apexcharts\ColumnChart::create(array(
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                'year',
+                'Actual',
+                'Expected' => [
+                    'marker' => [
+                        'strokeHeight' => 5,
+                        'strokeColor' => '#775DD0'
+                    ]
+                ],
+            ),
+            "options" => [
+                'plotOptions | bar | columnWidth' => '60%',
+                'legend' => [
+                    'showForSingleSeries' => true,
+                    'customLegendItems' => [
+                        'Actual',
+                        'Expected'
+                    ],
+                    'markers | fillColors' => [
+                        '#00E396',
+                        '#775DD0'
+                    ]
+                ]
+            ],
+            'colors' => [
+                '#00E396'
+            ],
+            // "showLabel" => true,
+            // "height" => "600px",
+            // "width" => "85%",
+            "maxWidth" => "800px",
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

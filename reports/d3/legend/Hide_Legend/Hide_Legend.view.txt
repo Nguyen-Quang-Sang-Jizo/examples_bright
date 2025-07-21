@@ -1,0 +1,21 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <h1 class='title'>Hide Legend</h1>
+<?php
+\koolreport\d3\LineChart::create(array(
+    "dataSource" => $this->dataStore('result_0'),
+    "columns" => array(
+        'sample',
+    ),
+    "options" => array(
+        "legend" => array(
+            "show" => false
+        )
+    )
+));
+//widget_end 

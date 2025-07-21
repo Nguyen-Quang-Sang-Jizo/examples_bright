@@ -201,22 +201,22 @@
             //     "curve" => "straight", // "smooth", "straight", "stepline"
             //     "dashArray" => [5, 0],
             // ],
-            // "yaxis" => [
-            //     [
-            //         // "seriesName" => "sale",
-            //         "axisTicks" => ["show" => true],
-            //         "axisBorder" => ["show" => true],
-            //         // "reversed" => true,
-            //     ],
-            //     [
-            //         // "seriesName" => "sale",
-            //         "opposite" => true,
-            //         "axisTicks" => ["show" => true],
-            //         "axisBorder" => ["show" => true],
-            //         // "reversed" => true,
-            //     ],
-            //     // "reversed" => true,
-            // ],
+            "yaxis" => [
+                [
+                    // "seriesName" => "sale",
+                    "axisTicks" => ["show" => true],
+                    "axisBorder" => ["show" => true],
+                    // "reversed" => true,
+                ],
+                [
+                    // "seriesName" => "sale",
+                    "opposite" => true,
+                    "axisTicks" => ["show" => true],
+                    "axisBorder" => ["show" => true],
+                    // "reversed" => true,
+                ],
+                // "reversed" => true,
+            ],
             // "xaxis" => [],
             // "theme" => [
             //     "palette" => "palette2",

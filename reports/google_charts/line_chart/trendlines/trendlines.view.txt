@@ -1,0 +1,42 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\LineChart;
+
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>Trendlines</h1>
+    </div>
+    <div style="margin-bottom:50px;">
+        <?php
+        LineChart::create(array(
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                'X',
+                'Dogs',
+                'Cats'
+            ),
+            "options" => array(
+                "hAxis" => [
+                    "title" => 'Time'
+                ],
+                "vAxis" => [
+                    "title" => 'Popularity'
+                ],
+                "colors" => ['#AB0D06', '#007329'],
+                "trendlines" => [
+                    0 => ["type" => 'exponential', "color" => '#333', "opacity" => 1],
+                    1 => ["type" => 'linear', "color" => '#111', "opacity" => .3]
+                ]
+            )
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

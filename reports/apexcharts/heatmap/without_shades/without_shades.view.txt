@@ -1,0 +1,69 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div class="report-content">
+    <div class="text-center">
+        <h1>HeatMapChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful HeatMapChart
+        </p>
+    </div>
+    <style>
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+    </style>
+    <div style="margin-bottom:50px;">
+        <?php
+        \koolreport\apexcharts\HeatMapChart::create(array(
+            "title" => "Rounded (Range without Shades)",
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                "Metric1",
+                "Metric2",
+                "Metric3",
+                "Metric4",
+                "Metric5",
+                "Metric6",
+                "Metric7",
+                "Metric8",
+                "Metric9"
+            ),
+            "autoCategoryColumn" => "numeric",
+            "options" => [
+                'plotOptions | heatmap' => [
+                    'radius' => 30,
+                    'enableShades' => false,
+                    'colorScale | ranges' => [
+                        [
+                            'from' => 0,
+                            'to' => 50,
+                            'color' => '#008FFB'
+                        ],
+                        [
+                            'from' => 51,
+                            'to' => 100,
+                            'color' => '#00E396'
+                        ]
+                    ]
+                ],
+                'dataLabels | style | colors' => ['#fff'],
+            ],
+            'widthHeightAutoRatio' => 1.9,
+            'strokeWidth' => 0,
+            // "showLegend" => false,
+            "showLabel" => true,
+            // "height" => "400px",
+            // "width" => "85%",
+            "maxWidth" => "800px",
+            "mobileMaxWidth" => "100%",
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

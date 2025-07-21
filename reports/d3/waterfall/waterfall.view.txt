@@ -1,0 +1,43 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\d3\Waterfall;
+?>
+<div class="report-content" title="">
+    <div class="text-center">
+        <h1>Waterfall</h1>
+        <p class="lead">
+            This example shows how to draw beautiful Waterfall
+        </p>
+    </div>
+
+    <div style="margin-bottom:50px;">
+    <?php
+        Waterfall::create([
+            "title"=>"Profit path",
+            "dataSource"=>$this->dataStore('result_0'),
+            "columns"=>[
+                "name",
+                "amount"=>[
+                    "format"=>"function(d){
+                        return `\${Math.round(d / 1000)}k`;
+                    }"
+                ]
+            ],
+            "yAxis"=>[
+                "prefix"=>"$",
+            ],
+            "summary"=>[
+                "Total Revenue"=>2,
+                "Profit"=>"end"
+            ],
+        ]);
+        ?>
+
+    </div>
+
+</div>
+//widget_end 

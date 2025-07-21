@@ -1,0 +1,90 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\ColumnChart;
+    use \koolreport\widgets\google\BarChart;
+    use \koolreport\widgets\google\PieChart;
+
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>Color Scheme</h1>
+        <p class="lead">
+            This example shows how to change color scheme for charts.
+        </p>
+    </div>
+    <div style="margin-bottom:50px;">
+    <?php
+	$data = $this->dataStore('result_0');
+    ColumnChart::create(array(
+        "title"=>"Sale Report",
+        "dataSource"=>$data,
+        "columns"=>array(
+            "category",
+            "sale"=>array("label"=>"Sale","type"=>"number","prefix"=>"$"),
+            "cost"=>array("label"=>"Cost","type"=>"number","prefix"=>"$"),
+            "profit"=>array("label"=>"Profit","type"=>"number","prefix"=>"$"),
+        ),
+        "colorScheme"=>array(
+            "#e7717d",
+            "#c2cad0",
+            "#c2b9b0",
+            "#7e685a",
+            "#afd275"
+        )
+    ));
+    ?>
+    </div>
+    <div style="margin-bottom:50px;">
+    <?php
+    BarChart::create(array(
+        "title"=>"Sale Report on Stack",
+        "dataSource"=>$data,
+        "columns"=>array(
+            "category",
+            "sale"=>array("label"=>"Sale","type"=>"number","prefix"=>"$"),
+            "cost"=>array("label"=>"Cost","type"=>"number","prefix"=>"$"),
+            "profit"=>array("label"=>"Profit","type"=>"number","prefix"=>"$"),
+        ),
+        "colorScheme"=>array(
+            "#844d36",
+            "#474853",
+            "#86b3d1",
+            "#aaa0a0",
+            "#be8268"
+        ),
+        "options"=>array(
+            "isStacked"=>true
+        )
+    ));
+    ?>
+    </div>
+    
+
+    <?php
+    PieChart::create(array(
+        "title"=>"Sale Of Category",
+        "dataSource"=>$data,
+        "columns"=>array(
+            "category",
+            "cost"=>array(
+                "type"=>"number",
+                "prefix"=>"$",
+            )
+        ),
+        "colorScheme"=>array(
+            "#2f4454",
+            "#2e1518",
+            "#da7b93",
+            "#376e6f",
+            "#1c3334"
+        )
+    ));
+    ?>
+
+</div>
+//widget_end 

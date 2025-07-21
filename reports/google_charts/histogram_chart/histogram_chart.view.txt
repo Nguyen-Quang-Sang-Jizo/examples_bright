@@ -1,0 +1,26 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\Histogram;
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>Histogram</h1>
+        <p class="lead">
+            This example shows how to use Histogram
+        </p>
+    </div>
+        
+    <?php
+    Histogram::create(array(
+        "title"=>"Lengths of dinosaurs, in meters",
+        "dataSource"=>$this->dataStore('result_0')
+    ));
+    ?>
+    
+</div>
+//widget_end 

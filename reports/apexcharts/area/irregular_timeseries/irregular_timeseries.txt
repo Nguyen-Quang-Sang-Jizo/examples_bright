@@ -1,0 +1,192 @@
+<?php
+class irregular_timeseries extends \koolreport\KoolReport
+{
+    function settings()
+    {
+
+
+//datasource_start 
+/* datasourceMeta_start
+{"isSavedTemplate":null,"template":["Variables_based","Array"]}
+datasourceMeta_end */
+$datasource = array(
+    "class"=>'\koolreport\datasources\ArrayDataSource',
+    "dataFormat"=>"table", 
+    "data"=>[
+            [
+                "date",
+                "PRODUCT A",
+                "PRODUCT B",
+                "PRODUCT C"
+            ],
+            [
+                "2014/1/2",
+                50000000,
+                null,
+                null
+            ],
+            [
+                "2014/1/3",
+                60379978,
+                150000000,
+                null
+            ],
+            [
+                "2014/1/4",
+                40493749,
+                160379978,
+                null
+            ],
+            [
+                "2014/1/5",
+                60785250,
+                170493749,
+                null
+            ],
+            [
+                "2014/1/6",
+                67391904,
+                160785250,
+                null
+            ],
+            [
+                "2014/1/7",
+                61576838,
+                167391904,
+                null
+            ],
+            [
+                "2014/1/8",
+                61413854,
+                161576838,
+                20000000
+            ],
+            [
+                "2014/1/9",
+                82177211,
+                161413854,
+                10379978
+            ],
+            [
+                "2014/1/10",
+                103762210,
+                152177211,
+                30493749
+            ],
+            [
+                "2014/1/11",
+                84381072,
+                140762210,
+                10785250
+            ],
+            [
+                "2014/1/12",
+                54352310,
+                144381072,
+                33901904
+            ],
+            [
+                "2014/1/13",
+                65531790,
+                154352310,
+                11576838
+            ],
+            [
+                "2014/1/14",
+                null,
+                165531790,
+                14413854
+            ],
+            [
+                "2014/1/15",
+                null,
+                175748881,
+                15177211
+            ],
+            [
+                "2014/1/16",
+                null,
+                187064037,
+                16622100
+            ],
+            [
+                "2014/1/17",
+                null,
+                197520685,
+                17381072
+            ],
+            [
+                "2014/1/18",
+                null,
+                210176418,
+                18802310
+            ],
+            [
+                "2014/1/19",
+                null,
+                196122924,
+                15531790
+            ],
+            [
+                "2014/1/20",
+                null,
+                207337480,
+                null
+            ]
+        ]
+);
+//datasource_end 
+    if (!isset($datasource)) {
+        if (isset($emptyCode)) {
+            $datasource = array(
+                "class"=>'\koolreport\datasources\ArrayDataSource',
+                "dataFormat"=>"associate", // or "table"
+                "data"=>array()
+            );
+        } else {
+            echo ('<i>Error:</i> variable $datasource doesn\'t exist in Data source'); exit;
+        }
+    }        
+
+        return array(
+            "dataSources" => array(
+                "source" => $datasource ?? array(
+                    "class"=>'\koolreport\datasources\ArrayDataSource',
+                    "dataFormat"=>"associate", // or "table"
+                    "data"=>array()
+                )
+            ),
+            "assets"=>array(
+                "path"=>"../../public/koolreport_assets", //relative from tmp directory
+                "url"=>"http://codegen.local/public/koolreport_assets"
+            )
+        );
+    }
+
+    function setup()
+    {
+        $node = $this->src('source');
+        $sql = 
+//sql_start 
+''
+//sql_end 
+;
+        $datastore = 
+//datastore_start 
+''
+//datastore_end 
+;
+        if (!empty($sql) && method_exists($node, 'query')) {
+            $node = $node
+            ->query($sql);
+        } else if (!empty($datastore) && method_exists($node, 'dataStore')) {
+            $node = $node
+            ->dataStore($datastore);
+        } 
+
+
+$node->pipe($this->dataStore('result_0'));
+
+
+    }
+}

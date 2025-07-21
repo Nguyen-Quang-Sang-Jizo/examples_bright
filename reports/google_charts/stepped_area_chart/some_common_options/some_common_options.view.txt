@@ -1,0 +1,41 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\SteppedAreaChart;
+
+?>
+<div class="report-container">
+    <div class="text-center">
+        <h1>Some Common Options</h1>
+    </div>
+
+    <div style="margin-bottom:50px;">
+        <?php
+        SteppedAreaChart::create(array(
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                'Director (Year)',
+                'Rotten Tomatoes',
+                'IMDB'
+            ),
+            "options" => array(
+                "title" => 'The decline of \'The 39 Steps\'',
+                "vAxis" => [
+                    "title" => 'Accumulated Rating'
+                ],
+                "isStacked" => true,
+                "backgroundColor" => '#ddd',
+                "legend" => [
+                    "position" => 'bottom'
+                ],
+                "connectSteps" => false,
+                "colors" => ['#4374E0', '#53A8FB', '#F1CA3A', '#E49307'],
+            )
+        ));
+        ?>
+    </div>
+</div>
+//widget_end 

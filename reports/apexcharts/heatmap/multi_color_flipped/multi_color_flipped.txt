@@ -1,0 +1,234 @@
+<?php
+class multi_color_flipped extends \koolreport\KoolReport
+{
+    function settings()
+    {
+
+
+//datasource_start 
+/* datasourceMeta_start
+{"isSavedTemplate":null,"template":["Variables_based","Array"]}
+datasourceMeta_end */
+$datasource = array(
+    "class"=>'\koolreport\datasources\ArrayDataSource',
+    "dataFormat"=>"table",
+    "data"=>[
+            [
+                'category',
+                "W1",
+                "W2",
+                "W3",
+                "W4",
+                "W5",
+                "W6",
+                "W7",
+                "W8",
+                "W9",
+                "W10",
+                "W11",
+                "W12",
+                "W13",
+                "W14",
+                "W15"
+            ],
+            [
+                "13:30",
+                0,
+                63,
+                35,
+                40,
+                85,
+                11,
+                38,
+                26,
+                37,
+                22,
+                33,
+                64,
+                85,
+                1,
+                43
+            ],
+            [
+                "13:00",
+                72,
+                78,
+                67,
+                50,
+                75,
+                48,
+                27,
+                31,
+                28,
+                40,
+                51,
+                59,
+                5,
+                44,
+                41
+            ],
+            [
+                "12:30",
+                46,
+                47,
+                9,
+                89,
+                31,
+                69,
+                24,
+                60,
+                83,
+                42,
+                40,
+                83,
+                42,
+                88,
+                29
+            ],
+            [
+                "12:00",
+                90,
+                17,
+                62,
+                36,
+                39,
+                67,
+                16,
+                73,
+                73,
+                8,
+                2,
+                12,
+                58,
+                34,
+                22
+            ],
+            [
+                "11:30",
+                4,
+                48,
+                14,
+                41,
+                29,
+                17,
+                5,
+                89,
+                49,
+                8,
+                90,
+                39,
+                63,
+                16,
+                49
+            ],
+            [
+                "11:00",
+                21,
+                1,
+                2,
+                90,
+                83,
+                71,
+                51,
+                70,
+                56,
+                31,
+                34,
+                24,
+                32,
+                58,
+                33
+            ],
+            [
+                "10:30",
+                22,
+                17,
+                29,
+                9,
+                73,
+                48,
+                76,
+                67,
+                7,
+                49,
+                11,
+                78,
+                42,
+                42,
+                40
+            ],
+            [
+                "10:00",
+                0,
+                47,
+                66,
+                23,
+                34,
+                17,
+                88,
+                46,
+                48,
+                23,
+                9,
+                74,
+                81,
+                41,
+                22
+            ]
+        ]
+);
+//datasource_end 
+    if (!isset($datasource)) {
+        if (isset($emptyCode)) {
+            $datasource = array(
+                "class"=>'\koolreport\datasources\ArrayDataSource',
+                "dataFormat"=>"associate", // or "table"
+                "data"=>array()
+            );
+        } else {
+            echo ('<i>Error:</i> variable $datasource doesn\'t exist in Data source'); exit;
+        }
+    }        
+
+        return array(
+            "dataSources" => array(
+                "source" => $datasource ?? array(
+                    "class"=>'\koolreport\datasources\ArrayDataSource',
+                    "dataFormat"=>"associate", // or "table"
+                    "data"=>array()
+                )
+            ),
+            "assets"=>array(
+                "path"=>"../../public/koolreport_assets", //relative from tmp directory
+                "url"=>"http://codegen.local/public/koolreport_assets"
+            )
+        );
+    }
+
+    function setup()
+    {
+        $node = $this->src('source');
+        $sql = 
+//sql_start 
+''
+//sql_end 
+;
+        $datastore = 
+//datastore_start 
+''
+//datastore_end 
+;
+        if (!empty($sql) && method_exists($node, 'query')) {
+            $node = $node
+            ->query($sql);
+        } else if (!empty($datastore) && method_exists($node, 'dataStore')) {
+            $node = $node
+            ->dataStore($datastore);
+        } 
+
+
+$node->pipe($this->dataStore('result_0'));
+
+
+    }
+}

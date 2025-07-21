@@ -1,0 +1,16 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","scatter_chart"]}
+widgetMeta_end */
+\koolreport\chartjs\ScatterChart::create(array(
+    "title"=>"Height vs Number of Smokers",
+    "dataSource"=>$this->dataStore('result_0'),
+    "series"=>array(
+        array("height","smokers",array(
+            "label"=>"Height and Smokers"
+        )),
+    )
+));
+//widget_end 

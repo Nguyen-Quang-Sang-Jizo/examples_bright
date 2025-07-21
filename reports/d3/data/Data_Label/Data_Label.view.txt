@@ -1,0 +1,39 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <h1 class='title'>Data Label</h1>
+<?php
+
+\koolreport\d3\ColumnChart::create(array(
+    "dataSource" => $this->dataStore('result_0'),
+    "columns" => array(
+        'data1',
+        'data2',
+        'data3'
+    ),
+    "options" => array(
+        "data" => array(
+            "groups" => array(
+                array(
+                    "data1",
+                    "data2"
+                )
+            ),
+            "labels" => true
+        ),
+        "grid" => array(
+            "y" => array(
+                "lines" => array(
+                    array(
+                        "value" => 0
+                    )
+                )
+            )
+        )
+    )
+));
+//widget_end 

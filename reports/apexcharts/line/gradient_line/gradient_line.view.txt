@@ -1,0 +1,63 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div class="report-content">
+    <div class="text-center">
+        <h1>LineChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful LineChart
+        </p>
+    </div>
+    <style>
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+    </style>
+    <div style="margin-bottom:50px;">
+        <?php
+        \koolreport\apexcharts\LineChart::create(array(
+            "title" => "Forecast",
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                "date" => [
+                    "label" => "Date",
+                    "categoryType" => "datetime",
+                ],
+                "forecast" => array(
+                    "label" => "Forecast",
+                    "type" => "number",
+                    "prefix" => "$",
+                ),
+            ),
+            "options" => [
+                "forecastDataPoints | count" => 7,
+                'fill | gradient' => [
+                    'shade' => 'dark',
+                    'gradientToColors' => ['#FDD835'],
+                    'shadeIntensity' => 1,
+                    'type' => 'horizontal',
+                    'opacityFrom' => 1,
+                    'opacityTo' => 1,
+                    'stops' => [0, 100, 100, 100]
+                ],
+                'yaxis' => [
+                    'min' => -10,
+                    'max' => 40
+                ],
+            ],
+            "strokeWidth" => 5,
+            'fillType' => 'gradient',
+            "showLegend" => false,
+            // "showLabel" => true,
+            // "height" => "600px",
+            "maxWidth" => 800,
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

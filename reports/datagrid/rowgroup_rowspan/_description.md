@@ -1,1 +1,0 @@
-You can apply DataTable's both row group and row span with `clientRowGroup` and `clientRowSpan` properties.

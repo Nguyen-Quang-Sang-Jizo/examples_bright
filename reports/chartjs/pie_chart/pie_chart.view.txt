@@ -1,0 +1,18 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","Polar","pie_chart"]}
+widgetMeta_end */
+\koolreport\chartjs\PieChart::create(array(
+    "title"=>"Sale Of Category",
+    "dataSource"=>$this->dataStore('result_0'),
+    "columns"=>array(
+        "category",
+        "cost"=>array(
+            "type"=>"number",
+            "prefix"=>"$",
+        )
+    )
+));
+//widget_end 

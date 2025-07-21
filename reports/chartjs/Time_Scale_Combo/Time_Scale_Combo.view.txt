@@ -1,0 +1,58 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","time_scale_combo"]}
+widgetMeta_end */
+\koolreport\chartjs\ComboChart::create(array(
+        'dataSource' => $this->dataStore('result_0'),
+        'columns' => array(
+            'date',
+            'Dataset 1' => array(
+                'config' => array(
+                    'backgroundColor' => 'rgb(255, 99, 132)',
+                    'borderColor' =>'rgba(255, 99, 132, 0.5)',
+                    "type" => 'bar',
+                    "fill" => false,
+                    "borderWidth" => 3
+                )
+            ),
+          'Dataset 2' => array(
+                'config' => array(
+                    'backgroundColor' => 'rgb(54, 162, 235)',
+                    'borderColor' => 'rgba(54, 162, 235, 0.5)',
+                    "type" => 'bar',
+                    "fill" => false,
+                    "borderWidth" => 3
+                )
+            ),
+          'Dataset 3' => array(
+                'config' => array(
+                    'backgroundColor' => 'rgb(75, 192, 192)',
+                    'borderColor' => 'rgba(75, 192, 192, 0.5)',
+                    "type" => 'line',
+                    "fill" => false,
+                    "borderWidth" => 3
+                )
+            )
+        ),
+        "options" => array(
+            "title" => array(
+                "text" => 'Chart.js Combo Time Scale'
+            ),
+            "scales" => array(
+                "xAxes" => array(
+                    array(
+                        "type" => "time",
+                        "display" => true,
+                        "time" => array(
+                            "format" => 'MM/DD/YYYY HH:mm',
+                        )
+                    )
+                )
+            )
+        )
+    ));
+    ?>
+</div>
+//widget_end 

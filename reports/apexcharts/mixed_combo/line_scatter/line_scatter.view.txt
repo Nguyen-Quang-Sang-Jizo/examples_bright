@@ -1,0 +1,58 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div class="report-content">
+    <div class="text-center">
+        <h1>ComboChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful ComboChart
+        </p>
+    </div>
+    <style>
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+    </style>
+    <div style="margin-bottom:50px;">
+        <?php
+        \koolreport\apexcharts\ComboChart::create(array(
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                "line_category" => [
+                    "label" => "Line Category",
+                ],
+                "line_value" => [
+                    "label" => "Line Value",
+                    "chartType" => "line",
+                ],
+                'scatter' => [
+                    "label" => "Scatter",
+                    'combination' => [
+                        "scatter_x",
+                        "scatter_y",
+                    ],
+                    'chartType' => 'scatter',
+                ]
+            ),
+            "options" => [
+                "xaxis" => [
+                    "min" => 0,
+                    "max" => 12,
+                ],
+            ],
+            "strokeCurve" => "straight",
+            "showLegend" => false,
+            // "showLabel" => true,
+            // "height" => "600px",
+            // "width" => "85%",
+            "maxWidth" => "800px",
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

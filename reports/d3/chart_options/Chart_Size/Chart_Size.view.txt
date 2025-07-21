@@ -1,0 +1,22 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["D3","XY","chart_size"]}
+widgetMeta_end */
+?>
+  <h1 class='title'>Chart Size</h1>
+<?php
+\koolreport\d3\LineChart::create(array(
+        "dataSource" => $this->dataStore('result_0'),
+        "columns" => array(
+            'sample'
+        ),
+        "options" => array(
+            "size" => array(
+                "height" => 240,
+                "width" => 480
+            )
+        )
+    ));
+//widget_end 

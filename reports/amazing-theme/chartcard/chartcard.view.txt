@@ -1,0 +1,29 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+<div class="report-content" style="padding:15px">
+    <div class="text-center">
+        <h1>ChartCard</h1>
+        <p class="lead">
+            The example shows how to use ChartCard of Amazing Theme
+        </p>
+    </div>
+        <?php
+        \koolreport\amazing\ChartCard::create(array(
+            "title"=>"Member Online",
+            "value"=>56000,
+            "preset"=>"primary",
+            "chart"=>array(
+                "dataSource"=> $this->dataStore('result_0')
+            ),
+            "cssClass"=>array(
+                "icon"=>"icon-people"
+            ),
+        ));  
+		?>
+</div>
+//widget_end 

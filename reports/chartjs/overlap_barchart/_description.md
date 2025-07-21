@@ -1,1 +1,0 @@
-Above example show you how to create overlap barchart and overlap columnchart.

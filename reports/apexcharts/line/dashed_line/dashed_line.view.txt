@@ -1,0 +1,72 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div class="report-content">
+    <div class="text-center">
+        <h1>LineChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful LineChart
+        </p>
+    </div>
+    <style>
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+    </style>
+    <div style="margin-bottom:50px;">
+        <?php
+        \koolreport\apexcharts\LineChart::create(array(
+            "title" => "Page Statistics",
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                "date" => [
+                    "label" => "Date"
+                ],
+                "Session Duration" => [],
+                "Page Views" => [],
+                "Total Visits" => [],
+            ),
+            "options" => [
+                'stroke | dashArray' => [0, 8, 5],
+                'markers | hover | sizeOffset' => 6,
+                "legend | tooltipHoverFormatter" => "function (val, opts) {
+                    return val + ': <strong>' + opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex] + '</strong>'
+                }",
+                'tooltip' => [
+                    'y' => [
+                        [
+                            'formatter' => 'function (val) {
+                                return val;
+                            }',
+                            'title | formatter' => 'function (val) {
+                                return val + " (mins)"
+                            }',
+                        ],
+                        [
+                            'title | formatter' => 'function (val) {
+                                return val + " per session"
+                            }',
+                        ],
+                        [
+                            'title | formatter' => 'function (val) {
+                                return val;
+                            }',
+                        ]
+                    ]
+                ]
+            ],
+            "strokeCurve" => "straight",
+            "strokeWidth" => [5, 7, 5],
+            'markersSize' => 0,
+            // "showLabel" => true,
+            "maxWidth" => 800,
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

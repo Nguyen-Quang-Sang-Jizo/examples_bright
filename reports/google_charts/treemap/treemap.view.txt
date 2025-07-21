@@ -1,0 +1,31 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\TreeMap;
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>TreeMap</h1>
+        <p class="lead">
+            The example show how to create TreeMap
+        </p>
+    </div>
+    <?php
+    TreeMap::create(array(
+        "dataSource"=>$this->dataStore('result_0'),
+        "options"=>array(
+            "minColor"=> '#f00',
+            "midColor"=> '#ddd',
+            "maxColor"=> '#0d0',
+            "headerHeight"=> 15,
+            "fontColor"=> 'black',
+            "showScale"=> true
+        )
+    ));
+    ?>
+</div>
+//widget_end 

@@ -1,0 +1,41 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\LineChart;
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>LineChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful LineChart
+        </p>
+    </div>
+
+    <div style="margin-bottom:50px;">
+    <?php
+    LineChart::create(array(
+        "title"=>"Sale vs Cost",
+        "dataSource"=>$this->dataStore('result_0'),
+        "columns"=>array(
+            "month",
+            "sale"=>array(
+                "label"=>"Sale",
+                "type"=>"number",
+                "prefix"=>"$"
+            ),
+            "cost"=>array(
+                "label"=>"Cost",
+                "type"=>"number",
+                "prefix"=>"$"
+            ),
+        )
+    ));
+    ?>
+    </div>
+
+</div>
+//widget_end 

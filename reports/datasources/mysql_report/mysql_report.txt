@@ -1,0 +1,107 @@
+<?php
+class mysql_report extends \koolreport\KoolReport
+{
+    function settings()
+    {
+
+
+//datasource_start 
+/* datasourceMeta_start
+{"isSavedTemplate":null,"template":["PDO","PDO_Oracle"]}
+datasourceMeta_end */
+$datasource = array(
+    'connectionString' => 'mysql:host=127.0.0.1:3306;dbname=sakila',
+    'username' => 'root',
+    'password' => 'matkhaumoi',
+    'charset' => 'utf8',
+);
+//datasource_end 
+    if (!isset($datasource)) {
+        if (isset($emptyCode)) {
+            $datasource = array(
+                "class"=>'\koolreport\datasources\ArrayDataSource',
+                "dataFormat"=>"associate", // or "table"
+                "data"=>array()
+            );
+        } else {
+            echo ('<i>Error:</i> variable $datasource doesn\'t exist in Data source'); exit;
+        }
+    }        
+
+        return array(
+            "dataSources" => array(
+                "source" => $datasource ?? array(
+                    "class"=>'\koolreport\datasources\ArrayDataSource',
+                    "dataFormat"=>"associate", // or "table"
+                    "data"=>array()
+                )
+            ),
+            "assets"=>array(
+                "path"=>"../../public/koolreport_assets", //relative from tmp directory
+                "url"=>"http://codegen.local/public/koolreport_assets"
+            )
+        );
+    }
+
+    function setup()
+    {
+        $node = $this->src('source');
+        $sql = 
+//sql_start 
+'SELECT payment_date,amount FROM payment'
+//sql_end 
+;
+        $datastore = 
+//datastore_start 
+''
+//datastore_end 
+;
+        if (!empty($sql) && method_exists($node, 'query')) {
+            $node = $node
+            ->query($sql);
+        } else if (!empty($datastore) && method_exists($node, 'dataStore')) {
+            $node = $node
+            ->dataStore($datastore);
+        } 
+
+
+$process = null;
+//process_start 
+/* processMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Bucket_values","TimeBucket"]}
+processMeta_end */
+/*
+    hourofday: 0-23 {hour}
+    dayofweek: 0-7 {weekday}
+    dayofmonth: 1-31 {day}
+    date: 2011-12-12 {year}-{month}-{day}
+    week: 2011-34 {year}-{week}
+    quarter: 2011-4 {year}-{quater}
+    month: 2011-12 {year}-{month}
+    monthofyear: {}
+    year:2011 {year}
+*/
+$process = new \koolreport\processes\TimeBucket(array(
+    "payment_date"=>"month"
+));
+//process_end 
+if (isset($process)) $node = $node->pipe($process);
+else {echo '<i>Error:</i> variable $process does not exist in Process 1'; exit;}
+
+$process = null;
+//process_start 
+/* processMeta_start
+{"index":"1","isSavedTemplate":null,"template":["Others","Group"]}
+processMeta_end */
+$process = new \koolreport\processes\Group(array(
+   "by"=>"payment_date",
+  	"sum"=>"amount"
+));
+//process_end 
+if (isset($process)) $node = $node->pipe($process);
+else {echo '<i>Error:</i> variable $process does not exist in Process 2'; exit;}
+$node->pipe($this->dataStore('result_2'));
+
+
+    }
+}

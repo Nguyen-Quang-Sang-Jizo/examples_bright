@@ -1,0 +1,12 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","Polar","polar_chart"]}
+widgetMeta_end */
+\koolreport\chartjs\PolarChart::create(array(
+    "title"=>"Cost Of Category",
+    "dataSource"=>$this->dataStore('result_0'),
+    "columns"=>array("category","cost")
+));
+//widget_end 

@@ -1,0 +1,136 @@
+<?php
+class stacked_100 extends \koolreport\KoolReport
+{
+    function settings()
+    {
+
+
+//datasource_start 
+/* datasourceMeta_start
+{"isSavedTemplate":null,"template":["Variables_based","Array"]}
+datasourceMeta_end */
+$datasource = array(
+    "class"=>'\koolreport\datasources\ArrayDataSource',
+    "dataFormat"=>"table", 
+    "data"=>[
+            [
+                'year',
+                'Marine Sprite',
+                'Striking Calf',
+                'Tank Picture',
+                'Bucket Slope',
+                'Reborn Kid',
+            ],
+            [
+                2008,
+                44,
+                53,
+                12,
+                9,
+                25
+            ],
+            [
+                2009,
+                55,
+                32,
+                17,
+                7,
+                12
+            ],
+            [
+                2010,
+                41,
+                33,
+                11,
+                5,
+                19
+            ],
+            [
+                2011,
+                37,
+                52,
+                9,
+                8,
+                32
+            ],
+            [
+                2012,
+                22,
+                13,
+                15,
+                6,
+                25
+            ],
+            [
+                2013,
+                43,
+                43,
+                11,
+                9,
+                24
+            ],
+            [
+                2014,
+                21,
+                32,
+                20,
+                4,
+                10
+            ]
+        ]
+);
+//datasource_end 
+    if (!isset($datasource)) {
+        if (isset($emptyCode)) {
+            $datasource = array(
+                "class"=>'\koolreport\datasources\ArrayDataSource',
+                "dataFormat"=>"associate", // or "table"
+                "data"=>array()
+            );
+        } else {
+            echo ('<i>Error:</i> variable $datasource doesn\'t exist in Data source'); exit;
+        }
+    }        
+
+        return array(
+            "dataSources" => array(
+                "source" => $datasource ?? array(
+                    "class"=>'\koolreport\datasources\ArrayDataSource',
+                    "dataFormat"=>"associate", // or "table"
+                    "data"=>array()
+                )
+            ),
+            "assets"=>array(
+                "path"=>"../../public/koolreport_assets", //relative from tmp directory
+                "url"=>"http://codegen.local/public/koolreport_assets"
+            )
+        );
+    }
+
+    function setup()
+    {
+        $node = $this->src('source');
+        $sql = 
+//sql_start 
+''
+//sql_end 
+;
+        $datastore = 
+//datastore_start 
+''
+//datastore_end 
+;
+        if (!empty($sql) && method_exists($node, 'query')) {
+            $node = $node
+            ->query($sql);
+        } else if (!empty($datastore) && method_exists($node, 'dataStore')) {
+            $node = $node
+            ->dataStore($datastore);
+        } 
+
+
+$node->pipe($this->dataStore('result_0'));
+
+
+    }
+}

@@ -1,0 +1,83 @@
+<?php
+class custom_labels extends \koolreport\KoolReport
+{
+    function settings()
+    {
+
+
+//datasource_start 
+/* datasourceMeta_start
+{"isSavedTemplate":null,"template":["Variables_based","Array"]}
+datasourceMeta_end */
+$datasource = array(
+    "class"=>'\koolreport\datasources\ArrayDataSource',
+    "dataFormat"=>"table",
+    "data"=>[
+    ['ID', 'Life Expectancy', 'Fertility Rate', 'Region',     'Population'],
+    ['CAN',    80.66,              1.67,      'North America',  33739900],
+    ['DEU',    79.84,              1.36,      'Europe',         81902307],
+    ['DNK',    78.6,               1.84,      'Europe',         5523095],
+    ['EGY',    72.73,              2.78,      'Middle East',    79716203],
+    ['GBR',    80.05,              2,         'Europe',         61801570],
+    ['IRN',    72.49,              1.7,       'Middle East',    73137148],
+    ['IRQ',    68.09,              4.77,      'Middle East',    31090763],
+    ['ISR',    81.55,              2.96,      'Middle East',    7485600],
+    ['RUS',    68.6,               1.54,      'Europe',         141850000],
+    ['USA',    78.09,              2.05,      'North America',  307007000]
+]
+);
+//datasource_end 
+    if (!isset($datasource)) {
+        if (isset($emptyCode)) {
+            $datasource = array(
+                "class"=>'\koolreport\datasources\ArrayDataSource',
+                "dataFormat"=>"associate", // or "table"
+                "data"=>array()
+            );
+        } else {
+            echo ('<i>Error:</i> variable $datasource doesn\'t exist in Data source'); exit;
+        }
+    }        
+
+        return array(
+            "dataSources" => array(
+                "source" => $datasource ?? array(
+                    "class"=>'\koolreport\datasources\ArrayDataSource',
+                    "dataFormat"=>"associate", // or "table"
+                    "data"=>array()
+                )
+            ),
+            "assets"=>array(
+                "path"=>"../../public/koolreport_assets", //relative from tmp directory
+                "url"=>"http://codegen.local/public/koolreport_assets"
+            )
+        );
+    }
+
+    function setup()
+    {
+        $node = $this->src('source');
+        $sql = 
+//sql_start 
+''
+//sql_end 
+;
+        $datastore = 
+//datastore_start 
+''
+//datastore_end 
+;
+        if (!empty($sql) && method_exists($node, 'query')) {
+            $node = $node
+            ->query($sql);
+        } else if (!empty($datastore) && method_exists($node, 'dataStore')) {
+            $node = $node
+            ->dataStore($datastore);
+        } 
+
+
+$node->pipe($this->dataStore('result_0'));
+
+
+    }
+}

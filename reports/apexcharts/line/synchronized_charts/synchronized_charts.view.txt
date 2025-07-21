@@ -1,0 +1,87 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div class="report-content">
+    <div class="text-center">
+        <h1>LineChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful LineChart
+        </p>
+    </div>
+    <style>
+        .apexcharts_wrapper > div,
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+    </style>
+    <div style="margin-bottom:50px;">
+        <?php
+        \koolreport\apexcharts\SynchCharts::create(array(
+            // "title"=>"Sale vs Cost",
+            // "type" => "bar",
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                "date" => [
+                    "label" => "Date",
+                    "categoryType" => "datetime",
+                    // "categoryType" => "category",
+                ],
+                "sales1" => array(
+                    "label" => "Sales A",
+                    "type" => "number",
+                    "prefix" => "$",
+                    "chartType" => "line", // default chart type = column
+                    "chartColor" => "#546E7A",
+                    "charts" => [1],
+                ),
+                "sales2" => array(
+                    "label" => "Sales B",
+                    "type" => "number",
+                    "prefix" => "$",
+                    "chartType" => "line", // default chart type = column
+                    "chartColor" => "#008FFB",
+                    "charts" => [1, 2, 3],
+                ),
+                "sales3" => array(
+                    "label" => "Sales C",
+                    "type" => "number",
+                    "prefix" => "$",
+                    "chartType" => "area", // default chart type = column
+                    // "chartColor" => "#00E396",
+                    "charts" => [3],
+                ),
+            ),
+            // "options" => $options,
+            "options" => [
+                "yaxis" => [
+                    "tickAmount" => 2
+                ],
+            ],
+            "widthHeightAutoRatio" => 3.5,
+            "showLegend" => false,
+            // "height" => "200px",
+            // "width" => "85%",
+            "maxWidth" => 800,
+            // "colorScheme" => ["#546E7A", "#00E396", "#008FFB"],
+
+            "settings_1" => [
+                "options" => [],
+                // "showLegend" => true,
+            ],
+            "settings_2" => [
+                "options" => [],
+            ],
+            "settings_3" => [
+                "options" => [],
+                // "showLegend" => true,
+            ],
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

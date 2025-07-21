@@ -1,0 +1,36 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\koolphp\Table;
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>Remove Duplicate</h1>
+        <p class="lead">How to set duplicate removal in Table</p>
+    </div>
+    <?php
+    Table::create(array(
+        "dataSource"=>$this->dataStore('result_0'),
+        "columns"=>array(
+            "productLine"=>array(
+                "label"=>"Line"
+            ),
+            "productName"=>array(
+                "label"=>"Product Name"
+            ),
+            "quantityInStock"=>array(
+                "label"=>"Qty In Stock"
+            )
+        ),
+        "cssClass"=>array(
+            "table"=>"table-bordered table-striped table-hover"
+        ),
+        "removeDuplicate"=>array("productLine"),
+        // "removeDuplicate"=>array(0),
+    ));
+    ?>
+</div>
+//widget_end 

@@ -1,0 +1,88 @@
+<?php
+class Line_Chart_Interpolation extends \koolreport\KoolReport
+{
+    function settings()
+    {
+
+
+//datasource_start 
+/* datasourceMeta_start
+{"isSavedTemplate":null,"template":["Variables_based","Array"]}
+datasourceMeta_end */
+$dataPoints = [0, 20, 20, 60, 60, 120, 'NAN', 180, 120, 125, 105, 110, 170];
+
+$datasource = array(
+    "class"=>'\koolreport\datasources\ArrayDataSource',
+    "dataFormat"=>"associate", 
+    "data"=>[
+        ['labels' => '0',  'Cubic interpolation (monotone)' => $dataPoints[0],  'Cubic interpolation (default)' => $dataPoints[0],  'Linear interpolation' => $dataPoints[0]],
+        ['labels' => '1',  'Cubic interpolation (monotone)' => $dataPoints[1],  'Cubic interpolation (default)' => $dataPoints[1],  'Linear interpolation' => $dataPoints[1]],
+        ['labels' => '2',  'Cubic interpolation (monotone)' => $dataPoints[2],  'Cubic interpolation (default)' => $dataPoints[2],  'Linear interpolation' => $dataPoints[2]],
+        ['labels' => '3',  'Cubic interpolation (monotone)' => $dataPoints[3],  'Cubic interpolation (default)' => $dataPoints[3],  'Linear interpolation' => $dataPoints[3]],
+        ['labels' => '4',  'Cubic interpolation (monotone)' => $dataPoints[4],  'Cubic interpolation (default)' => $dataPoints[4],  'Linear interpolation' => $dataPoints[4]],
+        ['labels' => '5',  'Cubic interpolation (monotone)' => $dataPoints[5],  'Cubic interpolation (default)' => $dataPoints[5],  'Linear interpolation' => $dataPoints[5]],
+        ['labels' => '6',  'Cubic interpolation (monotone)' => $dataPoints[6],  'Cubic interpolation (default)' => $dataPoints[6],  'Linear interpolation' => $dataPoints[6]],
+        ['labels' => '7',  'Cubic interpolation (monotone)' => $dataPoints[7],  'Cubic interpolation (default)' => $dataPoints[7],  'Linear interpolation' => $dataPoints[7]],
+        ['labels' => '8',  'Cubic interpolation (monotone)' => $dataPoints[8],  'Cubic interpolation (default)' => $dataPoints[8],  'Linear interpolation' => $dataPoints[8]],
+        ['labels' => '9',  'Cubic interpolation (monotone)' => $dataPoints[9],  'Cubic interpolation (default)' => $dataPoints[9],  'Linear interpolation' => $dataPoints[9]],
+        ['labels' => '10', 'Cubic interpolation (monotone)' => $dataPoints[10], 'Cubic interpolation (default)' => $dataPoints[10], 'Linear interpolation' => $dataPoints[10]],
+        ['labels' => '11', 'Cubic interpolation (monotone)' => $dataPoints[11], 'Cubic interpolation (default)' => $dataPoints[11], 'Linear interpolation' => $dataPoints[11]],
+        ['labels' => '12', 'Cubic interpolation (monotone)' => $dataPoints[12], 'Cubic interpolation (default)' => $dataPoints[12], 'Linear interpolation' => $dataPoints[12]],
+
+    ]
+);
+//datasource_end 
+    if (!isset($datasource)) {
+        if (isset($emptyCode)) {
+            $datasource = array(
+                "class"=>'\koolreport\datasources\ArrayDataSource',
+                "dataFormat"=>"associate", // or "table"
+                "data"=>array()
+            );
+        } else {
+            echo ('<i>Error:</i> variable $datasource doesn\'t exist in Data source'); exit;
+        }
+    }        
+
+        return array(
+            "dataSources" => array(
+                "source" => $datasource ?? array(
+                    "class"=>'\koolreport\datasources\ArrayDataSource',
+                    "dataFormat"=>"associate", // or "table"
+                    "data"=>array()
+                )
+            ),
+            "assets"=>array(
+                "path"=>"../../public/koolreport_assets", //relative from tmp directory
+                "url"=>"http://codegen.local/public/koolreport_assets"
+            )
+        );
+    }
+
+    function setup()
+    {
+        $node = $this->src('source');
+        $sql = 
+//sql_start 
+''
+//sql_end 
+;
+        $datastore = 
+//datastore_start 
+''
+//datastore_end 
+;
+        if (!empty($sql) && method_exists($node, 'query')) {
+            $node = $node
+            ->query($sql);
+        } else if (!empty($datastore) && method_exists($node, 'dataStore')) {
+            $node = $node
+            ->dataStore($datastore);
+        } 
+
+
+$node->pipe($this->dataStore('result_0'));
+
+
+    }
+}

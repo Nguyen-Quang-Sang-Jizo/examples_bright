@@ -1,0 +1,75 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div class="report-content">
+    <div class="text-center">
+        <h1>BubbleChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful BubbleChart
+        </p>
+    </div>
+    <style>
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+    </style>
+    <div style="margin-bottom:50px;">
+        <?php
+        \koolreport\apexcharts\BubbleChart::create(array(
+            "title" => "3D Bubble Chart",
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                "Product1" => [
+                    'combination' => [
+                        'Product1_x',
+                        'Product1_y',
+                        'Product1_z',
+                    ]
+                ],
+                "Product2" => [
+                    'combination' => [
+                        'Product2_x',
+                        'Product2_y',
+                        'Product2_z',
+                    ]
+                ],
+                "Product3" => [
+                    'combination' => [
+                        'Product3_x',
+                        'Product3_y',
+                        'Product3_z',
+                    ]
+                ],
+                "Product4" => [
+                    'combination' => [
+                        'Product4_x',
+                        'Product4_y',
+                        'Product4_z',
+                    ]
+                ],
+            ),
+            "options" => [
+                'xaxis' => [
+                    'tickAmount' => 12,
+                    'type' => 'datetime',
+                    'labels | rotate' => 0,
+                ],
+                'yaxis | max' => 70,
+                'theme | palette' => 'palette2',
+            ],
+            'fillType' => 'gradient',
+            // "showLegend" => false,
+            // "showLabel" => true,
+            // "height" => "600px",
+            // "width" => "85%",
+            "maxWidth" => "800px",
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

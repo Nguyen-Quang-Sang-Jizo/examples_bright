@@ -1,0 +1,84 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div class="report-content">
+    <div class="text-center">
+        <h1>BarChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful BarChart
+        </p>
+    </div>
+    <style>
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+    </style>
+    <div style="margin-bottom:50px;">
+        <?php
+        \koolreport\apexcharts\BarChart::create(array(
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                "country",
+                "series-1",
+            ),
+            "options" => [
+                'plotOptions | bar' => [
+                    'barHeight' => '100%',
+                    'distributed' => true,
+                    'dataLabels | position' => 'bottom',
+                ],
+                'dataLabels' => [
+                    'textAnchor' => 'start',
+                    'offsetX' => 0,
+                    'style | colors' => [
+                        '#fff'
+                    ],
+                    'formatter' => 'function (val, opt) {
+                        return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
+                    }',
+                    'dropShadow | enabled' => true,
+                ],
+                'stroke | colors' => [
+                    '#fff'
+                ],
+                'yaxis | labels | show' => false,
+                'title | floating' => true,
+                'subtitle | align' => 'center',
+                'tooltip' => [
+                    'theme' => 'dark',
+                    'x | show' => false,
+                    'y | title | formatter' => "function () {
+                        return '';
+                    }",
+                ]
+            ],
+            'colors' => [
+                '#33b2df',
+                '#546E7A',
+                '#d4526e',
+                '#13d8aa',
+                '#A5978B',
+                '#2b908f',
+                '#f9a3a4',
+                '#90ee7e',
+                '#f48024',
+                '#69d2e7'
+            ],
+            "title" => "Custom DataLabels",
+            "subtitle" => "Category Names as DataLabels inside bars",
+            "strokeWidth" => 1,
+            "showLegend" => false,
+            "showLabel" => true,
+            // "height" => "600px",
+            // "width" => "85%",
+            "maxWidth" => "800px",
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

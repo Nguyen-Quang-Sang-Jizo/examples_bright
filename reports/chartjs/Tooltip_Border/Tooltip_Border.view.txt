@@ -1,0 +1,38 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","tooltip_border"]}
+widgetMeta_end */
+\koolreport\chartjs\LineChart::create(array(
+        'dataSource' => $this->dataStore('result_0'),
+        'columns' => array(
+            "month",
+            "Dataset" => array(
+                "backgroundColor" => 'rgb(255, 99, 132)',
+                "borderColor" => 'rgb(255, 99, 132)',
+                'fill' => false
+            )
+        ),
+        "options" => array(
+            "responsive" => true,
+            "title" => array(
+                "display" => true,
+                "text" => 'Sample tooltip with border'
+            ),
+            "tooltips" => array(
+                "mode" => 'index',
+                "intersect" => false,
+                "position" => 'nearest',
+                "yPadding" => 10,
+                "xPadding" => 10,
+                "caretSize" => 8,
+                "backgroundColor" => 'rgba(72, 241, 12, 1)',
+                "titleFontColor" => 'black',
+                "bodyFontColor" => 'black',
+                "borderColor" => 'rgba(0, 0, 0, 1)',
+                "borderWidth" => 4
+            )
+        )
+    ));
+//widget_end 

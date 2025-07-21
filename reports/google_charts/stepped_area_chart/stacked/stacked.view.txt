@@ -1,0 +1,50 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\SteppedAreaChart;
+$data = $this->dataStore('result_0');
+?>
+<div class="report-container">
+    <div class="text-center">
+        <h1>Stacked</h1>
+    </div>
+
+    <div style="margin-bottom:50px;">
+        <?php
+        SteppedAreaChart::create(array(
+            "dataSource" => $data,
+            "columns" => array(
+                'Director (Year)',
+                'Rotten Tomatoes',
+                'IMDB'
+            ),
+            "options" => array(
+                "title" => 'The decline of \'The 39 Steps\'',
+                "vAxis" => ["title" => 'Accumulated Rating'],
+                "isStacked" => true
+            )
+        ));
+        ?>
+    </div>
+    <div style="margin-bottom:50px;">
+        <?php
+        SteppedAreaChart::create(array(
+            "dataSource" => $data,
+            "columns" => array(
+                'Director (Year)',
+                'Rotten Tomatoes',
+                'IMDB'
+            ),
+            "options" => array(
+                "title" => 'The decline of \'The 39 Steps\'',
+                "vAxis" => ["title" => 'Accumulated Rating'],
+                "isStacked" => 'relative'
+            )
+        ));
+        ?>
+    </div>
+</div>
+//widget_end 

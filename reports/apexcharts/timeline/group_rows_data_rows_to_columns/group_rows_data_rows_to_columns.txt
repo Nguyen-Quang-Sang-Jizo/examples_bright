@@ -1,0 +1,168 @@
+<?php
+class group_rows_data_rows_to_columns extends \koolreport\KoolReport
+{
+    function settings()
+    {
+
+
+//datasource_start 
+/* datasourceMeta_start
+{"isSavedTemplate":null,"template":["Variables_based","Array"]}
+datasourceMeta_end */
+$datasource = array(
+    "class"=>'\koolreport\datasources\ArrayDataSource',
+    "dataFormat"=>"table", 
+    "data"=>[
+            [
+                'name',
+                'position',
+                'date_start',
+                'date_end',
+            ],
+            [
+                "George Washington",
+                "President",
+                "1789/4/30",
+                "1797/3/4"
+            ],
+            [
+                "John Adams",
+                "President",
+                "1797/3/4",
+                "1801/3/4"
+            ],
+            [
+                "John Adams",
+                "Vice President",
+                "1789/4/21",
+                "1797/3/4"
+            ],
+            [
+                "Thomas Jefferson",
+                "President",
+                "1801/3/4",
+                "1809/3/4"
+            ],
+            [
+                "Thomas Jefferson",
+                "Vice President",
+                "1797/3/4",
+                "1801/3/4"
+            ],
+            [
+                "Thomas Jefferson",
+                "Secretary of State",
+                "1790/3/22",
+                "1793/12/31"
+            ],
+            [
+                "Aaron Burr",
+                "Vice President",
+                "1801/3/4",
+                "1805/3/4"
+            ],
+            [
+                "George Clinton",
+                "Vice President",
+                "1805/3/4",
+                "1812/4/20"
+            ],
+            [
+                "John Jay",
+                "Secretary of State",
+                "1789/9/25",
+                "1790/3/22"
+            ],
+            [
+                "Edmund Randolph",
+                "Secretary of State",
+                "1794/1/2",
+                "1795/8/20"
+            ],
+            [
+                "Timothy Pickering",
+                "Secretary of State",
+                "1795/8/20",
+                "1800/5/12"
+            ],
+            [
+                "Charles Lee",
+                "Secretary of State",
+                "1800/5/13",
+                "1800/6/5"
+            ],
+            [
+                "John Marshall",
+                "Secretary of State",
+                "1800/6/13",
+                "1801/3/4"
+            ],
+            [
+                "Levi Lincoln",
+                "Secretary of State",
+                "1801/3/5",
+                "1801/5/1"
+            ],
+            [
+                "James Madison",
+                "Secretary of State",
+                "1801/5/2",
+                "1809/3/3"
+            ]
+        ]
+);
+//datasource_end 
+    if (!isset($datasource)) {
+        if (isset($emptyCode)) {
+            $datasource = array(
+                "class"=>'\koolreport\datasources\ArrayDataSource',
+                "dataFormat"=>"associate", // or "table"
+                "data"=>array()
+            );
+        } else {
+            echo ('<i>Error:</i> variable $datasource doesn\'t exist in Data source'); exit;
+        }
+    }        
+
+        return array(
+            "dataSources" => array(
+                "source" => $datasource ?? array(
+                    "class"=>'\koolreport\datasources\ArrayDataSource',
+                    "dataFormat"=>"associate", // or "table"
+                    "data"=>array()
+                )
+            ),
+            "assets"=>array(
+                "path"=>"../../public/koolreport_assets", //relative from tmp directory
+                "url"=>"http://codegen.local/public/koolreport_assets"
+            )
+        );
+    }
+
+    function setup()
+    {
+        $node = $this->src('source');
+        $sql = 
+//sql_start 
+''
+//sql_end 
+;
+        $datastore = 
+//datastore_start 
+''
+//datastore_end 
+;
+        if (!empty($sql) && method_exists($node, 'query')) {
+            $node = $node
+            ->query($sql);
+        } else if (!empty($datastore) && method_exists($node, 'dataStore')) {
+            $node = $node
+            ->dataStore($datastore);
+        } 
+
+
+$node->pipe($this->dataStore('result_0'));
+
+
+    }
+}

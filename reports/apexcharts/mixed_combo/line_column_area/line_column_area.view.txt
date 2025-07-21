@@ -1,0 +1,89 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div class="report-content">
+    <div class="text-center">
+        <h1>ComboChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful ComboChart
+        </p>
+    </div>
+    <style>
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+    </style>
+    <div style="margin-bottom:50px;">
+        <?php
+        \koolreport\apexcharts\ComboChart::create(array(
+            // "title" => "Traffic Sources",
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                "Date" => [
+                    "categoryType" => "datetime"
+                ],
+                "TEAM A" => [
+                    "chartType" => "column",
+                ],
+                "TEAM B" => [
+                    "chartType" => "area",
+                ],
+                "TEAM C" => [
+                    "chartType" => "line",
+                ],
+            ),
+            "options" => [
+                'plotOptions | bar | columnWidth' => '50%',
+                'fill | gradient' => [
+                    'inverseColors' => false,
+                    'shade' => 'light',
+                    'type' => 'vertical',
+                    'opacityFrom' => 0.85,
+                    'opacityTo' => 0.55,
+                    'stops' => [
+                        0,
+                        100,
+                        100,
+                        100
+                    ]
+                ],
+                'yaxis | min' => 0,
+                'tooltip' => [
+                    'shared' => true,
+                    'intersect' => false,
+                    'y | formatter' => 'function (y) {
+                        if (typeof y !== "undefined") {
+                            return y.toFixed(0) + " points";
+                        }
+                        return y;
+                    }'
+                ]
+            ],
+            "yTitle" => "Points",
+            'strokeWidth' => [
+                0,
+                2,
+                5
+            ],
+            'strokeCurve' => 'smooth',
+            'fillOpacity' => [
+                0.85,
+                0.25,
+                1
+            ],
+            'markersSize' => 0,
+            // "showLegend" => false,
+            // "showLabel" => true,
+            // "height" => "600px",
+            // "width" => "85%",
+            "maxWidth" => "800px",
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

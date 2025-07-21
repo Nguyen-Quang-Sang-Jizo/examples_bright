@@ -1,0 +1,81 @@
+<?php
+class timeline_chart extends \koolreport\KoolReport
+{
+    function settings()
+    {
+
+
+//datasource_start 
+/* datasourceMeta_start
+{"isSavedTemplate":null,"template":["Variables_based","Array"]}
+datasourceMeta_end */
+$datasource = array(
+    "class"=>'\koolreport\datasources\ArrayDataSource',
+    "dataFormat"=>"table", 
+    "data"=>[
+                        ['President','Start','End'],
+                        [ 'Gerald Ford',  "1974-01-20",  "1977-01-20" ],
+                        [ 'Jimmy Carter',  "1977-01-20",  "1981-01-20" ],
+                        [ 'Ronald Reagan',  "1981-01-20",  "1989-01-20" ],
+                        [ 'George H. W. Bush',  "1989-01-20",  "1993-01-20" ],
+                        [ 'Bill Clinton',  "1993-01-20",  "2001-01-20" ],
+                        [ 'George W. Bush',  "2001-01-20",  "2009-01-20" ],
+                        [ 'Barack Obama',  "2009-01-20",  "2017-01-20" ],
+                        [ 'Donald Trump',  "2017-01-20",  date("Y-m-d") ],
+                    ]
+);
+//datasource_end 
+    if (!isset($datasource)) {
+        if (isset($emptyCode)) {
+            $datasource = array(
+                "class"=>'\koolreport\datasources\ArrayDataSource',
+                "dataFormat"=>"associate", // or "table"
+                "data"=>array()
+            );
+        } else {
+            echo ('<i>Error:</i> variable $datasource doesn\'t exist in Data source'); exit;
+        }
+    }        
+
+        return array(
+            "dataSources" => array(
+                "source" => $datasource ?? array(
+                    "class"=>'\koolreport\datasources\ArrayDataSource',
+                    "dataFormat"=>"associate", // or "table"
+                    "data"=>array()
+                )
+            ),
+            "assets"=>array(
+                "path"=>"../../public/koolreport_assets", //relative from tmp directory
+                "url"=>"http://codegen.local/public/koolreport_assets"
+            )
+        );
+    }
+
+    function setup()
+    {
+        $node = $this->src('source');
+        $sql = 
+//sql_start 
+''
+//sql_end 
+;
+        $datastore = 
+//datastore_start 
+''
+//datastore_end 
+;
+        if (!empty($sql) && method_exists($node, 'query')) {
+            $node = $node
+            ->query($sql);
+        } else if (!empty($datastore) && method_exists($node, 'dataStore')) {
+            $node = $node
+            ->dataStore($datastore);
+        } 
+
+
+$node->pipe($this->dataStore('result_0'));
+
+
+    }
+}

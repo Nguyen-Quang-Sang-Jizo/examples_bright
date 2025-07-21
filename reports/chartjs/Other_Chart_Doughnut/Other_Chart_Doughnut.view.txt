@@ -1,0 +1,42 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div style="width:50%;" id="report_render">
+    <?php
+    const PI = 3.1415;
+
+    \koolreport\chartjs\DonutChart::create(array(
+        'dataSource' => $this->dataStore('result_0'),
+        'columns' => [
+			'name',
+		  	'series1'
+		],
+        "options" => array(
+            "responsive" => true,
+            "lengend" => array(
+                "position" => "top",
+            ),
+            "title" => array(
+                "display" => true,
+                "text" => 'Chart.js Doughnut Chart'
+            ),
+            "animation" => array(
+                "animateScale" => true,
+                "animateRotate" => true
+            ),
+        ),
+        "colorScheme" => array(
+            "rgb(255, 99, 132)",
+            "rgb(255, 159, 64)",
+            "rgb(255, 205, 86)",
+            "rgb(75, 192, 192)",
+            "rgb(54, 162, 235)"
+        )
+    ));
+    ?>
+</div>
+//widget_end 

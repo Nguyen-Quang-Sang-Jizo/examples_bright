@@ -1,0 +1,58 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","time_scale_line_point_data"]}
+widgetMeta_end */
+\koolreport\chartjs\LineChart::create(array(
+        'dataSource' => $this->dataStore('result_0'),
+        'columns' => array(
+            "label",
+            "Dataset with string point data" => array(
+                "label" => "Dataset with string point data",
+                "fill" => false,
+                "backgroundColor" => 'rgba(255, 99, 132)',
+                "borderColor" => 'rgb(255, 99, 132)'
+            ),
+            "Dataset with date object point data" => array(
+                "label" => 'Dataset with date object point data',
+                "fill" => false,
+                "backgroundColor" => 'rgba(54, 162, 235)',
+                "borderColor" => 'rgb(54, 162, 235)'
+            )
+        ),
+        "options" => array(
+            "responsive" => true,
+            "title" => array(
+                "display" => true,
+                "text" => 'Chart.js Time Point Data'
+            ),
+            "scales" => array(
+                "xAxes" => array(
+                    array(
+                        "type" => "time",
+                        "display" => true,
+                        "scaleLabel" => array(
+                            "display" => true,
+                            "labelString" => "Date"
+                        ),
+                        "ticks" => array(
+                            "major" => array(
+                                "fontStyle" => "bold",
+                                "fontColor " => "#FF0000"
+                            )
+                        )
+                    )
+                ),
+                "yAxes" => array(
+                    array(
+                        "scaleLabel" => array(
+                            "display" => true,
+                            "labelString" => 'Value'
+                        )
+                    )
+                )
+            )
+        )
+    ));
+//widget_end 

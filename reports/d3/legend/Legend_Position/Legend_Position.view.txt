@@ -1,0 +1,25 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["D3","XY","legend_position"]}
+widgetMeta_end */
+?>
+  <div id="report_render">
+    <h1 class='title'>Legend Position</h1>
+    <?php
+    \koolreport\d3\LineChart::create(array(
+        "dataSource" => $this->dataStore('result_0'),
+        "columns" => [
+            'data1',
+            'data2'
+        ],
+        "options" => array(
+            "legend" => array(
+                "position" => 'right' // Change this to 'top', 'bottom', 'left', or 'right' to see different positions
+            )
+        )
+    ));
+    ?>
+</div>
+//widget_end 

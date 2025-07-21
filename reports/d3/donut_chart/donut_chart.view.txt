@@ -1,0 +1,56 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\d3\DonutChart;
+
+    $category_amount = $this->dataStore('result_0');
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>DonutChart</h1>
+        <p class="lead">
+            This example shows how to draw beautiful DonutChart
+        </p>
+    </div>
+
+    <div style="margin-bottom:50px;">
+    <div class="text-center"><strong>Basic chart</strong></div>
+    <?php
+    DonutChart::create(array(
+        "title"=>"Cost of Good Sold",
+        "dataSource"=>$category_amount,
+        "columns"=>array("category","cost")
+    ));
+    ?>
+    </div>
+
+
+    <div style="margin-bottom:50px;">
+    <div class="text-center"><strong>Label and tooltip format</strong></div>
+    <?php
+    DonutChart::create(array(
+        "title"=>"Cost of Good Sold",
+        "dataSource"=>$category_amount,
+        "columns"=>array(
+            "category",
+            "cost"
+        ),
+        "label"=>array(
+            "use"=>"ratio",
+            "decimals"=>2,
+            "suffix"=>"%"
+        ),
+        "tooltip"=>array(
+            "use"=>"value",
+            "prefix"=>"$"
+        )
+    ));
+    ?>
+    </div>
+
+
+</div>
+//widget_end 

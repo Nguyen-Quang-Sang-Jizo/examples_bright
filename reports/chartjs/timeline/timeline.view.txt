@@ -1,0 +1,47 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","timeline"]}
+widgetMeta_end */
+\koolreport\chartjs\Timeline::create(array(
+    "dataSource" => $this->dataStore('result_0'),
+    "columns" => [
+        "timelineLabel", "start", "end", "itemLabel",
+    ],
+    "options" => [
+        // "elements" => [
+        //     "colorFunction" => "function(text, data, dataset, index) {
+        //         var colors = ['#000000', 'green', 'blue'];
+        //         var color = Color(colors[index]);
+        //         console.log(text, data, dataset, index);
+        //         // console.log(color);
+        //         console.log(dataset._meta[0].index);
+        //         return color;
+        //     }",
+        //     "showText" => true,
+        //     "textPadding" => 4,
+        // ],
+        "showText" => true,
+        "textPadding" => 4,
+        // "colors" => [
+        //     ['blue', 'red', 'green'],
+        //     // ['#000000', 'rgba(0,255,0,0.3)']
+        // ],
+        // "scales" => [
+        //     "xAxes" => [
+        //         [
+        //             "type" => 'timeline',
+        //             "position" => 'top',
+        //         ]
+        //     ]
+        // ]
+    ],
+    // "colorScheme" => ['#000000', 'green', 'blue']
+    "colorScheme" => [
+        ['blue', 'red', 'green'],
+        ['00FFFF', 'rgba(0,255,0,0.3)']
+    ],
+    "backgroundOpacity" => 0.5,
+));
+//widget_end 

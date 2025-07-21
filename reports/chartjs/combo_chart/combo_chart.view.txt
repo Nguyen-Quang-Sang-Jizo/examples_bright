@@ -1,0 +1,40 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","combo_chart"]}
+widgetMeta_end */
+\koolreport\chartjs\ComboChart::create(array(
+    "title"=>"Sale Report",
+    "dataSource"=>$this->dataStore('result_0'),
+    "columns"=>array(
+        "category",
+        "sale"=>array(
+            "label"=>"Sale",
+            "type"=>"number",
+            "prefix"=>"$"
+        ),
+        "cost"=>array(
+            "label"=>"Cost",
+            "type"=>"number",
+            "prefix"=>"$"
+        ),
+        "profit"=>array(
+            "label"=>"Profit",
+            "type"=>"number",
+            "prefix"=>"$",
+            "config"=>array(
+                "type"=>"line",//Line chart is draw
+                "borderWidth"=>3,
+                "backgroundColor" => "rgba(0, 0, 0, 0)",
+            )
+        ),
+    ),
+    "options"=>array(
+        "tooltips"=>array(
+            "mode"=>"index",
+            "intersect"=>true,
+        )
+    )
+));
+//widget_end 

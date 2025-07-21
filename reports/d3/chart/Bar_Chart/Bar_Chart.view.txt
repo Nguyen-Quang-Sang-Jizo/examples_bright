@@ -1,0 +1,30 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div id="report_render">
+    <h1 class="title">Bar Chart</h1>
+    <?php
+
+    \koolreport\d3\ColumnChart::create(array(
+        "dataSource" => $this->dataStore('result_0'),
+        "columns" => [
+			'data1',
+		  	'data2'
+		],
+        "options" => array(
+            "data" => array(
+                "bar" => array(
+                    "width" => array(
+                        "ratio" => 0.5
+                    )
+                )
+            )
+        )
+    ));
+    ?>
+</div>
+//widget_end 

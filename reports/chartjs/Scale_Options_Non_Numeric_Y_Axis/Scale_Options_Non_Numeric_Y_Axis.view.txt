@@ -1,0 +1,53 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","scale_options_non_numeric_y_axis"]}
+widgetMeta_end */
+$yLabels = ['', 'Request Added', 'Request Viewed', 'Request Accepted', 'Request Solved', 'Solving Confirmed'];
+
+    \koolreport\chartjs\LineChart::create(array(
+        'dataSource' => $this->dataStore('result_0'),
+        'columns' => array(
+            "xLabels",
+            "My First dataset" => array(
+                "fill" => false,
+                "backgroundColor" => 'rgb(255, 99, 132)',
+                "borderColor" => 'rgb(255, 99, 132)'
+            )
+        ),
+        "options" => array(
+            "responsive" => true,
+            "title" => array(
+                "display" => true,
+                "text" => 'Chart with Non Numeric Y Axis'
+            ),
+            "scales" => array(
+                "xAxes" => array(
+                    array(
+                        "display" => true,
+                        "scaleLabel" => array(
+                            "display" => true,
+                            "labelString" => 'Month'
+                        )
+                    )
+                ),
+                "yAxes" => array(
+                    array(
+                        "type" => 'category',
+                        "labels" => $yLabels,
+                        "position" => 'left',
+                        "display" => true,
+                        "scaleLabel" => array(
+                            "display" => true,
+                            "labelString" => 'Request State'
+                        ),
+                        "ticks" => array(
+                            "reverse" => true,
+                        )
+                    )
+                )
+            )
+        )
+    ));
+//widget_end 

@@ -1,0 +1,56 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\Timeline;
+
+$data = $this->dataStore('result_0');
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>Labeling the bars</h1>
+    </div>
+    <div style="height:200px;margin-bottom: 50px">
+        <?php
+        Timeline::create(array(
+            "dataSource" => $data,
+            "columns" => array(
+                "Term",
+                "President",
+                "Start" => array(
+                    "type" => "date",
+                ),
+                "End" => array(
+                    "type" => "date",
+                )
+            )
+        ));
+        ?>
+    </div>
+    <div style="height:200px;margin-bottom: 50px">
+        <?php
+        Timeline::create(array(
+            "dataSource" => $data,
+            "columns" => array(
+                "Term",
+                "President",
+                "Start" => array(
+                    "type" => "date",
+                ),
+                "End" => array(
+                    "type" => "date",
+                )
+            ),
+            "options" => array(
+                "timeline" => [
+                    "showRowLabels" => false
+                ]
+            )
+        ));
+        ?>
+    </div>
+</div>
+//widget_end 

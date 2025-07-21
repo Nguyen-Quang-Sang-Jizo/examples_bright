@@ -1,1 +1,0 @@
-This example show how to build a fixed order column despite sorting, filtering.

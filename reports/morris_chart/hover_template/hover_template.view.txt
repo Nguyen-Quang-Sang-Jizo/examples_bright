@@ -1,0 +1,58 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\morris_chart\Bar;
+
+    $category_amount = $this->dataStore('result_0');
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>BarChart</h1>
+        <p class="lead">
+        The example shows how to use chart hover and formatter template
+        </p>
+    </div>
+    <div style="margin-bottom:50px;">
+    <h6 class="text-center">Sale Report</h6>
+    <?php
+    Bar::create(array(
+        "dataSource"=>$category_amount,
+        "columns"=>array(
+            "category",
+            "sale"=>array("label"=>"Sale","type"=>"number","prefix"=>"$"),
+            "cost"=>array("label"=>"Cost","type"=>"number","prefix"=>"$"),
+            "profit"=>array("label"=>"Profit","type"=>"number","prefix"=>"$"),
+        ),
+        "hoverTitleTemplate" => "<div class=\'morris-hover-row-label\'>Title: {titleValue}</div>",
+        "hoverItemTemplate" => "<div class=\'morris-hover-point\' style=\'color: {itemColor}\'>
+            {itemName}:
+            {itemValue}
+        </div>",
+    ));
+    ?>
+    </div>
+
+    <div style="margin-bottom:50px;">
+    <?php
+    use \koolreport\morris_chart\Donut;
+
+    Donut::create(array(
+        "title"=>"Sale Of Category",
+        "dataSource"=>$category_amount,
+        "columns"=>array(
+            "category",
+            "cost"=>array(
+                "type"=>"number",
+                "prefix"=>"$",
+            )
+        ),
+        "formatterTemplate" => "Value: {formatValue}",
+    ));
+    ?>
+    </div>
+    
+</div>
+//widget_end 

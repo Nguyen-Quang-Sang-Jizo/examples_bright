@@ -1,0 +1,27 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\ScatterChart;
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>Custom Points</h1>
+    </div>
+    <div style="margin-bottom:50px;">
+        <?php
+        ScatterChart::create(array(
+            "title" => "Height vs Weight, Smokers on custom points",
+            "dataSource" => $this->dataStore('result_0'),
+            "options" => array(
+                "pointShape" => 'star',
+                "pointSize" => 18
+            )
+        ));
+        ?>
+    </div>
+</div>
+//widget_end 

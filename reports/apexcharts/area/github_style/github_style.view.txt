@@ -1,0 +1,141 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>AreaChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful AreaChart
+        </p>
+    </div>
+
+    <style>
+        .apexcharts_wrapper>div,
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+
+        #wrapper {}
+
+        .github-style {
+            /* display: flex; */
+            /* justify-content: left; */
+            font-weight: 400;
+            height: 40px;
+            margin-left: auto;
+        }
+
+        .github-style a {
+            color: #0366d6;
+            font-size: 18px;
+        }
+
+        .github-style .cmeta {
+            display: block;
+            color: #777;
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        .github-style .userimg {
+            float: left;
+            display: block;
+            border-radius: 3px;
+        }
+
+        .github-style .userdetails {
+            float: left;
+            margin-left: 10px;
+        }
+    </style>
+
+    <div id="wrapper">
+        <?php
+       
+        \koolreport\apexcharts\BrushCharts::create(array(
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                "date" => [
+                    "label" => "Date",
+                    "categoryType" => "datetime",
+                ],
+                "commits" => [
+                    "chartType" => "area",
+                    "charts" => [1, 2]
+                ],
+            ),
+            "brushMap" => [
+                2 => 1,
+            ],
+            "options" => [],
+            'strokeWidth' => 0,
+            'fillOpacity' => 1,
+            'fillType' => 'solid',
+            'showLabel' => false,
+            "showYaxis" => false,
+            "showLegend" => false,
+            // "showLabel" => true,
+            // "height" => "600px",
+            // "width" => "85%",
+            "maxWidth" => 800,
+
+            "settings_1" => [
+                'options' => [
+                    "chart | events" => [
+                        "mounted" => "function (chart) {
+                            // console.log('chart mounted event');
+                            var commitsEl = document.querySelector('.cmeta span.commits');
+                            var commits = chart.getSeriesTotalXRange(chart.w.globals.minX, chart.w.globals.maxX)
+                            commitsEl.innerHTML = commits
+                        }",
+                        "updated" => "function (chart) {
+                            // console.log('chart updated event');
+                            var commitsEl = document.querySelector('.cmeta span.commits');
+                            var commits = chart.getSeriesTotalXRange(chart.w.globals.minX, chart.w.globals.maxX)
+                            commitsEl.innerHTML = commits
+                        }"
+                    ],
+                    'legend' => [
+                        'position' => 'top',
+                        'horizontalAlign' => 'left'
+                    ],
+                    'yaxis | tickAmount' => 3,
+                ],
+                'colors' => [
+                    '#7BD39A'
+                ],
+                'widthHeightAutoRatio' => 3.5,
+                // 'height' => 160,
+            ],
+
+            "settings_2" => [
+                "options" => [],
+                'colors' => [
+                    '#FF7F00'
+                ],
+                'widthHeightAutoRatio' => 3,
+                // "height" => 200
+            ]
+        ));
+        ?>
+
+        <div style="margin: 0 auto; max-width: 800px;">
+            <h5 class="github-style">
+                <img class="userimg" src="https://picsum.photos/200/200/?image=1031" data-hovercard-user-id="634573" alt="" width="38" height="38" />
+                <div class="userdetails">
+                    <a class="username">coder</a>
+                    <span class="cmeta">
+                        <span class="commits"></span> commits
+                    </span>
+                </div>
+            </h5>
+        </div>
+
+    </div>
+
+</div>
+//widget_end 

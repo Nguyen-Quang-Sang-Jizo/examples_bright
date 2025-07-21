@@ -1,0 +1,41 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div class="report-content">
+    <div class="text-center">
+        <h1>LineChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful LineChart
+        </p>
+    </div>
+    <style>
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+    </style>
+    <div style="margin-bottom:50px;">
+        <?php
+        \koolreport\apexcharts\LineChart::create(array(
+            "title" => "Step Line Chart",
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                "data" => []
+            ),
+            "options" => [
+                "markers | hover | sizeOffset" => 4,
+            ],
+            "strokeCurve" => "stepline",
+            // "showLabel" => true,
+            "showLegend" => false,
+            // "height" => "600px",
+            "maxWidth" => 800,
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

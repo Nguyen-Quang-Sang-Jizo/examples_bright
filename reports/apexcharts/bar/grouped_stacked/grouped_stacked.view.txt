@@ -1,0 +1,72 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div class="report-content">
+    <div class="text-center">
+        <h1>BarChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful BarChart
+        </p>
+    </div>
+    <style>
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+    </style>
+    <div style="margin-bottom:50px;">
+        <?php
+        \koolreport\apexcharts\BarChart::create(array(
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                "category",
+                'Q1 Budget' => [
+                    "group" => 'budget',
+                ],
+                'Q1 Actual' => [
+                    "group" => 'actual',
+                ],
+                'Q2 Budget' => [
+                    "group" => 'budget',
+                ],
+                'Q2 Actual' => [
+                    "group" => 'actual',
+                ]
+            ),
+            "options" => [
+                'stroke | colors' => [
+                    '#fff'
+                ],
+                'dataLabels | formatter' => "(val) => {
+                    return val / 1000 + 'K'
+                }",
+                'xaxis | labels | formatter' => "(val) => {
+                    return val / 1000 + 'K'
+                }",
+                'legend' => [
+                    'position' => 'top',
+                    'horizontalAlign' => 'left'
+                ]
+            ],
+            "stacked" => true,
+            'colors' => [
+                '#80c7fd',
+                '#008FFB',
+                '#80f1cb',
+                '#00E396'
+            ],
+            "strokeWidth" => 1,
+            "fillOpacity" => 1,
+            "showLabel" => true,
+            // "height" => "600px",
+            // "width" => "85%",
+            "maxWidth" => "800px",
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

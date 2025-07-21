@@ -1,0 +1,61 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\AreaChart;
+    use \koolreport\widgets\google\SteppedAreaChart;
+
+    $time_sale = $this->dataStore('result_0');
+?>
+<div class="report-container">
+    <div class="text-center">
+        <h1>AreaChart</h1>
+        <p class="lead">
+            The example show how to use AreaChart
+        </p>
+    </div>
+
+    <div style="margin-bottom:50px;">
+    <?php
+    AreaChart::create(array(
+        "title"=>"Sale vs Cost",
+        "dataSource"=>$time_sale,
+        "columns"=>array(
+            "month",
+            "sale"=>array(
+                "label"=>"Sale",
+                "type"=>"number",
+                "prefix"=>"$"
+            ),
+            "cost"=>array(
+                "label"=>"Cost",
+                "type"=>"number",
+                "prefix"=>"$"
+            ),
+        ),
+    ));
+    ?>
+    </div>
+    <div style="margin-bottom:50px;">
+    <?php
+    SteppedAreaChart::create(array(
+        "title"=>"Stepped Line Chart",
+        "dataSource"=>$time_sale,
+        "columns"=>array(
+            "month",
+            "sale"=>array(
+                "label"=>"Sale",
+                "type"=>"number",
+                "prefix"=>"$",
+                "config"=>array(
+                    "steppedLine"=>true,
+                )
+            ),
+        ),
+    ));
+    ?>
+    </div>
+</div>
+//widget_end 

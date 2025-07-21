@@ -1,0 +1,22 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","line_chart_step"]}
+widgetMeta_end */
+\koolreport\chartjs\LineChart::create(array(
+    "title"=>"Stepped Line Chart",
+    "dataSource"=>$this->dataStore('result_0'),
+    "columns"=>array(
+        "month",
+        "sale"=>array(
+            "label"=>"Sale",
+            "type"=>"number",
+            "prefix"=>"$",
+            "config"=>array(
+                "steppedLine"=>true,
+            )
+        ),
+    ),
+));
+//widget_end 

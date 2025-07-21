@@ -1,0 +1,50 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div id="report_render">
+    <?php
+    
+    \koolreport\chartjs\LineChart::create(array(
+        'dataSource' => $this->dataStore('result_0'),
+        'columns' => array(
+            "month",
+            "My First dataset" => array(
+                "fill" => false,
+                "backgroundColor" => 'rgb(255, 99, 132)',
+                "borderColor" => 'rgb(255, 99, 132)'
+            ),
+            "My Second dataset" => array(
+                "fill" => false,
+                "backgroundColor" => 'rgb(54, 162, 235)',
+                "borderColor" => 'rgb(54, 162, 235)'
+            )
+        ),
+        "options" => array(
+            "title" => array(
+                "display" => true,
+                "text" => 'Chart.js Line Chart - Animation Progress Bar'
+            ),
+            "animation" => array(
+                "duration" => 2000,
+                "onProgress" => "function(animation) {
+                    progress.value = animation.currentStep / animation.numSteps;
+                }",
+                "onComplete" => "function() {
+                    window.setTimeout(function() {
+                        progress.value = 0;
+                    }, 2000);
+                }"
+            )
+        )
+    ));
+    ?>
+    <progress id="animationProgress" max="1" value="0" style="width: 100%"></progress>
+</div>
+<script>
+    var progress = document.getElementById('animationProgress');
+</script>
+//widget_end 

@@ -1,0 +1,88 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div class="report-content">
+    <div class="text-center">
+        <h1>HeatMapChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful HeatMapChart
+        </p>
+    </div>
+    <style>
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+    </style>
+    <div style="margin-bottom:50px;">
+        <?php
+	  	$data = $this->dataStore('result_0');
+        $data2 = \koolreport\apexcharts\Chart::rowsToColumns($data, [
+            'rowColumns' => ['Metric_x'],
+            'valueColumns' => ['Metric_y'],
+            'fixedColumns' => ['Metric_name']
+        ]);
+        // \koolreport\core\Utility::prettyPrint2($data2);
+    ?>
+
+    <div style="overflow: scroll">
+        <?php
+            \koolreport\widgets\koolphp\Table::create([
+                'dataSource' => $data2,
+                // 'paging' => true,
+            ]);
+            ?>
+    </div>
+    
+<i class="fa fa-arrow-down" style="font-size:24px;"></i>
+<pre style="font-weight:bold"><code>
+$data_transpose = \koolreport\core\Utility::transpose($data);
+</code></pre>
+<i class="fa fa-arrow-down" style="font-size:24px;"></i>
+
+    <?php
+    $data_transpose = \koolreport\core\Utility::transpose($data2);
+    // \koolreport\core\Utility::prettyPrint2($data_transpose);
+    ?>
+
+    <div style="overflow: scroll">
+        <?php
+            \koolreport\widgets\koolphp\Table::create([
+                'dataSource' => $data_transpose,
+                // 'paging' => true,
+            ]);
+            ?>
+    </div>
+        
+<i class="fa fa-arrow-down" style="font-size:24px;"></i>
+<pre style="font-weight:bold"><code>
+\koolreport\apexcharts\HeatMapChart::create(array(
+    "dataSource" => $data_transpose,
+    "columns" => $data_transpose[0],
+));
+</code></pre>
+<i class="fa fa-arrow-down" style="font-size:24px;"></i>
+        <div>
+            <?php
+            \koolreport\apexcharts\HeatMapChart::create(array(
+                "title" => "HeatMap Chart (Single color)",
+                "dataSource" => $data_transpose,
+                "columns" => $data_transpose[0],
+                "options" => [],
+                "colors" => ["#008FFB"],
+                'widthHeightAutoRatio' => 1.8,
+                // "showLegend" => false,
+                // "showLabel" => true,
+                // "height" => "400px",
+                // "width" => "85%",
+                "maxWidth" => "800px",
+            ));
+            ?>
+        </div>
+    </div>
+
+</div>
+//widget_end 

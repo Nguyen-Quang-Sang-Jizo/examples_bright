@@ -1,0 +1,84 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div class="report-content">
+    <div class="text-center">
+        <h1>HeatMapChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful HeatMapChart
+        </p>
+    </div>
+    <style>
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+    </style>
+    <div style="margin-bottom:50px;">
+        <?php
+        \koolreport\apexcharts\HeatMapChart::create(array(
+            // "name" => "HeatMap1",
+            "title" => "HeatMap Chart with Color Range",
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep"
+            ),
+            "autoCategoryColumn" => "numeric",
+            "options" => [
+                'plotOptions | heatmap' => [
+                    'shadeIntensity' => 0.5,
+                    'radius' => 0,
+                    'useFillColorAsStroke' => true,
+                    'colorScale | ranges' => [
+                        [
+                            'from' => -30,
+                            'to' => 5,
+                            'name' => 'low',
+                            'color' => '#00A100'
+                        ],
+                        [
+                            'from' => 6,
+                            'to' => 20,
+                            'name' => 'medium',
+                            'color' => '#128FD9'
+                        ],
+                        [
+                            'from' => 21,
+                            'to' => 45,
+                            'name' => 'high',
+                            'color' => '#FFB200'
+                        ],
+                        [
+                            'from' => 46,
+                            'to' => 55,
+                            'name' => 'extreme',
+                            'color' => '#FF0000'
+                        ]
+                    ]
+                ],
+
+            ],
+            'widthHeightAutoRatio' => 1.9,
+            'strokeWidth' => 1,
+            // "showLegend" => false,
+            // "showLabel" => true,
+            // "height" => "400px",
+            // "width" => "85%",
+            "maxWidth" => "800px",
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

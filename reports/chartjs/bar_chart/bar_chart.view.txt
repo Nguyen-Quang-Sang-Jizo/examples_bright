@@ -1,0 +1,17 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","bar_chart"]}
+widgetMeta_end */
+\koolreport\chartjs\BarChart::create(array(
+    "title"=>"Sale Report",
+    "dataSource"=> $this->dataStore('result_0'),
+    "columns"=>array(
+        "category",
+        "sale"=>array("label"=>"Sale","type"=>"number","prefix"=>"$"),
+        "cost"=>array("label"=>"Cost","type"=>"number","prefix"=>"$"),
+        "profit"=>array("label"=>"Profit","type"=>"number","prefix"=>"$"),
+    )
+));
+//widget_end 

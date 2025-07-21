@@ -1,0 +1,35 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+<div id="report_render">
+    <h1 class='title'>Category Data</h1>
+    <?php
+    
+    \koolreport\d3\ColumnChart::create(array(
+        "dataSource" => $this->dataStore('result_0'),
+        "columns" => array(
+            'x',
+            'download',
+            'loading'
+        ),
+        "options" => array(
+            "data" => array(
+                "x" => 'x',
+                "groups" => array(
+                    array('download', 'loading')
+                )
+            ),
+            "axis" => array(
+                "x" => array(
+                    "type" => 'category'
+                )
+            )
+        )
+    ));
+    ?>
+</div>
+//widget_end 

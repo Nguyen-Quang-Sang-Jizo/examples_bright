@@ -1,0 +1,43 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","scale_options_scale_type"]}
+widgetMeta_end */
+\koolreport\chartjs\LineChart::create(array(
+        'dataSource' => $this->dataStore('result_0'),
+        'columns' => array(
+            "month",
+            "My First dataset" => array(
+                "fill" => false,
+                "backgroundColor" => 'rgb(255, 99, 132)',
+                "borderColor" => 'rgb(255, 99, 132)'
+            ),
+            "My Second dataset" => array(
+                "fill" => false,
+                "backgroundColor" => 'rgb(54, 162, 235)',
+                "borderColor" => 'rgb(54, 162, 235)'
+            )
+        ),
+        "options" => array(
+            "responsive" => true,
+            "title" => array(
+                "display" => true,
+                "text" => 'Chart.js Line Chart - logarithmic'
+            ),
+            "scales" => array(
+                "xAxes" => array(
+                    array(
+                        "display" => true
+                    )
+                ),
+                "yAxes" => array(
+                    array(
+                        'display' => true,
+                        "type" => 'logarithmic' // linear
+                    )
+                )
+            )
+        )
+    ));
+//widget_end 

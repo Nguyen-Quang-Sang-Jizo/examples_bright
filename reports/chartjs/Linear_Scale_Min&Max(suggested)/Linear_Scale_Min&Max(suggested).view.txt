@@ -1,0 +1,40 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","linear_scale_min_max_suggested"]}
+widgetMeta_end */
+\koolreport\chartjs\LineChart::create(array(
+        'dataSource' => $this->dataStore('result_0'),
+        'columns' => array(
+            "month",
+            "My First dataset" => array(
+                "fill" => false,
+                "borderColor" => 'rgb(255, 99, 132)',
+                "backgroundColor" => 'rgb(255, 99, 132)'
+            ),
+            "My Second dataset" => array(
+                "fill" => false,
+                "borderColor" => 'rgb(54, 162, 235)',
+                "backgroundColor" => 'rgb(54, 162, 235)'
+            )
+        ),
+        "options" => array(
+            "responsive" => true,
+            "title" => array(
+                "display" => true,
+                "text" => 'Min and Max Settings'
+            ),
+            "scales" => array(
+                "yAxes" => array(
+                    array(
+                        "ticks" => array(
+                            "suggestedMin" => 10,
+                            "suggestedMax" => 50,
+                        )
+                    )
+                )
+            )
+        )
+    ));
+//widget_end 

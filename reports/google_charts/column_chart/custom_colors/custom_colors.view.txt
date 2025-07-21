@@ -1,0 +1,45 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\ColumnChart;
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>Custom Colors</h1>
+    </div>
+    <div style="margin-bottom:50px;">
+        <?php
+        ColumnChart::create(array(
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                'Time of Day' => array(
+                    "type" => 'timeofday',
+                ),
+                'Motivation Level',
+                'Energy Level'
+            ),
+            "options" => array(
+                "title" => 'Motivation and Energy Level Throughout the Day',
+                "colors" => ['#9575cd', '#33ac71'],
+                "hAxis" => [
+                    "title" => 'Time of Day',
+                    "format" => 'h:mm a',
+                    "viewWindow" => [
+                        "min" => [7, 30, 0],
+                        "max" => [17, 30, 0]
+                    ]
+                ],
+                "vAxis" => [
+                    "title" => 'Rating (scale of 1-10)'
+                ]
+            )
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

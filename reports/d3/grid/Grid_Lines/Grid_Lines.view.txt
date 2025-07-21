@@ -1,0 +1,26 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <h1 class='title'>Grid Lines</h1>
+<?php
+\koolreport\d3\LineChart::create(array(
+    "dataSource" => $this->dataStore('result_0'),
+    "columns" => array(
+        'sample',
+    ),
+    "options" => array(
+        "grid" => array(
+            "x" => array(
+                "show" => true
+            ),
+            "y" => array(
+                "show" => true
+            )
+        )
+    )
+));
+//widget_end 

@@ -1,0 +1,76 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div class="report-content">
+    <div class="text-center">
+        <h1>ScatterChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful ScatterChart
+        </p>
+    </div>
+    <style>
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+    </style>
+    <div style="margin-bottom:50px;">
+        <?php
+        \koolreport\apexcharts\ScatterChart::create(array(
+            // "title" => "Traffic Sources",
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                'TEAM 1' => [
+                    'combination' => [
+                        'Team1_x',
+                        'Team1_y',
+                    ]
+                ],
+                'TEAM 2' => [
+                    'combination' => [
+                        'Team2_x',
+                        'Team2_y',
+                    ]
+                ],
+                'TEAM 3' => [
+                    'combination' => [
+                        'Team3_x',
+                        'Team3_y',
+                    ]
+                ],
+                'TEAM 4' => [
+                    'combination' => [
+                        'Team4_x',
+                        'Team4_y',
+                    ]
+                ],
+                'TEAM 5' => [
+                    'combination' => [
+                        'Team5_x',
+                        'Team5_y',
+                    ]
+                ],
+            ),
+            "options" => [
+                'chart | zoom | type' => 'xy',
+                'grid' => [
+                    'xaxis | lines | show' => true,
+                    'yaxis | lines | show' => true,
+                ],
+                'xaxis | type' => 'datetime',
+                'yaxis | max' => 70,
+            ],
+            // "showLegend" => false,
+            // "showLabel" => true,
+            // "height" => "600px",
+            // "width" => "85%",
+            "maxWidth" => "800px",
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

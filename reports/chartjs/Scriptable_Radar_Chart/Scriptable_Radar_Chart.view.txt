@@ -1,0 +1,60 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","Polar","scriptable_radar_chart"]}
+widgetMeta_end */
+\koolreport\chartjs\RadarChart::create(array(
+        'dataSource' => $this->dataStore('result_0'),
+        'columns' => array(
+            'label',
+            'series1',
+            'series2'
+        ),
+        "options" => array(
+            "legend" => false,
+            // "tooltips" => true,
+            "elements" => array(
+                "line" => array(
+                    "backgroundColor" => "#4dc9f6",
+                    "borderColor" => "#4dc9f6",
+                ),
+                "point" => array(
+                    "backgroundColor" => "#4dc9f6",
+                    "hoverBackgroundColor" =>  "function(ctx){
+                        console.log('backgroundColor');
+                        var COLORS = [
+                            '#4dc9f6',
+                            '#f67019',
+                            '#f53794',
+                            '#537bc4',
+                            '#acc236',
+                            '#166a8f',
+                            '#00a950',
+                            '#58595b',
+                            '#8549ba'
+                        ];
+                        var color= COLORS[ctx.datasetIndex % COLORS.length];
+                        return Color(color).alpha(0.5).rgbString();                    }",
+                    "radius" => "function adjustRadiusBasedOnData(ctx) {
+                        var v = ctx.dataset.data[ctx.dataIndex];
+                        return v < 10 ? 5
+                            : v < 25 ? 7
+                            : v < 50 ? 9
+                            : v < 75 ? 11
+                            : 15;
+                    } ",
+                    "hoverBorderColor" => '',
+                    "pointStyle" => "function(ctx) {
+                        var index = ctx.dataIndex;
+                        return index % 2 === 0 ? 'circle' : 'rect';
+                    }",
+                    "hoverRadius" => 15
+                )
+            ),
+        )
+    ));
+    ?>
+</div>
+</div>
+//widget_end 

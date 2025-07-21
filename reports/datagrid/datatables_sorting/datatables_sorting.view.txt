@@ -1,0 +1,28 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\datagrid\DataTables;
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>Table Sorting</h1>
+        <p class="lead">
+        This eaxmple shows how to set order on columns of DataTables
+        </p>
+    </div>
+    
+    <?php
+    DataTables::create(array(
+        "dataSource"=>$this->dataStore("result_0"),
+        "options"=>array(
+            "order"=>array(
+                array(1,"asc")
+            )
+        )
+    ));
+    ?>
+</div>
+//widget_end 

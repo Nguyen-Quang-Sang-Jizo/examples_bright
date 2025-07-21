@@ -1,0 +1,75 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div class="report-content">
+    <div class="text-center">
+        <h1>ColumnChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful ColumnChart
+        </p>
+    </div>
+    <style>
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+    </style>
+    <div style="margin-bottom:50px;">
+        <?php
+        \koolreport\apexcharts\ColumnChart::create(array(
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                "date" => [
+                    "label" => "Date",
+                    "categoryType" => "datetime",
+                ],
+                'PRODUCT A',
+                'PRODUCT B',
+                'PRODUCT C',
+                'PRODUCT D',
+            ),
+            "options" => [
+                'responsive | 0' => [
+                    'breakpoint' => 480,
+                    'options | legend' => [
+                        'position' => 'bottom',
+                        'offsetX' => -10,
+                        'offsetY' => 0
+                    ]
+                ],
+                'plotOptions | bar' => [
+                    'horizontal' => false,
+                    'borderRadius' => 10,
+                    'borderRadiusApplication' => 'end',
+                    'borderRadiusWhenStacked' => 'last',
+                    'dataLabels | total' => [
+                        'enabled' => true,
+                        'style' => [
+                            'fontSize' => '13px',
+                            'fontWeight' => 900
+                        ]
+                    ]
+                ],
+                'legend' => [
+                    'position' => 'right',
+                    'offsetY' => 40
+                ],
+                'fill | opacity' => 1,
+            ],
+            "stacked" => true,
+            // "showLabel" => true,
+            // "height" => "600px",
+            // "width" => "85%",
+            "maxWidth" => "800px",
+            // "cssStyles" => [
+            //     "margin" => "0 auto",
+            // ]
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

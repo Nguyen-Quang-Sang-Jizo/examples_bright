@@ -1,0 +1,39 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div id="report_render">
+    <?php
+    \koolreport\chartjs\ScatterChart::create(array(
+        'dataSource' => $this->dataStore('result_0'),
+        "series" => array(
+            array(
+                "FirstX", "FirstY",
+                array(
+                    "label" => "My First dataset",
+                    "backgroundColor" => 'rgba(255, 99, 132, 0.5)',
+                    "borderColor" => 'rgb(255, 99, 132)',
+                )
+            ),
+            array(
+                "SecondX", "SecondY",
+                array(
+                    "label" => "My Second dataset",
+                    "backgroundColor" => 'rgba(54, 162, 235, 0.5)',
+                    "borderColor" => 'rgb(54, 162, 235)'
+                )
+            ),
+        ),
+        "options" => array(
+            "title" => array(
+                "display" => true,
+                "text" => 'Chart.js Scatter Chart'
+            )
+        )
+    ));
+    ?>
+</div>
+//widget_end 

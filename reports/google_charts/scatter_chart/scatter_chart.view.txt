@@ -1,0 +1,26 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\ScatterChart;
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>ScatterChart</h1>
+        <p class="lead">
+            This example shows how to draw beautiful ScatterChart
+        </p>
+    </div>
+    <div style="margin-bottom:50px;">
+    <?php
+    ScatterChart::create(array(
+        "title"=>"Height vs Weight, Smokers",
+        "dataSource"=>$this->dataStore('result_0'),
+    ));
+    ?>
+    </div>
+</div>
+//widget_end 

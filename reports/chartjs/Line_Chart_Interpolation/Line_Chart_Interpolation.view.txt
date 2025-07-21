@@ -1,0 +1,65 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","line_chart_interpolation"]}
+widgetMeta_end */
+\koolreport\chartjs\LineChart::create(
+        array(
+            'dataSource' => $this->dataStore('result_0'),
+            'columns' => array(
+                'labels',
+                'Cubic interpolation (monotone)' => array(
+                    "borderColor" => 'rgb(255, 99, 132)',
+                    "backgroundColor" => 'rgba(0, 0, 0, 0)',
+                    "fill" => false,
+                    "cubicInterpolationMode" => 'monotone'
+                ),
+                'Cubic interpolation (default)' => array(
+                    "borderColor" => 'rgb(54, 162, 235)',
+                    "backgroundColor" => 'rgba(0, 0, 0, 0)',
+                    "fill" => false
+                ),
+                'Linear interpolation' => array(
+                    "borderColor" => 'rgb(75, 192, 192)',
+                    "backgroundColor" => 'rgba(0, 0, 0, 0)',
+                    "fill" => false,
+                    "lineTension" => 0
+                )
+            ),
+            "options" => array(
+                "responsive" => true,
+                "title" => array(
+                    "display" => true,
+                    "text" => 'Chart.js Line Chart - Cubic interpolation mode'
+                ),
+                "tooltips" => array(
+                    "mode" => 'index'
+                ),
+                "scales" => array(
+                    "xAxes" => array(
+                        array(
+                            "display" => true,
+                            "scaleLabel" => array(
+                                "display" => true
+                            )
+                        )
+                    ),
+                    "yAxes" => array(
+                        array(
+                            "display" => true,
+                            "scaleLabel" => array(
+                                "display" => true,
+                                "labelString" => 'Value'
+                            ),
+                            "ticks" => array(
+                                "suggestedMin" => -10,
+                                "suggestedMax" => 200,
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    );
+//widget_end 

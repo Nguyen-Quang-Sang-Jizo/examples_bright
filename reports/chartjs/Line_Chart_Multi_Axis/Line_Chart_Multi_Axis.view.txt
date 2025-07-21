@@ -1,0 +1,59 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div id="report_render">
+    <?php
+
+    \koolreport\chartjs\LineChart::create(array(
+        'dataSource' => $this->dataStore('result_0'),
+        'columns' => array(
+            "month",
+            "series1" => array(
+                "label" => "Series 1",
+                "yAxisID" => "y-axis-1",
+                "backgroundColor" => 'rgb(255, 99, 132)',
+                "borderColor" => 'rgb(255, 99, 132)',
+            ),
+            "series2" => array(
+                "label" => "Series 2",
+                "yAxisID" => "y-axis-2",
+                "backgroundColor" => 'rgb(54, 162, 235)',
+                "borderColor" => 'rgb(54, 162, 235)',
+            )
+        ),
+        "options" => array(
+            "responsive" => true,
+            "hoverMode" => "index",
+            "stacked" => false,
+            "title" => array(
+                "display" => true,
+                "text" => 'Chart.js Line Chart - Multi Axis'
+            ),
+            "scales" => array(
+                "yAxes" => array(
+                    array(
+                        "type" => "linear",
+                        "display" => true,
+                        "position" => "left",
+                        "id" => "y-axis-1"
+                    ),
+                    array(
+                        "type" => "linear",
+                        "display" => true,
+                        "position" => "right",
+                        "id" => "y-axis-2",
+                        "gridLines" => array(
+                            "drawOnChartArea" => false,
+                        )
+                    )
+                )
+            )
+        )
+    ));
+    ?>
+</div>
+//widget_end 

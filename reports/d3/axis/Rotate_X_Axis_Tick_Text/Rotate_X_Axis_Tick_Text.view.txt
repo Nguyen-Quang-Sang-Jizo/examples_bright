@@ -1,0 +1,33 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <h1 class='title'>Rotate X Axis Tick Text</h1>
+<?php
+
+\koolreport\d3\ColumnChart::create(array(
+    "dataSource" => $this->dataStore('result_0'),
+    "columns" => array(
+        'x',
+        'pv'
+    ),
+    "options" => array(
+        "data" => array(
+            'x' => 'x',
+        ),
+        "axis" => array(
+            "x" => array(
+                "type" => 'category',
+                "tick" => array(
+                    "rotate" => 75,
+                    "multiline" => false
+                ),
+                "height" => 130
+            )
+        )
+    )
+));
+//widget_end 

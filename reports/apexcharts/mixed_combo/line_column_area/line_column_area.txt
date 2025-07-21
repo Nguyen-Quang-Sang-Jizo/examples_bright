@@ -1,0 +1,144 @@
+<?php
+class line_column_area extends \koolreport\KoolReport
+{
+    function settings()
+    {
+
+
+//datasource_start 
+/* datasourceMeta_start
+{"isSavedTemplate":null,"template":["Variables_based","Array"]}
+datasourceMeta_end */
+$datasource = array(
+    "class"=>'\koolreport\datasources\ArrayDataSource',
+    "dataFormat"=>"table", 
+    "data"=>[
+            [
+                'Date',
+                'TEAM A',
+                'TEAM B',
+                'TEAM C',
+            ],
+            [
+                "01/01/2003",
+                23,
+                44,
+                30
+            ],
+            [
+                "02/01/2003",
+                11,
+                55,
+                25
+            ],
+            [
+                "03/01/2003",
+                22,
+                41,
+                36
+            ],
+            [
+                "04/01/2003",
+                27,
+                67,
+                30
+            ],
+            [
+                "05/01/2003",
+                13,
+                22,
+                45
+            ],
+            [
+                "06/01/2003",
+                22,
+                43,
+                35
+            ],
+            [
+                "07/01/2003",
+                37,
+                21,
+                64
+            ],
+            [
+                "08/01/2003",
+                21,
+                41,
+                52
+            ],
+            [
+                "09/01/2003",
+                44,
+                56,
+                59
+            ],
+            [
+                "10/01/2003",
+                22,
+                27,
+                36
+            ],
+            [
+                "11/01/2003",
+                30,
+                43,
+                39
+            ]
+        ]
+);
+//datasource_end 
+    if (!isset($datasource)) {
+        if (isset($emptyCode)) {
+            $datasource = array(
+                "class"=>'\koolreport\datasources\ArrayDataSource',
+                "dataFormat"=>"associate", // or "table"
+                "data"=>array()
+            );
+        } else {
+            echo ('<i>Error:</i> variable $datasource doesn\'t exist in Data source'); exit;
+        }
+    }        
+
+        return array(
+            "dataSources" => array(
+                "source" => $datasource ?? array(
+                    "class"=>'\koolreport\datasources\ArrayDataSource',
+                    "dataFormat"=>"associate", // or "table"
+                    "data"=>array()
+                )
+            ),
+            "assets"=>array(
+                "path"=>"../../public/koolreport_assets", //relative from tmp directory
+                "url"=>"http://codegen.local/public/koolreport_assets"
+            )
+        );
+    }
+
+    function setup()
+    {
+        $node = $this->src('source');
+        $sql = 
+//sql_start 
+''
+//sql_end 
+;
+        $datastore = 
+//datastore_start 
+''
+//datastore_end 
+;
+        if (!empty($sql) && method_exists($node, 'query')) {
+            $node = $node
+            ->query($sql);
+        } else if (!empty($datastore) && method_exists($node, 'dataStore')) {
+            $node = $node
+            ->dataStore($datastore);
+        } 
+
+
+$node->pipe($this->dataStore('result_0'));
+
+
+    }
+}

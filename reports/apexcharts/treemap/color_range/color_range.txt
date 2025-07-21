@@ -1,0 +1,128 @@
+<?php
+class color_range extends \koolreport\KoolReport
+{
+    function settings()
+    {
+
+
+//datasource_start 
+/* datasourceMeta_start
+{"isSavedTemplate":null,"template":["Variables_based","Array"]}
+datasourceMeta_end */
+$datasource = array(
+    "class"=>'\koolreport\datasources\ArrayDataSource',
+    "dataFormat"=>"table", 
+    "data"=>[
+            [
+                'category',
+                'series-1'
+            ],
+            [
+                "INTC",
+                1.2
+            ],
+            [
+                "GS",
+                0.4
+            ],
+            [
+                "CVX",
+                -1.4
+            ],
+            [
+                "GE",
+                2.7
+            ],
+            [
+                "CAT",
+                -0.3
+            ],
+            [
+                "RTX",
+                5.1
+            ],
+            [
+                "CSCO",
+                -2.3
+            ],
+            [
+                "JNJ",
+                2.1
+            ],
+            [
+                "PG",
+                0.3
+            ],
+            [
+                "TRV",
+                0.12
+            ],
+            [
+                "MMM",
+                -2.31
+            ],
+            [
+                "NKE",
+                3.98
+            ],
+            [
+                "IYT",
+                1.67
+            ]
+        ]
+);
+//datasource_end 
+    if (!isset($datasource)) {
+        if (isset($emptyCode)) {
+            $datasource = array(
+                "class"=>'\koolreport\datasources\ArrayDataSource',
+                "dataFormat"=>"associate", // or "table"
+                "data"=>array()
+            );
+        } else {
+            echo ('<i>Error:</i> variable $datasource doesn\'t exist in Data source'); exit;
+        }
+    }        
+
+        return array(
+            "dataSources" => array(
+                "source" => $datasource ?? array(
+                    "class"=>'\koolreport\datasources\ArrayDataSource',
+                    "dataFormat"=>"associate", // or "table"
+                    "data"=>array()
+                )
+            ),
+            "assets"=>array(
+                "path"=>"../../public/koolreport_assets", //relative from tmp directory
+                "url"=>"http://codegen.local/public/koolreport_assets"
+            )
+        );
+    }
+
+    function setup()
+    {
+        $node = $this->src('source');
+        $sql = 
+//sql_start 
+''
+//sql_end 
+;
+        $datastore = 
+//datastore_start 
+''
+//datastore_end 
+;
+        if (!empty($sql) && method_exists($node, 'query')) {
+            $node = $node
+            ->query($sql);
+        } else if (!empty($datastore) && method_exists($node, 'dataStore')) {
+            $node = $node
+            ->dataStore($datastore);
+        } 
+
+
+$node->pipe($this->dataStore('result_0'));
+
+
+    }
+}

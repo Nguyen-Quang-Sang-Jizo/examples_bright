@@ -1,0 +1,38 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["D3","XY","axis_label"]}
+widgetMeta_end */
+?>
+  <h1 class='title'>Axis Label</h1>
+<?php
+
+\koolreport\d3\LineChart::create(array(
+    "dataSource" => $this->dataStore('result_0'),
+    "columns" => array(
+        'data1',
+        'data2',
+    ),
+    "options" => array(
+        "data" => array(
+            "axes" => array(
+                "data1" => 'y',
+                "data2" => 'y2',
+            ),
+        ),
+        "axis" => array(
+            "x" => array(
+                'label' => 'X Label'
+            ),
+            "y" => array(
+                "label" => 'Y Label'
+            ),
+            "y2" => array(
+                "show" => true,
+                "label" => 'Y2 Label'
+            )
+        )
+    )
+));
+//widget_end 

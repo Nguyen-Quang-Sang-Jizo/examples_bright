@@ -1,0 +1,35 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\PieChart;
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>PieChart</h1>
+        <p class="lead">
+            This example shows how to draw beautiful PieChart
+        </p>
+    </div>
+
+    <div style="margin-bottom:50px;">
+    <?php
+    PieChart::create(array(
+        "title"=>"Sale Of Category",
+        "dataSource"=>$this->dataStore('result_0'),
+        "columns"=>array(
+            "category",
+            "cost"=>array(
+                "type"=>"number",
+                "prefix"=>"$",
+            )
+        )
+    ));
+    ?>
+    </div>
+
+</div>
+//widget_end 

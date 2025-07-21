@@ -1,0 +1,62 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"2","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\koolphp\Table;
+    use \koolreport\widgets\google\ColumnChart;
+?>
+
+<div class="report-content">
+
+    <div class="text-center">
+        <h1>Big CSV</h1>
+        <p class="lead">The report shows how to build report from a big CSV file</p>
+    </div>
+
+    <?php
+  $data= $this->dataStore('result_2');
+    ColumnChart::create(array(
+        "dataStore"=>$data,  
+        "columns"=>array(
+            "payment_date"=>array(
+                "label"=>"Month",
+                "type"=>"datetime",
+                "format"=>"Y-n",
+                "displayFormat"=>"F, Y",
+            ),
+            "amount"=>array(
+                "label"=>"Amount",
+                "type"=>"number",
+                "prefix"=>"$",
+            )
+        ),
+        "width"=>"100%",
+    ));
+    ?>
+
+    <?php
+    Table::create(array(
+        "dataStore"=>$data,
+        "columns"=>array(
+            "payment_date"=>array(
+                "label"=>"Month",
+                "type"=>"datetime",
+                "format"=>"Y-n",
+                "displayFormat"=>"F, Y",
+            ),
+            "amount"=>array(
+                "label"=>"Amount",
+                "type"=>"number",
+                "prefix"=>"$",
+                        )
+        ),
+        "cssClass"=>array(
+            "table"=>"table table-hover table-bordered"
+        )
+    ));
+    ?>
+
+</div>
+//widget_end 

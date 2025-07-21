@@ -1,0 +1,42 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\ScatterChart;
+
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>Linear trendlines
+        </h1>
+    </div>
+    <div style="margin-bottom:50px;">
+        <?php
+        ScatterChart::create(array(
+            "title" => 'Linear trendlines',
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                'Diameter',
+                'Age'
+            ),
+            "options" => array(
+                "hAxis" => array(
+                    "title" => "Diameter"
+                ),
+                "vAxis" => array(
+                    "title" => "Age"
+                ),
+                "legend" => 'none',
+                "trendlines" => array(
+                    0 => array()
+                )
+            )
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

@@ -1,0 +1,167 @@
+<?php
+class negative extends \koolreport\KoolReport
+{
+    function settings()
+    {
+
+
+//datasource_start 
+/* datasourceMeta_start
+{"isSavedTemplate":null,"template":["Variables_based","Array"]}
+datasourceMeta_end */
+$datasource = array(
+    "class"=>'\koolreport\datasources\ArrayDataSource',
+    "dataFormat"=>"table",
+    "data"=>[
+            [
+                'Age Group',
+                'Males',
+                'Females',
+            ],
+            [
+                "85+",
+                0.4,
+                -0.8
+            ],
+            [
+                "80-84",
+                0.65,
+                -1.05
+            ],
+            [
+                "75-79",
+                0.76,
+                -1.06
+            ],
+            [
+                "70-74",
+                0.88,
+                -1.18
+            ],
+            [
+                "65-69",
+                1.5,
+                -1.4
+            ],
+            [
+                "60-64",
+                2.1,
+                -2.2
+            ],
+            [
+                "55-59",
+                2.9,
+                -2.85
+            ],
+            [
+                "50-54",
+                3.8,
+                -3.7
+            ],
+            [
+                "45-49",
+                3.9,
+                -3.96
+            ],
+            [
+                "40-44",
+                4.2,
+                -4.22
+            ],
+            [
+                "35-39",
+                4,
+                -4.3
+            ],
+            [
+                "30-34",
+                4.3,
+                -4.4
+            ],
+            [
+                "25-29",
+                4.1,
+                -4.1
+            ],
+            [
+                "20-24",
+                4.2,
+                -4
+            ],
+            [
+                "15-19",
+                4.5,
+                -4.1
+            ],
+            [
+                "10-14",
+                3.9,
+                -3.4
+            ],
+            [
+                "5-9",
+                3.5,
+                -3.1
+            ],
+            [
+                "0-4",
+                3,
+                -2.8
+            ]
+        ]
+);
+//datasource_end 
+    if (!isset($datasource)) {
+        if (isset($emptyCode)) {
+            $datasource = array(
+                "class"=>'\koolreport\datasources\ArrayDataSource',
+                "dataFormat"=>"associate", // or "table"
+                "data"=>array()
+            );
+        } else {
+            echo ('<i>Error:</i> variable $datasource doesn\'t exist in Data source'); exit;
+        }
+    }        
+
+        return array(
+            "dataSources" => array(
+                "source" => $datasource ?? array(
+                    "class"=>'\koolreport\datasources\ArrayDataSource',
+                    "dataFormat"=>"associate", // or "table"
+                    "data"=>array()
+                )
+            ),
+            "assets"=>array(
+                "path"=>"../../public/koolreport_assets", //relative from tmp directory
+                "url"=>"http://codegen.local/public/koolreport_assets"
+            )
+        );
+    }
+
+    function setup()
+    {
+        $node = $this->src('source');
+        $sql = 
+//sql_start 
+''
+//sql_end 
+;
+        $datastore = 
+//datastore_start 
+''
+//datastore_end 
+;
+        if (!empty($sql) && method_exists($node, 'query')) {
+            $node = $node
+            ->query($sql);
+        } else if (!empty($datastore) && method_exists($node, 'dataStore')) {
+            $node = $node
+            ->dataStore($datastore);
+        } 
+
+
+$node->pipe($this->dataStore('result_0'));
+
+
+    }
+}

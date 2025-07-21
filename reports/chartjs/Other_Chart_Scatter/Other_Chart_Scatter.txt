@@ -1,0 +1,99 @@
+<?php
+class Other_Chart_Scatter extends \koolreport\KoolReport
+{
+    function settings()
+    {
+
+
+//datasource_start 
+/* datasourceMeta_start
+{"isSavedTemplate":null,"template":["Variables_based","Array"]}
+datasourceMeta_end */
+function randomScalingFactor()
+    {
+        return mt_rand(-100, 100);
+    }
+
+    function generateData()
+    {
+        $data = array();
+        for ($i = 0; $i < 7; $i++) {
+            array_push($data, array(
+                'x' => randomScalingFactor(),
+                'y' => randomScalingFactor()
+            ));
+        }
+        return $data;
+    }
+    $data1 = generateData();
+    $data2 = generateData();
+
+$datasource = array(
+    "class"=>'\koolreport\datasources\ArrayDataSource',
+    "dataFormat"=>"associate", 
+    "data"=>[
+        ["FirstX" => $data1[0]['x'], "FirstY" => $data1[0]['y'], "SecondX" => $data2[0]['x'], "SecondY" => $data2[0]['y']],
+        ["FirstX" => $data1[1]['x'], "FirstY" => $data1[1]['y'], "SecondX" => $data2[1]['x'], "SecondY" => $data2[1]['y']],
+        ["FirstX" => $data1[2]['x'], "FirstY" => $data1[2]['y'], "SecondX" => $data2[2]['x'], "SecondY" => $data2[2]['y']],
+        ["FirstX" => $data1[3]['x'], "FirstY" => $data1[3]['y'], "SecondX" => $data2[3]['x'], "SecondY" => $data2[3]['y']],
+        ["FirstX" => $data1[4]['x'], "FirstY" => $data1[4]['y'], "SecondX" => $data2[4]['x'], "SecondY" => $data2[4]['y']],
+        ["FirstX" => $data1[5]['x'], "FirstY" => $data1[5]['y'], "SecondX" => $data2[5]['x'], "SecondY" => $data2[5]['y']],
+        ["FirstX" => $data1[6]['x'], "FirstY" => $data1[6]['y'], "SecondX" => $data2[6]['x'], "SecondY" => $data2[6]['y']],
+
+    ]
+);
+//datasource_end 
+    if (!isset($datasource)) {
+        if (isset($emptyCode)) {
+            $datasource = array(
+                "class"=>'\koolreport\datasources\ArrayDataSource',
+                "dataFormat"=>"associate", // or "table"
+                "data"=>array()
+            );
+        } else {
+            echo ('<i>Error:</i> variable $datasource doesn\'t exist in Data source'); exit;
+        }
+    }        
+
+        return array(
+            "dataSources" => array(
+                "source" => $datasource ?? array(
+                    "class"=>'\koolreport\datasources\ArrayDataSource',
+                    "dataFormat"=>"associate", // or "table"
+                    "data"=>array()
+                )
+            ),
+            "assets"=>array(
+                "path"=>"../../public/koolreport_assets", //relative from tmp directory
+                "url"=>"http://codegen.local/public/koolreport_assets"
+            )
+        );
+    }
+
+    function setup()
+    {
+        $node = $this->src('source');
+        $sql = 
+//sql_start 
+''
+//sql_end 
+;
+        $datastore = 
+//datastore_start 
+''
+//datastore_end 
+;
+        if (!empty($sql) && method_exists($node, 'query')) {
+            $node = $node
+            ->query($sql);
+        } else if (!empty($datastore) && method_exists($node, 'dataStore')) {
+            $node = $node
+            ->dataStore($datastore);
+        } 
+
+
+$node->pipe($this->dataStore('result_0'));
+
+
+    }
+}

@@ -1,0 +1,75 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div  id="report_render">
+    <?php
+
+    \koolreport\chartjs\ColumnChart::create(array(
+        'dataSource' => $this->dataStore('result_0'),
+        'columns' => array(
+            "month",
+            "Dataset 1" => array(
+                "backgroundColor" => array(
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(153, 102, 255)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 99, 132)',
+                ),
+                "borderColor" => array(
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(153, 102, 255)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 99, 132)',
+                ),
+                "yAxisID" => "y-axis-1"
+            ),
+            "Dataset 2" => array(
+                "backgroundColor" => 'rgb(201, 203, 207)',
+                "borderColor" => 'rgb(201, 203, 207)',
+                "yAxisID" => "y-axis-2"
+            )
+        ),
+        "options" => array(
+            "responsive" => true,
+            "title" => array(
+                "display" => true,
+                "text" => 'Chart.js Bar Chart - Multi Axis'
+            ),
+            "tooltips" => array(
+                "mode" => 'index',
+                "intersect" => true
+            ),
+            "scales" => array(
+                "yAxes" => array(
+                    array(
+                        "type" => "linear",
+                        "display" => true,
+                        "position" => "left",
+                        "id" => 'y-axis-1'
+                    ),
+                    array(
+                        "type" => "linear",
+                        "display" => true,
+                        "position" => "right",
+                        "id" => 'y-axis-2',
+                        "gridLines" => array(
+                            "drawOnChartArea" => false
+                        )
+                    )
+                )
+            )
+        )
+    ));
+    ?>
+</div>
+//widget_end 

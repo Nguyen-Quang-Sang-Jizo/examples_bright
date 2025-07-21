@@ -1,0 +1,38 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\BubbleChart;
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>Color By Numbers</h1>
+    </div>
+    <div style="margin-bottom:50px;">
+        <?php
+        BubbleChart::create(array(
+            "title" => "Color By Numbers",
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                'ID',
+                'X',
+                'Y',
+                'Temperature'
+            ),
+            "options" => array(
+                "colorAxis" => array(
+                    "colors" => array(
+                        'yellow',
+                        'red'
+                    )
+                )
+            )
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

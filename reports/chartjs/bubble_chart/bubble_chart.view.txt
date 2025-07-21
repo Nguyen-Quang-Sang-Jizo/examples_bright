@@ -1,0 +1,17 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","bubble_chart"]}
+widgetMeta_end */
+\koolreport\chartjs\BubbleChart::create(array(
+    "title"=>"Height, Weight vs Number of Smokers",
+    "dataSource"=> $this->dataStore('result_0'),
+    "series"=>array(
+        array("height","weight","smokers",array(
+            "label"=>"Height, Weight and Smokers"
+        )),
+    ),
+    "scale"=>0.7
+));
+//widget_end 

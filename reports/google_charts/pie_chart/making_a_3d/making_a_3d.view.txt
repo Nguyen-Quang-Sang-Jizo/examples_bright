@@ -1,0 +1,32 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\PieChart;
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>Making a 3D</h1>
+    </div>
+
+    <div style="margin-bottom:50px;">
+        <?php
+        PieChart::create(array(
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                'Task',
+                'Hours per Day'
+            ),
+            "options" => array(
+                "title" => 'My Daily Activities',
+                "is3D" => true
+            )
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

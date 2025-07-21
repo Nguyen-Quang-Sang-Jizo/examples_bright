@@ -1,0 +1,31 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["D3","XY","line_dual_axes"]}
+widgetMeta_end */
+?>
+  <h1 class='title'>Additional Y Axis</h1>
+<?php
+
+\koolreport\d3\LineChart::create(array(
+    "dataSource" => $this->dataStore('result_0'),
+    "columns" => array(
+        'data1',
+        'data2'
+    ),
+    "options" => array(
+        "data" => array(
+            "axes" => array(
+                "data1" => 'y',
+                "data2" => 'y2',
+            )
+        ),
+        "axis" => array(
+            "y2" => array(
+                "show" => true
+            )
+        )
+    )
+));
+//widget_end 

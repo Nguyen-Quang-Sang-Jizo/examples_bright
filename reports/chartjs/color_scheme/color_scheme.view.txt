@@ -1,0 +1,24 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","color_scheme_column"]}
+widgetMeta_end */
+\koolreport\chartjs\ColumnChart::create(array(
+    "title"=>"Sale Report",
+    "dataSource"=> $this->dataStore('result_0'),
+    "columns"=>array(
+        "category",
+        "sale"=>array("label"=>"Sale","type"=>"number","prefix"=>"$"),
+        "cost"=>array("label"=>"Cost","type"=>"number","prefix"=>"$"),
+        "profit"=>array("label"=>"Profit","type"=>"number","prefix"=>"$"),
+    ),
+    "colorScheme"=>array(
+        "#e7717d",
+        "#c2cad0",
+        "#c2b9b0",
+        "#7e685a",
+        "#afd275"
+    )
+));
+//widget_end 

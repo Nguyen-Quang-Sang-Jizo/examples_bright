@@ -1,0 +1,23 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <h1 class='title'>Hide Tooltip</h1>
+<?php
+
+\koolreport\d3\LineChart::create(array(
+    "dataSource" => $this->dataStore('result_0'),
+    "columns" => array(
+        'data1',
+        'data2',
+    ),
+    "options" => array(
+        "tooltip" => array(
+            "show" => false
+        )
+    )
+));
+//widget_end 

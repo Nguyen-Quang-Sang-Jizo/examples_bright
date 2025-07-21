@@ -1,0 +1,56 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","overlap_barchart"]}
+widgetMeta_end */
+\koolreport\chartjs\BarChart::create(array(
+    "title"=>"Sale vs Cost on Overlap BarChart",
+    "dataSource"=>$this->dataStore('result_0'),
+    "columns"=>array(
+        "category",
+        "sale"=>array(
+            "label"=>"Sale",
+            "type"=>"number",
+            "prefix"=>"$",
+            "config"=>array(
+                "yAxisID"=>"bar-y-sale",
+            )
+        ),
+        "cost"=>array(
+            "label"=>"Cost",
+            "type"=>"number",
+            "prefix"=>"$",
+            "config"=>array(
+                "yAxisID"=>"bar-y-cost"
+            )
+        ),
+    ),
+    "options"=>array(
+        "scales"=>array(
+            "yAxes"=>array(
+                array(
+                    "stacked"=>true,
+                    "id"=>"bar-y-sale",
+                    "barThickness"=> 40,
+                ),
+                array(
+                    "stacked"=>true,
+                    "id"=>"bar-y-cost",
+                    "display"=>false,
+                    "type"=>"category",
+                    "barThickness"=> 20,
+                    "categoryPercentage"=> 0.8,
+                    "barPercentage"=> 0.9,
+                    "offset"=>true,
+                ),
+            ),
+            "xAxes"=>array(
+                array(
+                    "stacked"=>false,
+                )
+            )
+        )
+    )
+));
+//widget_end 

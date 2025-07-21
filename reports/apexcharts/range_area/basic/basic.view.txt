@@ -1,0 +1,58 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div class="report-content">
+    <div class="text-center">
+        <h1>RangeAreaChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful RangeAreaChart
+        </p>
+    </div>
+    <style>
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+    </style>
+    <div style="margin-bottom:50px;">
+        <?php
+        \koolreport\apexcharts\RangeAreaChart::create(array(
+            "title" => "New York Temperature (all year round)",
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                "month" => [
+                    "label" => "Month"
+                ],
+                'temp_range' => [
+                    "label" => "Temperature Range",
+                    'combination' => [
+                        "temp_min",
+                        "temp_max"
+                    ]
+                ]
+            ),
+            "options" => [
+                'markers | hover | sizeOffset' => 5,
+                'yaxis | labels | formatter' => "(val) => {
+                    return val + '°C'
+                }",
+                'tooltip | y | | title | formatter' => "() => {
+                    return 'New York Temperature';
+                }",
+            ],
+            'strokeCurve' => 'straight',
+            'strokeWidth' => 0,
+            // "showLegend" => false,
+            // "showLabel" => true,
+            // "height" => "600px",
+            // "width" => "85%",
+            "maxWidth" => "800px",
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

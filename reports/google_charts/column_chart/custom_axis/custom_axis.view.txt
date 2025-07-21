@@ -1,0 +1,69 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\ColumnChart;
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>Custom Axis</h1>
+    </div>
+    <div style="margin-bottom=>50px;">
+        <?php
+        ColumnChart::create(array(
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                'Time of Day' => array(
+                    "type" => 'timeofday',
+                ),
+                'Motivation Level',
+                'Energy Level'
+            ),
+            "options" => array(
+                "title" => 'Motivation and Energy Level Throughout the Day',
+                "focusTarget" => 'category',
+                "hAxis" => array(
+                    "title" => 'Time of Day',
+                    "format" => 'h:mm a',
+                    "viewWindow" => array(
+                        "min" => [7, 30, 0],
+                        "max" => [17, 30, 0]
+                    ),
+                    "textStyle" => array(
+                        "fontSize" => 14,
+                        "color" => '#053061',
+                        "bold" => true,
+                        "italic" => false
+                    ),
+                    "titleTextStyle" => array(
+                        "fontSize" => 18,
+                        "color" => '#053061',
+                        "bold" => true,
+                        "italic" => false
+                    )
+                ),
+                "vAxis" => array(
+                    "title" => 'Rating (scale of 1-10)',
+                    "textStyle" => array(
+                        "fontSize" => 18,
+                        "color" => '#67001f',
+                        "bold" => false,
+                        "italic" => false
+                    ),
+                    "titleTextStyle" => array(
+                        "fontSize" => 18,
+                        "color" => '#67001f',
+                        "bold" => true,
+                        "italic" => false
+                    )
+                )
+            )
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

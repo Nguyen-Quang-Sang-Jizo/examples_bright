@@ -1,0 +1,168 @@
+<?php
+class missing_null_values extends \koolreport\KoolReport
+{
+    function settings()
+    {
+
+
+//datasource_start 
+/* datasourceMeta_start
+{"isSavedTemplate":null,"template":["Variables_based","Array"]}
+datasourceMeta_end */
+$datasource = array(
+    "class"=>'\koolreport\datasources\ArrayDataSource',
+    "dataFormat"=>"table",
+    "data"=>[
+            [
+                "date",
+                "network"
+            ],
+            [
+                'Dec 23 2017',
+                null
+            ],
+            [
+                'Dec 24 2017',
+                44
+            ],
+            [
+                'Dec 25 2017',
+                31
+            ],
+            [
+                'Dec 26 2017',
+                38
+            ],
+            [
+                'Dec 27 2017',
+                null
+            ],
+            [
+                'Dec 28 2017',
+                32
+            ],
+            [
+                'Dec 29 2017',
+                55
+            ],
+            [
+                'Dec 30 2017',
+                51
+            ],
+            [
+                'Dec 31 2017',
+                67
+            ],
+            [
+                'Jan 01 2018',
+                22
+            ],
+            [
+                'Jan 02 2018',
+                34
+            ],
+            [
+                'Jan 03 2018',
+                null
+            ],
+            [
+                'Jan 04 2018',
+                null
+            ],
+            [
+                'Jan 05 2018',
+                11
+            ],
+            [
+                'Jan 06 2018',
+                4
+            ],
+            [
+                'Jan 07 2018',
+                15
+            ],
+            [
+                'Jan 08 2018',
+                null
+            ],
+            [
+                'Jan 09 2018',
+                9
+            ],
+            [
+                'Jan 10 2018',
+                34
+            ],
+            [
+                'Jan 11 2018',
+                null
+            ],
+            [
+                'Jan 12 2018',
+                null
+            ],
+            [
+                'Jan 13 2018',
+                13
+            ],
+            [
+                'Jan 14 2018',
+                null
+            ]
+        ]
+);
+//datasource_end 
+    if (!isset($datasource)) {
+        if (isset($emptyCode)) {
+            $datasource = array(
+                "class"=>'\koolreport\datasources\ArrayDataSource',
+                "dataFormat"=>"associate", // or "table"
+                "data"=>array()
+            );
+        } else {
+            echo ('<i>Error:</i> variable $datasource doesn\'t exist in Data source'); exit;
+        }
+    }        
+
+        return array(
+            "dataSources" => array(
+                "source" => $datasource ?? array(
+                    "class"=>'\koolreport\datasources\ArrayDataSource',
+                    "dataFormat"=>"associate", // or "table"
+                    "data"=>array()
+                )
+            ),
+            "assets"=>array(
+                "path"=>"../../public/koolreport_assets", //relative from tmp directory
+                "url"=>"http://codegen.local/public/koolreport_assets"
+            )
+        );
+    }
+
+    function setup()
+    {
+        $node = $this->src('source');
+        $sql = 
+//sql_start 
+''
+//sql_end 
+;
+        $datastore = 
+//datastore_start 
+''
+//datastore_end 
+;
+        if (!empty($sql) && method_exists($node, 'query')) {
+            $node = $node
+            ->query($sql);
+        } else if (!empty($datastore) && method_exists($node, 'dataStore')) {
+            $node = $node
+            ->dataStore($datastore);
+        } 
+
+
+$node->pipe($this->dataStore('result_0'));
+
+
+    }
+}

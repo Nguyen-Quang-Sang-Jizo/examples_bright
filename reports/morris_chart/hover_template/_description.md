@@ -1,1 +1,0 @@
-This exmaple shows how to use chart's hover (for area, bar, line charts) and formatter (for donut chart) template.

@@ -1,0 +1,27 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"1","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\charttable\ChartTable;
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>ChartTable</h1>
+        <p class="lead">
+        The basic ChartTable working
+        </p>
+    </div>
+    
+    <?php
+    ChartTable::create(array(
+        "dataSource"=>$this->dataStore("result_1"),
+        "themeBase"=>"bs4", // Optional option to work with Bootsrap 4
+        "options" => [
+            "paging" => false,
+        ]
+    ));
+    ?>
+</div>
+//widget_end 

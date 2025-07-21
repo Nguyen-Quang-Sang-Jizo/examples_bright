@@ -1,0 +1,72 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div class="report-content">
+    <div class="text-center">
+        <h1>RadarChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful RadarChart
+        </p>
+    </div>
+    <style>
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+    </style>
+    <div style="margin-bottom:50px;">
+        <?php
+        \koolreport\apexcharts\RadarChart::create(array(
+            "title" => "Radar with Polygon Fill",
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                "weekday" => [
+                    "label" => "Weekday"
+                ],
+                "series-1" => array(),
+            ),
+            "options" => [
+                'plotOptions | radar | polygons' => [
+                    'strokeColors' => '#e9e9e9',
+                    'fill | colors' => [
+                        '#f8f8f8',
+                        '#fff'
+                    ]
+                ],
+                'markers' => [
+                    'colors' => ['#fff'],
+                    'strokeColor' => '#FF4560',
+                    'strokeWidth' => 2
+                ],
+                'tooltip | y | formatter' => 'function(val) {
+                    return val;
+                }',
+                'yaxis' => [
+                    'tickAmount' => 7,
+                    'labels | formatter' => "function(val, i) {
+                        if (i % 2 === 0) {
+                            return val
+                        } else {
+                            return ''
+                        }
+                    }",
+                ],
+            ],
+            'colors' => [
+                '#FF4560'
+            ],
+            'markersSize' => 4,
+            "showLegend" => false,
+            "showLabel" => true,
+            // "height" => "600px",
+            // "width" => "85%",
+            "maxWidth" => "800px",
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

@@ -1,0 +1,40 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\chartjs\AreaChart;
+?>
+<div class="report-container">
+    <div class="text-center">
+        <h1>AreaChart</h1>
+        <p class="lead">
+            The example show how to use AreaChart
+        </p>
+    </div>
+
+    <div style="margin-bottom:50px;">
+    <?php
+    AreaChart::create(array(
+        "title"=>"Sale vs Cost",
+        "dataSource"=>$this->dataStore('result_0'),
+        "columns"=>array(
+            "month",
+            "sale"=>array(
+                "label"=>"Sale",
+                "type"=>"number",
+                "prefix"=>"$"
+            ),
+            "cost"=>array(
+                "label"=>"Cost",
+                "type"=>"number",
+                "prefix"=>"$"
+            ),
+        ),
+        "backgroundOpacity"=>0.8
+    ));
+    ?>
+    </div>
+</div>
+//widget_end 

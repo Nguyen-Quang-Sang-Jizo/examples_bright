@@ -1,0 +1,28 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\datagrid\DataTables;
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>DataTables Searching</h1>
+        <p class="lead">
+        This example shows how to turn on the searching feature of DataTables.
+        </p>
+    </div>
+    
+    <?php
+    DataTables::create(array(
+        "dataSource"=>$this->dataStore("result_0"),
+        "options"=>array(
+            "searching"=>true,
+        ),
+        "searchOnEnter" => true,
+        "searchMode" => "or"
+    ));
+    ?>
+</div>
+//widget_end 

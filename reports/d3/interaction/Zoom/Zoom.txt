@@ -1,0 +1,126 @@
+<?php
+class Zoom extends \koolreport\KoolReport
+{
+    function settings()
+    {
+
+
+//datasource_start 
+/* datasourceMeta_start
+{"isSavedTemplate":null,"template":["Variables_based","Array"]}
+datasourceMeta_end */
+$datasource = array(
+    "class"=>'\koolreport\datasources\ArrayDataSource',
+    "dataFormat"=>"associate",
+    "data"=>[
+    ['sample' => 30],
+    ['sample' => 200],
+    ['sample' => 100],
+    ['sample' => 400],
+    ['sample' => 150],
+    ['sample' => 250],
+    ['sample' => 150],
+    ['sample' => 200],
+    ['sample' => 170],
+    ['sample' => 240],
+    ['sample' => 350],
+    ['sample' => 150],
+    ['sample' => 100],
+    ['sample' => 400],
+    ['sample' => 150],
+    ['sample' => 250],
+    ['sample' => 150],
+    ['sample' => 200],
+    ['sample' => 170],
+    ['sample' => 240],
+    ['sample' => 100],
+    ['sample' => 150],
+    ['sample' => 250],
+    ['sample' => 150],
+    ['sample' => 200],
+    ['sample' => 170],
+    ['sample' => 240],
+    ['sample' => 30],
+    ['sample' => 200],
+    ['sample' => 100],
+    ['sample' => 400],
+    ['sample' => 150],
+    ['sample' => 250],
+    ['sample' => 150],
+    ['sample' => 200],
+    ['sample' => 170],
+    ['sample' => 240],
+    ['sample' => 350],
+    ['sample' => 150],
+    ['sample' => 100],
+    ['sample' => 400],
+    ['sample' => 350],
+    ['sample' => 220],
+    ['sample' => 250],
+    ['sample' => 300],
+    ['sample' => 270],
+    ['sample' => 140],
+    ['sample' => 150],
+    ['sample' => 90],
+    ['sample' => 150],
+    ['sample' => 50],
+    ['sample' => 120],
+    ['sample' => 70],
+    ['sample' => 40]
+]
+);
+//datasource_end 
+    if (!isset($datasource)) {
+        if (isset($emptyCode)) {
+            $datasource = array(
+                "class"=>'\koolreport\datasources\ArrayDataSource',
+                "dataFormat"=>"associate", // or "table"
+                "data"=>array()
+            );
+        } else {
+            echo ('<i>Error:</i> variable $datasource doesn\'t exist in Data source'); exit;
+        }
+    }        
+
+        return array(
+            "dataSources" => array(
+                "source" => $datasource ?? array(
+                    "class"=>'\koolreport\datasources\ArrayDataSource',
+                    "dataFormat"=>"associate", // or "table"
+                    "data"=>array()
+                )
+            ),
+            "assets"=>array(
+                "path"=>"../../public/koolreport_assets", //relative from tmp directory
+                "url"=>"http://codegen.local/public/koolreport_assets"
+            )
+        );
+    }
+
+    function setup()
+    {
+        $node = $this->src('source');
+        $sql = 
+//sql_start 
+''
+//sql_end 
+;
+        $datastore = 
+//datastore_start 
+''
+//datastore_end 
+;
+        if (!empty($sql) && method_exists($node, 'query')) {
+            $node = $node
+            ->query($sql);
+        } else if (!empty($datastore) && method_exists($node, 'dataStore')) {
+            $node = $node
+            ->dataStore($datastore);
+        } 
+
+
+$node->pipe($this->dataStore('result_0'));
+
+
+    }
+}

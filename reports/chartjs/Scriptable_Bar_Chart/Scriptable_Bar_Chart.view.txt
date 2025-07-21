@@ -1,0 +1,46 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","scriptable_bar_chart"]}
+widgetMeta_end */
+\koolreport\chartjs\ColumnChart::create(array(
+        'dataSource' => $this->dataStore('result_0'),
+        'columns' => array(
+            'month',
+            'series1',
+            'series2',
+            'series3'
+        ),
+        "options" => array(
+            "legend" => false,
+            "tooltips" => array(
+                "enabled" => false
+            ),
+            "elements" => array(
+                "rectangle" => array(
+                    "backgroundColor" => "function(ctx) {
+                    var v = ctx.dataset.data[ctx.dataIndex];
+                    var c = v < -50 ? '#D60000' :
+                        v < 0 ? '#F46300' :
+                        v < 50 ? '#0358B6' :
+                        '#44DE28';
+
+                    var alpha = 1 - (1 - Math.abs(v / 150));
+                    return Color(c).alpha(alpha).rgbString();
+                }",
+                    "borderWidth" => 2,
+                    "borderColor" => "function(ctx) {
+                    var v = ctx.dataset.data[ctx.dataIndex];
+                    var c = v < -50 ? '#D60000' :
+                        v < 0 ? '#F46300' :
+                        v < 50 ? '#0358B6' :
+                        '#44DE28';
+
+                    return c;
+                }",
+                )
+            ),
+        )
+    ));
+//widget_end 

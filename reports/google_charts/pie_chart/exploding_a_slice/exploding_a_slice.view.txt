@@ -1,0 +1,39 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\PieChart;
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>Exploding a Slice</h1>
+    </div>
+
+    <div style="margin-bottom:50px;">
+        <?php
+        PieChart::create(array(
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                'Language',
+                'Speakers (in millions)'
+            ),
+            "options" => array(
+                "title" => 'Indian Language Use',
+                "legend" => 'none',
+                "pieSliceText" => 'label',
+                "slices" => [
+                    4 => ["offset" => 0.2],
+                    12 => ["offset" => 0.3],
+                    14 => ["offset" => 0.4],
+                    15 => ["offset" => 0.5],
+                ]
+            )
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

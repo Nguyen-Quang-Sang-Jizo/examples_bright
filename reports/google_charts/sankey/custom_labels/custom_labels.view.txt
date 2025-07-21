@@ -1,0 +1,31 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\Sankey;
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>Custom Labels</h1>
+    </div>
+    <div style="margin-bottom:50px;">
+        <?php
+        Sankey::create(array(
+            "dataSource" => $this->dataStore('result_0'),
+            "options" => array(
+                "sankey" => array(
+                    "node" => array("label" => array(
+                        "fontName" => 'Times-Roman',
+                        "fontSize" => 14,
+                        "color" => '#871b47',
+                        "bold" => true,
+                        "italic" => true
+                    ))
+                )
+            )
+        ));
+        ?>
+    </div>
+//widget_end 

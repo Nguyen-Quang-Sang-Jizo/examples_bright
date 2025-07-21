@@ -1,0 +1,61 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","logarithmic_scale_scatter"]}
+widgetMeta_end */
+\koolreport\chartjs\ScatterChart::create(array(
+        'dataSource' => $this->dataStore('result_0'),
+        'series' => array(
+            array(
+                'x', 'y',
+                array(
+                    "label" => 'V(node2)',
+                    "borderColor" => 'rgb(255, 99, 132)',
+                    "backgroundColor" => 'rgba(255, 99, 132, 0.5)'
+                )
+            )
+        ),
+        "options" => array(
+            "title" => array(
+                "display" => true,
+                "text" => 'Chart.js Scatter Chart - Logarithmic X-Axis'
+            ),
+            "scales" => array(
+                "xAxes" => array(
+                    array(
+                        "type" => "logarithmic",
+                        "position" => "bottom",
+                        "ticks" => array(
+                            "callback" => "function(tick) {
+                                var remain = tick / (Math.pow(10, Math.floor(Math.log10(tick))));
+                                if (remain === 1 || remain === 2 || remain === 5) {
+                                    return tick.toString() + 'Hz';
+                                }
+                                return '';
+                            }"
+                        ),
+                        "scaleLabel" => array(
+                            "labelString" => 'Frequency',
+                            "display" => true,
+                        )
+                    )
+                ),
+                "yAxes" => array(
+                    array(
+                        "type" => "linear",
+                        "ticks" => array(
+                            "callback" => "function (tick) {
+                                return tick.toString() + 'dB';
+                            }"
+                        ),
+                        "scaleLabel" => array(
+                            "labelString" => 'Voltage',
+                            "display" => true
+                        )
+                    )
+                )
+            )
+        )
+    ));
+//widget_end 

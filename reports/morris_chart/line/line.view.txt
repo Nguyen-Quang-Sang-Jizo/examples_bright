@@ -1,0 +1,33 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\morris_chart\Line;
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>LineChart</h1>
+        <p class="lead">
+            This example shows how to use LineChart
+        </p>
+    </div>
+    <div style="margin-bottom:50px;">
+    <h6 class="text-center">Sale Report</h6>
+    <?php
+    Line::create(array(
+        "dataSource"=>$this->dataStore('result_0'),
+        "columns"=>array(
+            "category",
+            "sale"=>array("label"=>"Sale","type"=>"number","prefix"=>"$"),
+            "cost"=>array("label"=>"Cost","type"=>"number","prefix"=>"$"),
+            "profit"=>array("label"=>"Profit","type"=>"number","prefix"=>"$"),
+        )
+    ));
+    ?>
+    </div>
+    
+</div>
+//widget_end 

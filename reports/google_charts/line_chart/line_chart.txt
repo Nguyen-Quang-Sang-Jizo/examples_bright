@@ -1,0 +1,84 @@
+<?php
+class line_chart extends \koolreport\KoolReport
+{
+    function settings()
+    {
+
+
+//datasource_start 
+/* datasourceMeta_start
+{"isSavedTemplate":null,"template":["Variables_based","Array"]}
+datasourceMeta_end */
+$datasource = array(
+    "class"=>'\koolreport\datasources\ArrayDataSource',
+    "dataFormat"=>"associate", 
+    "data"=>array(
+        array("month"=>"January","sale"=>32000,"cost"=>40000),
+        array("month"=>"February","sale"=>48000,"cost"=>39000),
+        array("month"=>"March","sale"=>35000,"cost"=>38000),
+        array("month"=>"April","sale"=>40000,"cost"=>37000),
+        array("month"=>"May","sale"=>60000,"cost"=>45000),
+        array("month"=>"June","sale"=>73000,"cost"=>47000),
+        array("month"=>"July","sale"=>80000,"cost"=>60000),
+        array("month"=>"August","sale"=>78000,"cost"=>65000),
+        array("month"=>"September","sale"=>60000,"cost"=>45000),
+        array("month"=>"October","sale"=>83000,"cost"=>71000),
+        array("month"=>"November","sale"=>45000,"cost"=>40000),
+        array("month"=>"December","sale"=>39000,"cost"=>60000),
+    )
+);
+//datasource_end 
+    if (!isset($datasource)) {
+        if (isset($emptyCode)) {
+            $datasource = array(
+                "class"=>'\koolreport\datasources\ArrayDataSource',
+                "dataFormat"=>"associate", // or "table"
+                "data"=>array()
+            );
+        } else {
+            echo ('<i>Error:</i> variable $datasource doesn\'t exist in Data source'); exit;
+        }
+    }        
+
+        return array(
+            "dataSources" => array(
+                "source" => $datasource ?? array(
+                    "class"=>'\koolreport\datasources\ArrayDataSource',
+                    "dataFormat"=>"associate", // or "table"
+                    "data"=>array()
+                )
+            ),
+            "assets"=>array(
+                "path"=>"../../public/koolreport_assets", //relative from tmp directory
+                "url"=>"http://codegen.local/public/koolreport_assets"
+            )
+        );
+    }
+
+    function setup()
+    {
+        $node = $this->src('source');
+        $sql = 
+//sql_start 
+''
+//sql_end 
+;
+        $datastore = 
+//datastore_start 
+''
+//datastore_end 
+;
+        if (!empty($sql) && method_exists($node, 'query')) {
+            $node = $node
+            ->query($sql);
+        } else if (!empty($datastore) && method_exists($node, 'dataStore')) {
+            $node = $node
+            ->dataStore($datastore);
+        } 
+
+
+$node->pipe($this->dataStore('result_0'));
+
+
+    }
+}

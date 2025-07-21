@@ -1,0 +1,73 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","legend_point_style"]}
+widgetMeta_end */
+?>
+  <div id="report_render" style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: center;">
+    <?php
+    
+    $options = [
+        ["text" => "Nomal Legend", 'usePointStyle' => false, "rgb" => "rgb(255, 99, 132)", 'rgba' => 'rgba(255, 99, 132, 0.5)'],
+        ["text" => "Point Style Legend", 'usePointStyle' => true, "rgb" => "rgb(54, 162, 235)", 'rgba' => 'rgba(54, 162, 235, 0.5)'],
+    ];
+
+    for ($i = 0; $i < count($options); $i++) {
+    ?>
+        <div style="width:500px;margin-left: 40px;margin-right: 40px;">
+            <?php
+            \koolreport\chartjs\LineChart::create(array(
+                'dataSource' => $this->dataStore('result_0'),
+                'columns' => array(
+                    "month",
+                    "My First dataset" => array(
+                        "backgroundColor" => $options[$i]['rgba'],
+                        "borderColor" => $options[$i]['rgb'],
+                        "borderWidth" => 1,
+                        "fill" => true,
+                        "pointRadius" => 5,
+                        "pointBorderColor" => 'rgb(0, 0, 0)',
+                        "pointStyle" => 'rectRot'
+                    )
+                ),
+                "options" => array(
+                    "responsive" => true,
+                    "title" => array(
+                        "display" => true,
+                        "text" => $options[$i]['text'],
+                    ),
+                    "legend" => array(
+                        'labels' => array(
+                            "usePointStyle" => $options[$i]['usePointStyle']
+                        )
+                    ),
+                    "scales" => array(
+                        "xAxes" => array(
+                            array(
+                                "display" => true,
+                                "scaleLabel" => array(
+                                    "display" => true,
+                                    "labelString" => 'Month'
+                                )
+                            )
+                        ),
+                        "yAxes" => array(
+                            array(
+                                "display" => true,
+                                "scaleLabel" => array(
+                                    "display" => true,
+                                    "labelString" => 'Value'
+                                )
+                            )
+                        )
+                    )
+                )
+            ));
+            ?>
+        </div>
+    <?php
+    }
+    ?>
+</div>
+//widget_end 

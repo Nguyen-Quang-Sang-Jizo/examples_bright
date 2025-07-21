@@ -1,0 +1,34 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <h1 class='title'>X Axis Timezone</h1>
+<?php
+
+\koolreport\d3\LineChart::create(array(
+    "dataSource" => $this->dataStore('result_0'),
+    "columns" => array(
+        'x',
+        'data1',
+        'data2'
+    ),
+    "options" => array(
+        "data" => array(
+            'x' => 'x',
+            'xFormat' => '%Y'
+        ),
+        "axis" => array(
+            "x" => array(
+                "type" => 'timeseries',
+                "localtime" => false,
+                "tick" => array(
+                    "format" => '%Y-%m-%d %H:%M:%S'
+                )
+            )
+        )
+    )
+));
+//widget_end 

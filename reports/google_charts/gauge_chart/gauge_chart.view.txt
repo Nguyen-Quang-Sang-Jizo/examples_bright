@@ -1,0 +1,30 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\Gauge;
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>Gauge</h1>
+        <p class="lead">
+            This example shows how to use Gauge
+        </p>
+    </div>
+        
+    <?php
+    Gauge::create(array(
+        "dataSource"=>$this->dataStore('result_0'),
+        "columns"=>array(
+            "label",
+            "value"=>array(
+                "suffix"=>"%",
+            )
+        )
+    ));
+    ?>
+    
+</div>
+//widget_end 

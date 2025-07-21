@@ -1,0 +1,91 @@
+<?php
+class array_report extends \koolreport\KoolReport
+{
+    function settings()
+    {
+
+
+//datasource_start 
+/* datasourceMeta_start
+{"isSavedTemplate":null,"template":["Variables_based","Array"]}
+datasourceMeta_end */
+$datasource = array(
+    "class"=>'\koolreport\datasources\ArrayDataSource',
+    "dataFormat"=>"associate", 
+    "data"=>array(
+                        array("Item" => "Accessories", "Cost" => 3000),
+                        array("Item" => "Human Resource", "Cost" => 20000),
+                        array("Item" => "Material", "Cost" => 50000),
+                        array("Item" => "Machine", "Cost" => 30000),
+                        array("Item" => "Accessories", "Cost" => 5000),
+                        array("Item" => "Machine", "Cost" => 10000),
+                        array("Item" => "Material", "Cost" => 20000),
+                    )
+);
+//datasource_end 
+    if (!isset($datasource)) {
+        if (isset($emptyCode)) {
+            $datasource = array(
+                "class"=>'\koolreport\datasources\ArrayDataSource',
+                "dataFormat"=>"associate", // or "table"
+                "data"=>array()
+            );
+        } else {
+            echo ('<i>Error:</i> variable $datasource doesn\'t exist in Data source'); exit;
+        }
+    }        
+
+        return array(
+            "dataSources" => array(
+                "source" => $datasource ?? array(
+                    "class"=>'\koolreport\datasources\ArrayDataSource',
+                    "dataFormat"=>"associate", // or "table"
+                    "data"=>array()
+                )
+            ),
+            "assets"=>array(
+                "path"=>"../../public/koolreport_assets", //relative from tmp directory
+                "url"=>"http://codegen.local/public/koolreport_assets"
+            )
+        );
+    }
+
+    function setup()
+    {
+        $node = $this->src('source');
+        $sql = 
+//sql_start 
+''
+//sql_end 
+;
+        $datastore = 
+//datastore_start 
+''
+//datastore_end 
+;
+        if (!empty($sql) && method_exists($node, 'query')) {
+            $node = $node
+            ->query($sql);
+        } else if (!empty($datastore) && method_exists($node, 'dataStore')) {
+            $node = $node
+            ->dataStore($datastore);
+        } 
+
+
+$process = null;
+//process_start 
+/* processMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Others","Group"]}
+processMeta_end */
+$process = new \koolreport\processes\Group(array(
+    "by" => "Item",
+ 	"sum" => "Cost",
+));
+//process_end 
+if (isset($process)) $node = $node->pipe($process);
+else {echo '<i>Error:</i> variable $process does not exist in Process 1'; exit;}
+$node->pipe($this->dataStore('result_1'));
+
+
+    }
+}

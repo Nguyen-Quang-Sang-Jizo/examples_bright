@@ -1,0 +1,50 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <div class="report-content">
+    <div class="text-center">
+        <h1>HeatMapChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful HeatMapChart
+        </p>
+    </div>
+    <style>
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+    </style>
+    <div style="margin-bottom:50px;">
+            <?php
+            \koolreport\apexcharts\HeatMapChart::create(array(
+                "title" => "HeatMap Chart (Single color)",
+                "dataSource" => $this->dataStore('result_0'),
+                "columns" => array(
+                    "Metric_name" => [
+                        "seriesGroup" => true,
+                    ],
+                    "Metric_x" => [
+                        'categoryType' => 'category',
+                    ],
+                    "Metric_y" => [
+                        'label' => ''
+                    ],
+                ),
+                "options" => [],
+                "colors" => ["#008FFB"],
+                'widthHeightAutoRatio' => 1.8,
+                // "showLegend" => false,
+                // "showLabel" => true,
+                // "height" => "400px",
+                // "width" => "85%",
+                "maxWidth" => "800px",
+            ));
+            ?>
+    </div>
+
+
+</div>
+//widget_end 

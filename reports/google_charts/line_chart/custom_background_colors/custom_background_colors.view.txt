@@ -1,0 +1,33 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\LineChart;
+
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>Custom Background Colors</h1>
+    </div>
+    <div style="margin-bottom:50px;">
+        <?php
+        LineChart::create(array(
+            "title" => "Company Performance",
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                'Year',
+                'Sales',
+                'Expenses'
+            ),
+            "options" => array(
+                "backgroundColor" => '#f1f8e9'
+            )
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

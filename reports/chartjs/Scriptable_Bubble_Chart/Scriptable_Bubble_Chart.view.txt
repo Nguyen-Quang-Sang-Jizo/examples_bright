@@ -1,0 +1,52 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","scriptable_bubble_chart"]}
+widgetMeta_end */
+\koolreport\chartjs\BubbleChart::create(array(
+        'dataSource' => $this->dataStore('result_0'),
+        "series" => array(
+            array("x", "y", "v")
+        ),
+        "options" => array(
+            "aspectRatio" => 1,
+            // "tooltips" => false,
+            "legend" => false,
+            "elements" => array(
+                "point" => array(
+                    "backgroundColor" => 'rgb(255, 99, 132)',
+                    "borderColor" => 'rgb(255, 99, 132)',
+                    "borderWidth" => "function(context) {
+                        return Math.min(Math.max(1, context.datasetIndex + 1), 8);
+                    }",
+                    "hoverBackgroundColor" => 'transparent',
+                    "hoverBorderColor" => "function(context) {
+                        var COLORS = [
+                            '#4dc9f6',
+                            '#f67019',
+                            '#f53794',
+                            '#537bc4',
+                            '#acc236',
+                            '#166a8f',
+                            '#00a950',
+                            '#58595b',
+                            '#8549ba'
+                        ];
+                        return COLORS[context.datasetIndex % COLORS.length];
+                    }",
+                    "hoverBorderWidth" => "function(context) {
+                        var value = context.dataset.data[context.dataIndex];
+                        return Math.round(8 * value.v / 1000);
+                    }",
+                    "radius" => "function(context) {
+                        var value = context.dataset.data[context.dataIndex];
+                        var size = context.chart.width;
+                        var base = Math.abs(value.v) / 1000;
+                        return (size / 24) * base;
+                    }"
+                )
+            )
+        )
+    ));
+//widget_end 

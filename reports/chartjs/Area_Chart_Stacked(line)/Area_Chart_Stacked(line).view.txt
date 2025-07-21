@@ -1,0 +1,61 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","area_chart_stacked"]}
+widgetMeta_end */
+\koolreport\chartjs\AreaChart::create(array(
+        'dataSource' => $this->dataStore('result_0'),
+        'columns' => array(
+            'month',
+            'series1' => array(
+                'backgroundColor' => 'rgb(255, 99, 132)',
+                'borderColor' => 'rgb(255, 99, 132)'
+            ),
+            'series2' => array(
+                'backgroundColor' => 'rgb(54, 162, 235)',
+                'borderColor' => 'rgb(54, 162, 235)'
+            ),
+            'series3' => array(
+                'backgroundColor' => 'rgb(75, 192, 192)',
+                'borderColor' => 'rgb(75, 192, 192)'
+            ),
+            'series4' => array(
+                'backgroundColor' => 'rgb(255, 205, 86)',
+                'borderColor' => 'rgb(255, 205, 86)'
+            )
+        ),
+        "options" => array(
+            "responsive" => true,
+            "title" => array(
+                "display" => true,
+                "text" => 'Chart.js Line Chart - Stacked Area'
+            ),
+            "tooltips" => array(
+                "mode" => 'index',
+            ),
+            "hover" => array(
+                "mode" => 'index',
+            ),
+            "scales" => array(
+                "xAxes" => array(
+                    array(
+                        "scaleLabel" => array(
+                            "display" => true,
+                            "labelString" => 'Month'
+                        )
+                    )
+                ),
+                "yAxes" => array(
+                    array(
+                        "stacked" => true,
+                        "scaleLabel" => array(
+                            "display" => true,
+                            "labelString" => 'Value'
+                        )
+                    )
+                )
+            ),
+        )
+    ));
+//widget_end 

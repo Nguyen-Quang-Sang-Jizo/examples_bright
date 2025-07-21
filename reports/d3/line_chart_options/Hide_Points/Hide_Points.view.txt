@@ -1,0 +1,24 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <h1 class='title'>Hide points</h1>
+<div style="display: flex;justify-content: center;">
+    <?php
+    \koolreport\d3\LineChart::create(array(
+        "dataSource" => $this->dataStore('result_0'),
+        "columns" => array(
+            'data1'
+        ),
+        "options" => array(
+            "point" => array(
+                "show" => false
+            )
+        )
+    ));
+    ?>
+</div>
+//widget_end 

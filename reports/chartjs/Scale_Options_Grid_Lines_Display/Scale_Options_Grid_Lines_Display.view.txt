@@ -1,0 +1,70 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","scale_options_grid_lines_display"]}
+widgetMeta_end */
+?>
+  <div id="report_render" style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: center;">
+    <?php
+
+    $options = [
+        ['Display: true', ['display' => true]],
+        ['Display: false', ['display' => false]],
+        ['Display: false, no border', ['display' => false, "drawBorder" => false]],
+        ['DrawOnChartArea: false', ['display' => true, "drawBorder" => true, "drawOnChartArea" => false]],
+        ['DrawTicks: false', ['display' => true, "drawBorder" => true, "drawOnChartArea" => true, "drawTicks" => false]],
+
+    ];
+
+for ($i = 0; $i < count($options); $i++) {
+    ?>
+        <div style="width:500px;margin-left: 40px;margin-right: 40px;margin-bottom: 40px;">
+            <?php
+            \koolreport\chartjs\LineChart::create(array(
+                'dataSource' => $this->dataStore('result_0'),
+                'columns' => array(
+                    "month",
+                    "My First dataset" => array(
+                        "fill" => false,
+                        "backgroundColor" => 'rgb(255, 99, 132)',
+                        "borderColor" => 'rgb(255, 99, 132)'
+                    ),
+                    "My Second dataset" => array(
+                        "fill" => false,
+                        "backgroundColor" => 'rgb(54, 162, 235)',
+                        "borderColor" => 'rgb(54, 162, 235)'
+                    )
+                ),
+                "options" => array(
+                    "responsive" => true,
+                    "title" => array(
+                        "display" => true,
+                        "text" => $options[$i][0],
+                    ),
+                    "scales" => array(
+                        "xAxes" => array(
+                            array(
+                                "gridLines" => $options[$i][1]
+                            )
+                        ),
+                        "yAxes" => array(
+                            array(
+                                "gridLines" =>  $options[$i][1],
+                                "ticks" => array(
+                                    "min" => 0,
+                                    "max" => 100,
+                                    "stepSize" => 10
+                                )
+                            )
+                        )
+                    )
+                )
+            ));
+            ?>
+        </div>
+    <?php
+    }
+    ?>
+</div>
+//widget_end 

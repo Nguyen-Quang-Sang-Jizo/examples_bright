@@ -1,0 +1,45 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\ColumnChart;
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>Multi Annotation</h1>
+        <p class="lead">
+        The example shows how to add mutiple annotations for each data series
+        </p>
+    </div>
+    <div style="margin-bottom:50px;">
+    <?php
+    ColumnChart::create(array(
+        "title"=>"Sale Report",
+        "dataSource"=>$this->dataStore('result_0'),
+        "columns"=>array(
+            "category",
+            "sale"=>array("label"=>"Sale","type"=>"number","prefix"=>"$"),
+            "saleAnnotation1" => array(
+                "role" => "annotation",
+                "formatValue" => function($value, $row) {
+                    return $row["sale"];
+                },
+            ),
+            "saleAnnotation2" => array(
+                "role" => "annotation",
+                "formatValue" => function($value, $row) {
+                    return $row["category"] . ":";
+                },
+            ),
+            "cost"=>array("label"=>"Cost","type"=>"number","prefix"=>"$"),
+            "profit"=>array("label"=>"Profit","type"=>"number","prefix"=>"$"),
+        )
+    ));
+    ?>
+    </div>
+    
+</div>
+//widget_end 

@@ -1,0 +1,51 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["Chartjs","XY","tooltip_positioning"]}
+widgetMeta_end */
+?>
+  <div id="report_render" style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: center;">
+    <?php
+
+    $options = ['average', 'nearest'];
+
+    for ($i = 0; $i < count($options); $i++) {
+    ?>
+        <div style="width:500px;margin-left: 40px;margin-right: 40px;">
+            <?php
+            \koolreport\chartjs\LineChart::create(array(
+                'dataSource' => $this->dataStore('result_0'),
+                'columns' => array(
+                    "month",
+                    "My First dataset" => array(
+                        "backgroundColor" => 'rgb(255, 99, 132)',
+                        "borderColor" => 'rgb(255, 99, 132)',
+                        'fill' => false
+                    ),
+                    "My Second dataset" => array(
+                        "backgroundColor" => 'rgb(54, 162, 235)',
+                        "borderColor" => 'rgb(54, 162, 235)',
+                        'fill' => false
+                    )
+                ),
+                "options" => array(
+                    "responsive" => true,
+                    "title" => array(
+                        "display" => true,
+                        "text" => 'Tooltip Position: ' . $options[$i]
+                    ),
+                    "tooltips" => array(
+                        "position" => $options[$i],
+                        "mode" => 'index',
+                        "intersect" => false
+                    )
+                )
+            ));
+            ?>
+        </div>
+    <?php
+    }
+    ?>
+</div>
+//widget_end 

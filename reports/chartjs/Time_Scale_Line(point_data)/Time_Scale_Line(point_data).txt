@@ -1,0 +1,94 @@
+<?php
+class Time_Scale_Line(point_data) extends \koolreport\KoolReport
+{
+    function settings()
+    {
+
+
+//datasource_start 
+/* datasourceMeta_start
+{"isSavedTemplate":null,"template":["Variables_based","Array"]}
+datasourceMeta_end */
+function randomScalingFactor()
+    {
+        return mt_rand(-100, 100);
+    }
+
+    function newDate($days)
+    {
+        $date = new DateTime();
+        $date->modify("+$days days");
+        return $date->format('F d, Y, H:i:s a');
+    }
+
+    function newDateString($days)
+    {
+        $date = new DateTime();
+        $date->modify("+$days days");
+        return $date->format('Y-m-d  H:i:s');
+    }
+$datasource = array(
+    "class"=>'\koolreport\datasources\ArrayDataSource',
+    "dataFormat"=>"associate", 
+    "data"=>[
+        ["label" => newDate(0), "Dataset with string point data" => ['x' => newDateString(0), 'y' => randomScalingFactor()], "Dataset with date object point data" => ['x' => newDate(0), 'y' => randomScalingFactor()]],
+        ["label" => newDate(2), "Dataset with string point data" => ['x' => newDateString(2), 'y' => randomScalingFactor()], "Dataset with date object point data" => ['x' => newDate(2), 'y' => randomScalingFactor()]],
+        ["label" => newDate(4), "Dataset with string point data" => ['x' => newDateString(4), 'y' => randomScalingFactor()], "Dataset with date object point data" => ['x' => newDate(4), 'y' => randomScalingFactor()]],
+        ["label" => newDate(5), "Dataset with string point data" => ['x' => newDateString(5), 'y' => randomScalingFactor()], "Dataset with date object point data" => ['x' => newDate(5), 'y' => randomScalingFactor()]],
+    ]
+);
+//datasource_end 
+    if (!isset($datasource)) {
+        if (isset($emptyCode)) {
+            $datasource = array(
+                "class"=>'\koolreport\datasources\ArrayDataSource',
+                "dataFormat"=>"associate", // or "table"
+                "data"=>array()
+            );
+        } else {
+            echo ('<i>Error:</i> variable $datasource doesn\'t exist in Data source'); exit;
+        }
+    }        
+
+        return array(
+            "dataSources" => array(
+                "source" => $datasource ?? array(
+                    "class"=>'\koolreport\datasources\ArrayDataSource',
+                    "dataFormat"=>"associate", // or "table"
+                    "data"=>array()
+                )
+            ),
+            "assets"=>array(
+                "path"=>"../../public/koolreport_assets", //relative from tmp directory
+                "url"=>"http://codegen.local/public/koolreport_assets"
+            )
+        );
+    }
+
+    function setup()
+    {
+        $node = $this->src('source');
+        $sql = 
+//sql_start 
+''
+//sql_end 
+;
+        $datastore = 
+//datastore_start 
+''
+//datastore_end 
+;
+        if (!empty($sql) && method_exists($node, 'query')) {
+            $node = $node
+            ->query($sql);
+        } else if (!empty($datastore) && method_exists($node, 'dataStore')) {
+            $node = $node
+            ->dataStore($datastore);
+        } 
+
+
+$node->pipe($this->dataStore('result_0'));
+
+
+    }
+}

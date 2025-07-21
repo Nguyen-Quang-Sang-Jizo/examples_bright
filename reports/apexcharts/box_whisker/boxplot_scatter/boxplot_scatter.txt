@@ -1,0 +1,85 @@
+<?php
+class boxplot_scatter extends \koolreport\KoolReport
+{
+    function settings()
+    {
+
+
+//datasource_start 
+/* datasourceMeta_start
+{"isSavedTemplate":null,"template":["Variables_based","Array"]}
+datasourceMeta_end */
+$datasource = array(
+    "class"=>'\koolreport\datasources\ArrayDataSource',
+    "dataFormat"=>"table",
+    "data"=>[
+    ["datetime", "min", "per25", "median", "per75", "max", "scatter_x", "scatter_y"],
+    ["2017/1/1", 54, 66, 69, 75, 88, null, null],
+    ["2018/1/1", 43, 65, 69, 76, 81, null, null],
+    ["2019/1/1", 31, 39, 45, 51, 59, null, null],
+    ["2020/1/1", 39, 46, 55, 65, 71, null, null],
+    ["2021/1/1", 29, 31, 35, 39, 44, null, null],
+    [null, null, null, null, null, null, "2017/1/1", 32],
+    [null, null, null, null, null, null, "2018/1/1", 25],
+    [null, null, null, null, null, null, "2019/1/1", 64],
+    [null, null, null, null, null, null, "2020/1/1", 27],
+    [null, null, null, null, null, null, "2020/1/1", 78],
+    [null, null, null, null, null, null, "2021/1/1", 15],
+]
+
+);
+//datasource_end 
+    if (!isset($datasource)) {
+        if (isset($emptyCode)) {
+            $datasource = array(
+                "class"=>'\koolreport\datasources\ArrayDataSource',
+                "dataFormat"=>"associate", // or "table"
+                "data"=>array()
+            );
+        } else {
+            echo ('<i>Error:</i> variable $datasource doesn\'t exist in Data source'); exit;
+        }
+    }        
+
+        return array(
+            "dataSources" => array(
+                "source" => $datasource ?? array(
+                    "class"=>'\koolreport\datasources\ArrayDataSource',
+                    "dataFormat"=>"associate", // or "table"
+                    "data"=>array()
+                )
+            ),
+            "assets"=>array(
+                "path"=>"../../public/koolreport_assets", //relative from tmp directory
+                "url"=>"http://codegen.local/public/koolreport_assets"
+            )
+        );
+    }
+
+    function setup()
+    {
+        $node = $this->src('source');
+        $sql = 
+//sql_start 
+''
+//sql_end 
+;
+        $datastore = 
+//datastore_start 
+''
+//datastore_end 
+;
+        if (!empty($sql) && method_exists($node, 'query')) {
+            $node = $node
+            ->query($sql);
+        } else if (!empty($datastore) && method_exists($node, 'dataStore')) {
+            $node = $node
+            ->dataStore($datastore);
+        } 
+
+
+$node->pipe($this->dataStore('result_0'));
+
+
+    }
+}

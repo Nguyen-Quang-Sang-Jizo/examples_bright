@@ -1,0 +1,110 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>AreaChart</h1>
+        <p class="lead">
+            This example shows how to create beautiful AreaChart
+        </p>
+    </div>
+
+    <style>
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+    </style>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script> -->
+
+    <div style="margin-bottom:50px;">
+        <?php
+        $numberFormat = [
+            'type' => 'number',
+            // 'formatValue' => function($val) {
+            //     if ($val === null) return null;
+            //     return number_format($val / 1000000, 2);
+            // }
+        ];
+        \koolreport\apexcharts\AreaChart::create(array(
+            "title" => "Irregular Data in Time Series",
+            "dataSource" => $this->dataStore('result_0'),
+            "jsFiles" => ["moment"],
+            "columns" => array(
+                "date" => [
+                    "label" => "Date",
+                    "categoryType" => "datetime",
+                ],
+                "PRODUCT A" => $numberFormat,
+                "PRODUCT B" => $numberFormat,
+                "PRODUCT C" => $numberFormat
+            ),
+            "options" => [
+                'chart | zoom | enabled' => false,
+                'fill | gradient' => [
+                    'shadeIntensity' => 1,
+                    'inverseColors' => false,
+                    'opacityFrom' => 0.45,
+                    'opacityTo' => 0.05,
+                    'stops' => [
+                        20,
+                        100,
+                        100,
+                        100
+                    ]
+                ],
+                'dataLabels | formatter' => "function(val) {
+                    return (val / 1000000).toFixed(2);
+                }",
+                'yaxis' => [
+                    'labels' => [
+                        'style | colors' => '#8e8da4',
+                        'offsetX' => 0,
+                        'formatter' => "function(val) {
+                            return (val / 1000000).toFixed(2);
+                        }",
+                    ],
+                    'axisBorder | show' => false,
+                    'axisTicks | show' => false,
+                ],
+                'xaxis' => [
+                    'tickAmount' => 8,
+                    'min' => 'function() {return new Date("01/01/2014").getTime();}()',
+                    'max' => 'function() {return new Date("01/20/2014").getTime();}()',
+                    'labels' => [
+                        'rotate' => -15,
+                        'rotateAlways' => true,
+                        "formatter" => 'function(val, timestamp) {
+                            // console.log("xaxis formatter");
+                            return moment(new Date(timestamp)).format("DD MMM YYYY")
+                        }',
+                    ],
+                ],
+                'tooltip | shared' => true,
+                'legend' => [
+                    'position' => 'top',
+                    'horizontalAlign' => 'right',
+                    'offsetX' => -10
+                ],
+                "title" => [
+                    "align" => 'left',
+                    "offsetX" => 14
+                ],
+            ],
+            'fillType' => 'gradient',
+            "markerSize" => 0,
+            // "showLegend" => false,
+            // "showLabel" => true,
+            // "height" => "600px",
+            "keepNullValue" => false,
+            // "width" => "85%",
+            "maxWidth" => 800,
+        ));
+        ?>
+    </div>
+
+</div>
+//widget_end 

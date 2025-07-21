@@ -1,0 +1,35 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\WordTree;
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>WordTree</h1>
+        <p class="lead">
+            This example shows how to use WordTree
+        </p>
+    </div>
+    <div style="margin-bottom:50px;">
+        <?php
+        WordTree::create(array(
+            "title" => 'Red Sox Attendance',
+            "dataSource" => $this->dataStore('result_0'),
+            "columns" => array(
+                'Phrases'
+            ),
+            "options" => array(
+                "wordtree" => array(
+                    "format" => 'implicit',
+                    "word" => 'cats'
+                )
+            )
+        ));
+        ?>
+    </div>
+</div>
+//widget_end 

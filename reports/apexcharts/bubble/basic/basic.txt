@@ -1,0 +1,369 @@
+<?php
+class basic extends \koolreport\KoolReport
+{
+    function settings()
+    {
+
+
+//datasource_start 
+/* datasourceMeta_start
+{"isSavedTemplate":null,"template":["Variables_based","Array"]}
+datasourceMeta_end */
+$datasource = array(
+    "class"=>'\koolreport\datasources\ArrayDataSource',
+    "dataFormat"=>"table",
+    "data"=>[
+            [
+                'Bubble1_x',
+                'Bubble1_y',
+                'Bubble1_z',
+
+                'Bubble2_x',
+                'Bubble2_y',
+                'Bubble2_z',
+
+                'Bubble3_x',
+                'Bubble3_y',
+                'Bubble3_z',
+
+                'Bubble4_x',
+                'Bubble4_y',
+                'Bubble4_z',
+            ],
+            [
+                1,
+                36,
+                59,
+                747,
+                19,
+                56,
+                617,
+                37,
+                22,
+                511,
+                60,
+                74
+            ],
+            [
+                198,
+                29,
+                26,
+                300,
+                32,
+                60,
+                301,
+                16,
+                64,
+                98,
+                28,
+                17
+            ],
+            [
+                732,
+                36,
+                47,
+                134,
+                51,
+                64,
+                294,
+                13,
+                51,
+                408,
+                18,
+                45
+            ],
+            [
+                193,
+                15,
+                64,
+                74,
+                11,
+                23,
+                253,
+                22,
+                38,
+                118,
+                50,
+                30
+            ],
+            [
+                676,
+                33,
+                29,
+                479,
+                29,
+                30,
+                236,
+                41,
+                27,
+                163,
+                27,
+                60
+            ],
+            [
+                186,
+                19,
+                34,
+                381,
+                36,
+                21,
+                214,
+                60,
+                26,
+                311,
+                58,
+                50
+            ],
+            [
+                78,
+                51,
+                47,
+                738,
+                27,
+                61,
+                497,
+                36,
+                62,
+                339,
+                42,
+                72
+            ],
+            [
+                634,
+                47,
+                19,
+                200,
+                43,
+                70,
+                96,
+                28,
+                28,
+                370,
+                33,
+                20
+            ],
+            [
+                405,
+                16,
+                67,
+                350,
+                32,
+                71,
+                225,
+                18,
+                73,
+                565,
+                17,
+                49
+            ],
+            [
+                349,
+                34,
+                42,
+                351,
+                59,
+                34,
+                545,
+                40,
+                46,
+                455,
+                27,
+                38
+            ],
+            [
+                176,
+                10,
+                16,
+                596,
+                54,
+                60,
+                367,
+                28,
+                32,
+                167,
+                51,
+                44
+            ],
+            [
+                746,
+                56,
+                62,
+                419,
+                52,
+                47,
+                293,
+                30,
+                41,
+                488,
+                35,
+                18
+            ],
+            [
+                429,
+                49,
+                53,
+                231,
+                27,
+                33,
+                242,
+                27,
+                21,
+                473,
+                44,
+                24
+            ],
+            [
+                259,
+                29,
+                31,
+                335,
+                38,
+                54,
+                547,
+                30,
+                15,
+                602,
+                20,
+                18
+            ],
+            [
+                264,
+                42,
+                37,
+                48,
+                34,
+                42,
+                264,
+                37,
+                26,
+                345,
+                47,
+                73
+            ],
+            [
+                40,
+                36,
+                24,
+                8,
+                45,
+                38,
+                653,
+                56,
+                73,
+                402,
+                12,
+                54
+            ],
+            [
+                341,
+                26,
+                26,
+                336,
+                57,
+                22,
+                596,
+                21,
+                46,
+                286,
+                35,
+                37
+            ],
+            [
+                49,
+                60,
+                48,
+                322,
+                24,
+                40,
+                148,
+                54,
+                64,
+                286,
+                53,
+                66
+            ],
+            [
+                67,
+                60,
+                41,
+                183,
+                28,
+                58,
+                739,
+                27,
+                53,
+                686,
+                38,
+                18
+            ],
+            [
+                527,
+                19,
+                48,
+                702,
+                10,
+                44,
+                506,
+                55,
+                22,
+                550,
+                23,
+                52
+            ]
+        ]
+);
+//datasource_end 
+    if (!isset($datasource)) {
+        if (isset($emptyCode)) {
+            $datasource = array(
+                "class"=>'\koolreport\datasources\ArrayDataSource',
+                "dataFormat"=>"associate", // or "table"
+                "data"=>array()
+            );
+        } else {
+            echo ('<i>Error:</i> variable $datasource doesn\'t exist in Data source'); exit;
+        }
+    }        
+
+        return array(
+            "dataSources" => array(
+                "source" => $datasource ?? array(
+                    "class"=>'\koolreport\datasources\ArrayDataSource',
+                    "dataFormat"=>"associate", // or "table"
+                    "data"=>array()
+                )
+            ),
+            "assets"=>array(
+                "path"=>"../../public/koolreport_assets", //relative from tmp directory
+                "url"=>"http://codegen.local/public/koolreport_assets"
+            )
+        );
+    }
+
+    function setup()
+    {
+        $node = $this->src('source');
+        $sql = 
+//sql_start 
+''
+//sql_end 
+;
+        $datastore = 
+//datastore_start 
+''
+//datastore_end 
+;
+        if (!empty($sql) && method_exists($node, 'query')) {
+            $node = $node
+            ->query($sql);
+        } else if (!empty($datastore) && method_exists($node, 'dataStore')) {
+            $node = $node
+            ->dataStore($datastore);
+        } 
+
+
+$node->pipe($this->dataStore('result_0'));
+
+
+    }
+}

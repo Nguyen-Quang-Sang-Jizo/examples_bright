@@ -1,0 +1,25 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+?>
+  <h1 class='title'>Range for Y Axis</h1>
+<?php
+
+\koolreport\d3\LineChart::create(array(
+    "dataSource" => $this->dataStore('result_0'),
+    "columns" => array(
+        'sample'
+    ),
+    "options" => array(
+        "axis" => array(
+            "y" => array(
+                "max" => 400,
+                "min" => -400
+            )
+        )
+    )
+));
+//widget_end 

@@ -1,0 +1,25 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\Sankey;
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>Sankey Diagram</h1>
+        <p class="lead">
+            This example shows how to use Sankey Diagram
+        </p>
+    </div>
+
+    <div style="margin-bottom:50px;">
+    <?php
+    Sankey::create(array(
+        "dataSource"=>$this->dataStore('result_0')
+    ));
+    ?>
+    </div>
+</div>
+//widget_end 

@@ -1,0 +1,68 @@
+<?php 
+
+//widget_start 
+/* widgetMeta_start
+{"index":"0","isSavedTemplate":null,"template":["","",""]}
+widgetMeta_end */
+use \koolreport\widgets\google\CandlestickChart;
+
+$data = $this->dataStore('result_0');
+
+?>
+<div class="report-content">
+    <div class="text-center">
+        <h1>CandlestickChart</h1>
+        <p class="lead">
+            This example shows how to use CandlestickChart
+        </p>
+    </div>
+    <div style="margin-bottom:50px;">
+        <?php
+        CandlestickChart::create(array(
+            "dataSource" => $data,
+            "columns" => array(
+                'month',
+                'data',
+                'data2',
+                'data3',
+                'data4'
+            ),
+            "options" => array(
+                "legend" => 'none'
+            )
+        ));
+        ?>
+    </div>
+    <div style="margin-bottom:50px;">
+        <?php
+        CandlestickChart::create(array(
+            "title" => 'Waterfall charts',
+            "dataSource" => $data,
+            "columns" => array(
+                'month',
+                'data',
+                'data2',
+                'data3',
+                'data4'
+            ),
+            "options" => array(
+                "legend" => 'none',
+                "bar" => array(
+                    "groupWidth" => '100%'
+                ),
+                "candlestick" => array(
+                    "fallingColor" => array(
+                        "strokeWidth" => 0,
+                        "fill" => '#a52714'
+                    ),
+                    "risingColor" => array(
+                        "strokeWidth" => 0,
+                        "fill" => '#0f9d58'
+                    )
+                )
+            )
+        ));
+        ?>
+    </div>
+</div>
+//widget_end 

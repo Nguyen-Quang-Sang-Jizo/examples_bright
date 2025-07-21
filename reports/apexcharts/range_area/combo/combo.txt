@@ -1,0 +1,171 @@
+<?php
+class combo extends \koolreport\KoolReport
+{
+    function settings()
+    {
+
+
+//datasource_start 
+/* datasourceMeta_start
+{"isSavedTemplate":null,"template":["Variables_based","Array"]}
+datasourceMeta_end */
+$datasource = array(
+    "class"=>'\koolreport\datasources\ArrayDataSource',
+    "dataFormat"=>"table",
+    "data"=>[
+            [
+                'month',
+                'Team_A_min',
+                'Team_A_max',
+                'Team_A_med',
+                'Team_B_min',
+                'Team_B_max',
+                'Team_B_med',
+            ],
+            [
+                "Jan",
+                3100,
+                3400,
+                3300,
+                1100,
+                1900,
+                1500
+            ],
+            [
+                "Feb",
+                4200,
+                5200,
+                4900,
+                1200,
+                1800,
+                1700
+            ],
+            [
+                "Mar",
+                3900,
+                4900,
+                4300,
+                900,
+                2900,
+                1900
+            ],
+            [
+                "Apr",
+                3400,
+                3900,
+                3700,
+                1400,
+                2700,
+                2200
+            ],
+            [
+                "May",
+                5100,
+                5900,
+                5500,
+                2600,
+                3900,
+                3000
+            ],
+            [
+                "Jun",
+                5400,
+                6700,
+                5900,
+                500,
+                1700,
+                1000
+            ],
+            [
+                "Jul",
+                4300,
+                4600,
+                4500,
+                1900,
+                2300,
+                2100
+            ],
+            [
+                "Aug",
+                2100,
+                2900,
+                2400,
+                1000,
+                1500,
+                1200
+            ],
+            [
+                "Sep",
+                null,
+                null,
+                2100,
+                null,
+                null,
+                1800
+            ],
+            [
+                "Oct",
+                null,
+                null,
+                1500,
+                null,
+                null,
+                2000
+            ]
+        ]
+);
+//datasource_end 
+    if (!isset($datasource)) {
+        if (isset($emptyCode)) {
+            $datasource = array(
+                "class"=>'\koolreport\datasources\ArrayDataSource',
+                "dataFormat"=>"associate", // or "table"
+                "data"=>array()
+            );
+        } else {
+            echo ('<i>Error:</i> variable $datasource doesn\'t exist in Data source'); exit;
+        }
+    }        
+
+        return array(
+            "dataSources" => array(
+                "source" => $datasource ?? array(
+                    "class"=>'\koolreport\datasources\ArrayDataSource',
+                    "dataFormat"=>"associate", // or "table"
+                    "data"=>array()
+                )
+            ),
+            "assets"=>array(
+                "path"=>"../../public/koolreport_assets", //relative from tmp directory
+                "url"=>"http://codegen.local/public/koolreport_assets"
+            )
+        );
+    }
+
+    function setup()
+    {
+        $node = $this->src('source');
+        $sql = 
+//sql_start 
+''
+//sql_end 
+;
+        $datastore = 
+//datastore_start 
+''
+//datastore_end 
+;
+        if (!empty($sql) && method_exists($node, 'query')) {
+            $node = $node
+            ->query($sql);
+        } else if (!empty($datastore) && method_exists($node, 'dataStore')) {
+            $node = $node
+            ->dataStore($datastore);
+        } 
+
+
+$node->pipe($this->dataStore('result_0'));
+
+
+    }
+}
